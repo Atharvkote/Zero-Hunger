@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zero Hunger - Food Donation Platform</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Zero Hunger</h1>
+        <p>Connecting donors with those in need to fight hunger and reduce waste</p>
+    </header>
+
+    <section id="donor-form">
+        <h2>Donate Food</h2>
+        <form id="donationForm">
+            <label for="donorName">Name:</label>
+            <input type="text" id="donorName" required><br>
+            
+            <label for="donorContact">Contact:</label>
+            <input type="text" id="donorContact" required><br>
+            
+            <label for="foodType">Food Type:</label>
+            <input type="text" id="foodType" required><br>
+            
+            <label for="quantity">Quantity (kg):</label>
+            <input type="number" id="quantity" required><br>
+            
+            <button type="submit">Donate</button>
+        </form>
+    </section>
+
+    <section id="available-food">
+        <h2>Available Food</h2>
+        <ul id="foodList"></ul>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
