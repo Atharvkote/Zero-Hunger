@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@400;700&display=swap');
+    
+        body {
+           font-family: Inknut Antiqua;
+            margin: 0;
+            padding: 0;
+            /* max-width: 80%; */
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 10px;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+            margin: auto;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            /* Aligns logo and nav to opposite ends */
+            align-items: center;
+            /* Vertically centers the items */
+            background-color: #ff8d02;
+            background: #ff8d02;
+            padding: 10px 20px;
+        }
+
+        img {
+            width: 250px;
+            height: 295px;
+            border-radius: 10px;
+        }
+        .logo h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            padding-left: 100px;
+            /* Aligns items in a row */
+        }
+
+        nav ul li {
+            margin-left: 100px;
+
+            /* Space between navigation items */
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .navbar {
+            background-color: #ff8d02;
+        }
+        .form-container h2 {
+            margin-top: 0;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #ff8d02;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+       
