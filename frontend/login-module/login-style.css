@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@400;700&display=swap');
+
+body {
+    font-family: 'Inknut Antiqua', serif;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+header {
+    background-color: #ff8d02;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+}
+
+.login-logo {
+    margin-left: auto;
+}
+
+.logo h1 {
+    margin: 0;
+    font-size: 36px;
+    color: white;
+    margin-left: 20px;
+}
+
+.logo p {
+    margin: 5px 0;
+    margin-top: -15px;
+    font-size: 18px;
+    margin-left: 20px;
+    color: white;
+}
+
+header img {
+    margin-top: 10px;
+}
+
+.navbar {
+    background: #ff8d02;
+    margin-bottom: 30px;
+    margin-top: -30px;
+}
+
+.navbar ul {
+    list-style-type: none;
+    padding: 10px;
+    display: flex;
+    justify-content: flex-end;
+    background: #f5d8b5;
+    padding-right: 50px;
+}
+
+.navbar ul li {
+    margin-left: 150px;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+
+.form-container {
+    background-color: #eebf85;
+    padding: 45px 300px 45px 300px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 0 30px;
+    clip-path: polygon(0% 0%, 75% 0%, 100% 50%, 75% 100%, 0% 100%, 0% 50%);
+    border: solid rgba(0, 0, 0, 0.1);
+}
+
+.form-container h2 {
+    background: #ff8d02;
+    width: 30%;
+    margin-top: -50px;
+    margin-left: -300px;
+    border-bottom-right-radius: 20px;
+    padding-left: 70px;
+    padding-right: 70px;
+}
+
+.container {
+    width: 100%;
+    margin: auto;
+    display: flex;
+}
+
+.first{
+    background-color: #f5d8b5;
+    height:auto ;
+    width: 35px; 
+    margin-left: 30px;  
+    margin-right: 30px;
+}
+.second{
+    background-color: #ff8d02;
+    height:auto ;
+    width: 35px; 
+    margin-right: 30px;
+}
+
+.third{
+    background-color: #f5d8b5;
+    height:auto ;
+    width: 35px; 
+    margin-right: 30px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+::placeholder{
+    padding-left: 10px;
+}
+
+form{
+    margin-top: 50px; 
+    margin-left: 0;    
+}
+
+form p{
+    font-weight: bold;
+    font-size: small;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+input {
+    width: 69%;
+    height: 25px;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    border: solid black;
+}
+
+button {
+    /* margin-top: 15px; */
+    margin-left: -70px;
+    padding: 15px 215px 15px 215px;
+    background-color: #ff8d02;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: larger;
+}
