@@ -149,3 +149,26 @@ button {
 label {
     font-weight: bold;
 }
+
+.custom-alert {
+    padding: 15px;
+    background-color: #cce5ff;
+    color: #004085;
+    border: 1px solid #b8daff;
+    border-radius: 5px;
+    font-family: Arial, sans-serif;
+    position: relative;
+  }
+  
+  .close-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    font-weight: bold;
+    color: #004085;
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    cursor: pointer;
+  }
+  
