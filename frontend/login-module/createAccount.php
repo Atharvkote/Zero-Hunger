@@ -1,4 +1,5 @@
 <?php
+session_start();
 $showError = $showAlert = "";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -20,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($numExistRows > 0) {
         // Username already exists
-        $showError = "Username already exists!";
+        $_SESSION['showError'] = "Username already exists!";
     } else {
         // Check if passwords match
         if ($password == $cpassword) {
@@ -28,20 +29,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
             // Insert the new user into the database
-            $sql = "INSERT INTO `users-information` ( `email`, `username`, `password`, `state`, `district`, `pincode`, `date`) VALUES ('$email', '$username', '$password', '$state', '$district', '$pincode', '$current_date');";
+            $sql = "INSERT INTO `users-information` ( `email`, `username`, `password`, `state`, `district`, `pincode`, `date`) VALUES ('$email', '$username', '$hashed_password', '$state', '$district', '$pincode', '$current_date');";
             $result = mysqli_query($connection, $sql);
 
             if ($result) {
-                $showAlert = "Sign-up successful!";
+                $_SESSION['showAlert'] = "Sign-up successful!";
                 header("Location: loginPage.php");
                 exit();
             } else {
-                $showError = "Failed to sign up. Please try again.";
+                $_SESSION['showError'] = "Failed to sign up. Please try again.";
             }
         } else {
-            $showError = "Passwords do not match!";
+            $_SESSION['showError'] = "Passwords do not match!";
         }
     }
+}
+// Displaying alerts if set in the session
+if (isset($_SESSION['showAlert'])) {
+    $showAlert = $_SESSION['showAlert'];
+    unset($_SESSION['showAlert']); // Clear the session variable after use
+}
+
+if (isset($_SESSION['showError'])) {
+    $showError = $_SESSION['showError'];
+    unset($_SESSION['showError']); // Clear the session variable after use
 }
 ?>
 
@@ -51,10 +62,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="createAccount-style.css">
-    <script type="text/javascript" src="script.js"></script>
     <title>Zero Hunger - Create Account</title>
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"> -->
 </head>
 
 <body>
@@ -80,21 +90,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </nav>
 
     <div class="container">
-        <!-- Display success alert -->
-        <?php if ($showAlert): ?>
-            <div class="custom-alert" id="alertBox">
-                <?php echo $showAlert; ?>
-                <button type="button" class="close-btn" onclick="closeAlert()">×</button>
-            </div>
-        <?php endif; ?>
-
-        <!-- Display error alert -->
-        <?php if ($showError): ?>
-            <div class="alert alert-danger" role="alert">
-                <?php echo $showError; ?>
-            </div>
-        <?php endif; ?>
-
         <div class="form-container">
             <h2>Create Account</h2>
             <div class="subtitle">
@@ -103,33 +98,57 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div class="third"></div>
                 <p><b>Fill Following Details To Create an Account</b></p>
             </div>
+
             <form action="createAccount.php" method="post">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="Enter Email" required>
+                <!-- Display success alert -->
+                <?php
+                if (isset($showAlert)) {
+                    echo '
+                          <div class="alert alert-success" role="alert">
+                          ' . $showAlert . '
+                          </div>';
+                } else if (isset($showError)) {
+                    echo '
+                          <div class="alert alert-danger" role="alert">
+                         ' . $showError . '
+                        </div>';
+                }
+                ?>
 
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" placeholder="Enter Username" required>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Enter Email" required>
 
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" placeholder="Enter Password" required>
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" placeholder="Enter Username" required>
 
-                <label for="cpassword">Confirm Password</label>
-                <input type="password" id="cpassword" name="cpassword" placeholder="Enter Password" required>
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" placeholder="Enter Password" required>
+                    </div>
 
-                <label for="state">State</label>
-                <input type="text" id="state" name="state" placeholder="Enter State" required>
+                    <div class="form-group">
+                        <label for="cpassword">Confirm Password</label>
+                        <input type="password" id="cpassword" name="cpassword" placeholder="Enter Password" required>
 
-                <label for="district">District</label>
-                <input type="text" id="district" name="district" placeholder="Enter District" required>
+                        <label for="state">State</label>
+                        <input type="text" id="state" name="state" placeholder="Enter State" required>
 
-                <label for="pincode">Pincode</label>
-                <input type="text" id="pincode" name="pincode" placeholder="Enter Pincode" required>
+                        <label for="district">District</label>
+                        <input type="text" id="district" name="district" placeholder="Enter District" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="pincode">Pincode</label>
+                    <input type="text" id="pincode" name="pincode" placeholder="Enter Pincode" required>
+                </div>
 
                 <button type="submit"><b>Create Account</b></button>
             </form>
         </div>
     </div>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 </body>
 
 </html>
