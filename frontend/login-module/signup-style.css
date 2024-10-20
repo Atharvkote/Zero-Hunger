@@ -171,3 +171,13 @@ button:hover {
     background-color: #333;
     color: white;
 }
+
+.alert {
+    position: fixed;
+    top: 10px; /* Positioning the alert at the top */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000; /* Ensures the alert is above other content */
+    width: 50%; /* Adjust the width based on your design */
+    margin-bottom: 20px;
+}

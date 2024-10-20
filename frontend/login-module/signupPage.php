@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($numExistRows > 0) {
         // Username already exists
-        $_SESSION['showError'] = "Username already exists!";
+        $_SESSION['showError'] = "Username already exists! Try Any Other Username!";
     } else {
         // Check if passwords match
         if ($password == $cpassword) {
@@ -34,8 +34,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             if ($result) {
                 $_SESSION['showAlert'] = "Sign-up successful!";
-                header("Location: loginPage.php");
-                exit();
             } else {
                 $_SESSION['showError'] = "Failed to sign up. Please try again.";
             }
@@ -43,6 +41,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['showError'] = "Passwords do not match!";
         }
     }
+    header("Location: alert.php");
+    exit();
 }
 // Displaying alerts if set in the session
 if (isset($_SESSION['showAlert'])) {
@@ -54,6 +54,8 @@ if (isset($_SESSION['showError'])) {
     $showError = $_SESSION['showError'];
     unset($_SESSION['showError']); // Clear the session variable after use
 }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -63,7 +65,7 @@ if (isset($_SESSION['showError'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="createAccount-style.css">
+    <link rel="stylesheet" href="signup-style.css">
     <title>Zero Hunger - Create Account</title>
 </head>
 
@@ -99,22 +101,9 @@ if (isset($_SESSION['showError'])) {
                 <p><b>Fill Following Details To Create an Account</b></p>
             </div>
 
-            <form action="createAccount.php" method="post">
+            <form action="signupPage.php" method="post">
                 <!-- Display success alert -->
-                <?php
-                if (isset($showAlert)) {
-                    echo '
-                          <div class="alert alert-success" role="alert">
-                          ' . $showAlert . '
-                          </div>';
-                } else if (isset($showError)) {
-                    echo '
-                          <div class="alert alert-danger" role="alert">
-                         ' . $showError . '
-                        </div>';
-                }
-                ?>
-
+                
                 <div class="form-grid">
                     <div class="form-group">
                         <label for="email">Email</label>
