@@ -79,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" placeholder="Enter Password" required>
-                <a href="signup.php"><p>Don’t Have an Account? Create Account</p></a>
+                <a href="signupPage.php"><p>Don’t Have an Account? Create Account</p></a>
                 <button type="submit"><b>Log In</b></button>
             </form>
         </div>

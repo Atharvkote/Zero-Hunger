@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['showError'] = "Passwords do not match!";
         }
     }
-    header("Location: alert.php");
+    header("Location: signupAlert.php");
     exit();
 }
 // Displaying alerts if set in the session
