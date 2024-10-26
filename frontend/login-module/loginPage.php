@@ -27,8 +27,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         session_start();
         $_SESSION['showError'] = "Invalid Credentials [ Username NOT Found ]"; // Username not found
     }
-    
-    if(isset($_SESSION['showError'])){
+
+    if (isset($_SESSION['showError'])) {
         header("Location: loginAlert.php");
         exit();
     }
@@ -37,36 +37,20 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="login-style.css">
     <title>Zero Hunger - Login In</title>
 </head>
-<body>
-    <header>
-        <img src="../../images/FigmaLogo.svg" height="100px" width="200px">
-        <div class="logo">
-            <h1>Zero Hunger</h1>
-            <p><b>Nourishing Lives, Creating Smiles!</b></p>
-        </div>
-        <div class="login-logo">
-            <a href="../login-module/signupPage.php">
-                <img src="../../images/Person-Logo.png" height="50px" width="50px">   
-            </a>
-        </div>
-    </header>
 
-    <nav class="navbar">
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Latest</a></li>
-            <li><a href="#">About Us</a></li>
-        </ul>
-    </nav>
-    
+<body>
+    <?php
+        include '../essentails/navbar.html';
+    ?>
     <div class="container">
-        
+
         <!-- Form Container Section -->
         <div class="first"></div>
         <div class="second"></div>
@@ -79,10 +63,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" placeholder="Enter Password" required>
-                <a href="signupPage.php"><p>Don’t Have an Account? Create Account</p></a>
+                <a href="signupPage.php">
+                    <p>Don’t Have an Account? Create Account</p>
+                </a>
                 <button type="submit"><b>Log In</b></button>
             </form>
         </div>
     </div>
 </body>
+
 </html>

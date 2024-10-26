@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inknut Antiqua', serif;
+    background-color: #fff5e6;
+    min-height: 100vh;
+}
+
+.main-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+    margin: 20px auto;
+    gap: 20px; /* Space between left and right divs */
+}
+
+.left, .right {
+    background-color: #f5d8b5;
+    padding: 30px 100px 0 0;
+    border-radius: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    flex: 1 1 45%; /* Allows each div to grow and shrink within 45% of the container */
+}
+
+.left{
+    width: 60%;
+    margin-left: 40px;
+    height: 525px;
+}
+
+.right{
+    width: 35%;
+    height: 525px;
+    margin-right: 40px;
+
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.left-content img {
+    border-radius: 50%;
+    border: 3px solid #ff8d02;
+}
+
+.left h1 {
+    font-size: 36px;
+    color: #333;
+}
+
+.right-text h3 {
+    font-size: 28px;
+    color: #000;
+    background-color: #ff8d02;
+    padding: 5px 15px 5px 15px;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-left: 16%;
+    margin-top: 50px;
+}
+
+.button-group button {
+    padding: 15px;
+    background-color: #ff8d02;
+    color: #000;
+    border: none;
+    font-size: 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    
+}
+
+.button-group button:hover {
+    transform: scale(1.05);
+}
