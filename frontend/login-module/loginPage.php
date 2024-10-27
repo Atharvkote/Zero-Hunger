@@ -1,6 +1,6 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    include '../essentails/DataBase-LINK.php';
+    include '../assets/DataBase-LINK.php';
     $name = $_POST["username"];
     $password = $_POST["password"];
 
@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 <body>
     <?php
-        include '../essentails/navbar.html';
+        include '../assets/navbar.html';
     ?>
     <div class="container">
 

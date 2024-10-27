@@ -3,7 +3,7 @@ session_start();
 $showError = $showAlert = "";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    include '../essentails/DataBase-LINK.php';
+    include '../assets/DataBase-LINK.php';
 
     $email = $_POST['email'];
     $username = $_POST['username'];
