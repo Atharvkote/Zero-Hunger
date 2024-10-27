@@ -134,4 +134,9 @@ header img {
     font-size: larger;
     border-radius: 25px;
     cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.button-group button:hover {
+  transform: scale(1.05);
 }
