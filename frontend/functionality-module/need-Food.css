@@ -177,3 +177,17 @@ h2 {
   font-family: "Inknut Antiqua", serif;
   font-weight: bold;
 }
+
+.foooter{
+  background-color: #ffe0b2;
+  padding: 20px;
+}
+
+.warning{
+  text-align: center;
+  background-color: #efb2b2;
+  border-radius: 30px;
+  margin: 10px 100px 10px 100px;
+  color: #ff0202;
+
+}

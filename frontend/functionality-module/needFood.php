@@ -46,7 +46,13 @@
       </div>
     </div>
   </div>
-  <input class="submit-button" type="submit"  value="Submit"/>
+  <div class="foooter">
+    <p class="warning">
+      If any type of malpractices found (fake or duplicate entry) will be banned from the website.
+    </p>
+    <input class="submit-button" type="submit"  value="Submit"/>
+
+  </div>
 
   </form>
 </body>

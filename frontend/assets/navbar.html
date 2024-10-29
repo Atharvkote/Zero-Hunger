@@ -75,6 +75,35 @@ header img {
     font-weight: bold;
 }
 
+.navbar ul li img{
+    margin-left: 10px;
+    margin-bottom: 5px;
+    transition: all .5s;
+}
+
+img:hover{
+    transform:  rotate(-90deg);
+}
+
+a{
+    position:relative;
+    text-decoration: none;
+}
+
+a::after{
+    content: "";
+    position: absolute;
+    background-color:#ff8d02;
+    height: 3px;
+    width :0%;
+    transition: 0.3s;
+    left:0;
+    bottom: 0px;
+    border-radius: 25%;
+}
+a:hover::after{
+    width: 100%;
+}
 
 
     </style>
@@ -96,8 +125,8 @@ header img {
 
     <nav class="navbar">
         <ul>
-            <li><a href="../main-module/index.php">Home</a></li>
-            <li><a href="#">Latest</a></li>
-            <li><a href="#">About Us</a></li>
+            <li><a href="../main-module/index.php">Home <img  src="../../images/Arrow-Down.png" height="5px" width="10px"></a></li>
+            <li><a href="#">Latest<img  src="../../images/Arrow-Down.png" height="5px" width="10px"></a></li>
+            <li><a href="#">About Us<img  src="../../images/Arrow-Down.png" height="5px" width="10px"></a></li>
         </ul>
     </nav>
