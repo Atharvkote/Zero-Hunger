@@ -1,0 +1,261 @@
+@import url("https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@400;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inknut Antiqua", serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
+}
+
+.container {
+  display: flex;
+  padding: 20px;
+  flex:1;
+}
+
+.upper{
+    margin:0px 50px 10px 30px;
+    padding-left: 40px;
+}
+.left-column,
+.right-column {
+  background-color: #fdf5e6;
+  border-radius: 10px;
+}
+.left-column {
+  flex: 2;
+  margin-right: 20px;
+}
+.right-column {
+  flex: 1;
+  text-align: center;
+}
+.section-title {
+  background-color: #f28c28;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 1.5em;
+  text-align: center;
+  margin-top: 20px;
+}
+.form-group {
+  margin: 20px 0;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 80%;
+}
+.form-group input[type="date"] {
+  padding: 5px;
+}
+.form-group textarea {
+  height: 100px;
+}
+
+/* General button styling */
+.location-button {
+    display: inline-flex;
+    align-items: center;
+    background-color: #ff8d02; /* Orange color */
+    color: #000000; /* Dark text color */
+    padding: 10px 25px;
+    font-size: 16px;
+    border: none;
+    border-radius: 20px;
+    position: relative;
+    font-family: "Inknut Antiqua", serif;
+    cursor: pointer;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    margin-left: 27%;
+  }
+  
+  .location-icon {
+    transition: transform 0.3s ease;
+  }
+  .main-content .right-panel .location-button button:hover {
+    transform: scale(1.05);
+  }
+  /* Text inside the button */
+  .location-button span {
+    padding-right: 35px; /* Space between text and icon */
+  }
+  
+  /* Icon styling */
+  .location-button .location-icon {
+    position: absolute;
+    right: 0px; /* Adjust to control how much it overlaps */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 55px; /* Adjust icon size */
+    height: 70px;
+    margin-top: -15px;
+  }
+  
+.button {
+  background-color: #f28c28;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+}
+.food-details {
+  background-color: #fdf5e6;
+  padding: 20px;
+  border-radius: 10px;
+}
+.food-details .form-group {
+  display: flex;
+  align-items: center;
+  flex-direction:row;
+  justify-content: space-between;
+  margin: 10px 20px 10px 20px;
+}
+.food-details .form-group input[type="text"] {
+  flex: 1;
+  width: auto;
+  margin-right: 10px;
+}
+.food-details .form-group input[type="number"] {
+  /* width: 60px; */
+  margin-right: 10px;
+}
+.food-details .form-group input[type="radio"] {
+  margin-right: 5px;
+}
+.food-details .form-group label {
+  margin: 0;
+}
+
+.right-panel{
+    background-color: #fdf5e6;
+    padding: 20px;
+    max-width: 45%;
+}
+
+.container .right-panel .image-placeholder {
+    background: url(../../images/Image-Template.png);
+    width: 187px;
+    height: 160px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    margin-left: 30%
+    
+}
+  
+  .container .right-panel .image-placeholder img {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .container .right-panel .btn {
+    background-color: #ff8d02;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    margin-bottom: 10px;
+    display: flex;
+    color: #000000;
+    justify-content: center;
+    padding: 10px 120px 10px 120px;
+    font-family: "Inknut Antiqua", serif;
+    /* font-weight: bold; */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.5s ease;
+  }
+  
+  .container .right-panel .option button:hover {
+    transform: scale(1.05);
+  }
+  /* 
+  .main-content .right-panel .option{
+      margin-right: 85px;
+  } */
+  
+  .container .right-panel .btn img {
+    width: 35px;
+    height: 35px;
+    margin-left: 20px;
+    text-align: right;
+  }
+  
+.form-group label,input{
+    width: 100%;
+}
+.radioo {
+    display: flex;
+    align-items: center;
+}
+
+.radioo .yes {
+    margin-bottom: 0; /* Removes the negative margin */
+    margin-right: 5px; /* Adds spacing between 'Yes' and the radio button */
+}
+
+.red{
+    height: 250px;
+    width:260px;
+    margin-left: 7%;
+}
+
+.message{
+   background-color: #efb2b2;
+    margin: 30px 10px 10px 10px;
+    border-radius: 20px;
+    text-align: center;
+    padding: 10px;
+}
+
+.message  p{
+  font-size: large;
+  font-weight: bold;
+}
+
+.foooter{
+    padding:40px;
+  }
+  
+  .warning{
+    text-align: center;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 10px 100px 10px 100px;
+    color: #ff0202;
+    background-color: #efb2b2;
+  
+  }
+
+.submit-button {
+    background-color: #ff8d02;
+    padding: 10px 40px 10px 40px;
+    border: none;
+    border-radius: 20px;
+    font-size: 16px;
+    margin-top: 40px;
+    color: #000000;
+    font-family: "Inknut Antiqua", serif;
+    font-weight: bold;
+  }
+  
