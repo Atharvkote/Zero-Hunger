@@ -15,7 +15,7 @@
 
 <body>
     <?php
-    include '../assets/navbar.html';  // import navbar as a componenet 
+        include '../assets/navbar.html';  // import navbar as a componenet 
     ?>
     <div class="main-container">
         <div class="left">
