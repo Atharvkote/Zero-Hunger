@@ -55,89 +55,76 @@ if (isset($_SESSION['showError'])) {
     unset($_SESSION['showError']); // Clear the session variable after use
 }
 
-
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="signup-style.css">
     <title>Zero Hunger - Create Account</title>
+    <link rel="stylesheet" href="signup-style.css">
 </head>
 
 <body>
-    <header>
-        <img src="../../images/FigmaLogo.svg" height="100px" width="200px">
-        <div class="logo">
-            <h1>Zero Hunger</h1>
-            <p><b>Nourishing Lives, Creating Smiles!</b></p>
-        </div>
-        <div class="login-logo">
-            <a href="../login-module/createAccount.php">
-                <img src="../../images/Person-Logo.png" height="50px" width="50px">
-            </a>
-        </div>
-    </header>
+    <?php
+    include '../assets/navbar.html';  // import navbar as a componenet 
+    ?>
 
-    <nav class="navbar">
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Latest</a></li>
-            <li><a href="#">About Us</a></li>
-        </ul>
-    </nav>
-
-    <div class="container">
-        <div class="form-container">
-            <h2>Create Account</h2>
-            <div class="subtitle">
-                <div class="first"></div>
-                <div class="second"></div>
-                <div class="third"></div>
-                <p><b>Fill Following Details To Create an Account</b></p>
-            </div>
-
+    <div class="form-header">Create Account</div>
+    <div class="main">
+        <div class="container-new">
             <form action="signupPage.php" method="post">
-                <!-- Display success alert -->
-                
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" placeholder="Enter Email" required>
-
-                        <label for="username">Username</label>
-                        <input type="text" id="username" name="username" placeholder="Enter Username" required>
-
-                        <label for="password">Password</label>
-                        <input type="password" id="password" name="password" placeholder="Enter Password" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="cpassword">Confirm Password</label>
-                        <input type="password" id="cpassword" name="cpassword" placeholder="Enter Password" required>
-
-                        <label for="state">State</label>
-                        <input type="text" id="state" name="state" placeholder="Enter State" required>
-
-                        <label for="district">District</label>
-                        <input type="text" id="district" name="district" placeholder="Enter District" required>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="pincode">Pincode</label>
-                    <input type="text" id="pincode" name="pincode" placeholder="Enter Pincode" required>
-                </div>
-
-                <button type="submit"><b>Create Account</b></button>
+                <div class="design">
+                    <div class="one"></div>
+                    <div class="two"></div>
+                    <div class="three"></div>
+                    <div class="four"></div>
+                    <div class="form-container-new">
+                        <div class="form-subheader">Enter Following Details To Create Account</div>
+                        <div class="form-group-container">
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input id="email" name="email" placeholder="Enter Email" type="email" />
+                            </div>
+                            <div class="form-group">
+                                <label for="username">Username</label>
+                                <input id="username" name="username" placeholder="Enter Username" type="text" />
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input id="password" name="password" placeholder="Enter Password" type="password" />
+                            </div>
+                            <div class="form-group">
+                                <label for="confirm-password">Confirm Password</label>
+                                <input id="confirm-password" name="cpassword" placeholder="Confirm Password" type="password" />
+                            </div>
+                            <div class="form-group">
+                                <label for="state">State</label>
+                                <input id="state" name="state" placeholder="Enter State" type="text" />
+                            </div>
+                            <div class="form-group">
+                                <label for="district">District</label>
+                                <input id="district" name="district" placeholder="Enter District" type="text" />
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="pincode">Pincode</label>
+                                <input id="pincode" name="pincode" placeholder="Enter Pincode" type="text" />
+                            </div>
+                        </div>
+                        <button type="submit" class="form-button">Create Account</button>
             </form>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    </div>
+    <div class="welcome">
+        <img src="../../images/Zero-Hunger-Logo.png" alt="img" height="100px" width="100px">
+        <h2 class="h2-h">Welcome! To Zero Hunger !</h2>
+        <p>Thank you for joining our community dedicated to fighting hunger and reducing food waste. Together, we’re making a difference by connecting donors with surplus food to those in need. Whether you're here to donate, volunteer, or seek resources, we're excited to have you with us!</p>
+        <p>Get started by exploring our platform, connecting with others, and contributing to this mission. Every action counts, and together</p>
+        <h2 class="fooooter">Let’s make a positive impact!</h2>
+    </div>
+    </div>
 </body>
 
 </html>

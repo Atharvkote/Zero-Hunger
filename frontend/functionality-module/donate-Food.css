@@ -82,12 +82,10 @@ body {
     cursor: pointer;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     margin-left: 27%;
-  }
-  
-  .location-icon {
     transition: transform 0.3s ease;
   }
-  .main-content .right-panel .location-button button:hover {
+  
+ .location-button:hover {
     transform: scale(1.05);
   }
   /* Text inside the button */
@@ -257,5 +255,11 @@ body {
     color: #000000;
     font-family: "Inknut Antiqua", serif;
     font-weight: bold;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.5s ease;
+  }
+
+  .submit-button:hover{
+    transform: scale(1.05);
   }
   

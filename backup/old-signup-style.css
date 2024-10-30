@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: "Inknut Antiqua", serif;
+    background-color: #fff5e6;
+    min-height: 100vh;
+  }
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.form-container {
+    background-color: #eebf85;
+    padding: 50px;
+    width: 65%;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 0 50px;
+    clip-path: polygon(0% 0%, 75% 0%, 100% 25%, 100% 100%, 25% 100%, 0% 75%);
+    border: solid rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    background: #ff8d02;
+    margin-top: -50px;
+    margin-left: -50px;
+    width: 30%;
+    border-bottom-right-radius: 20px;
+    padding: 10px 10px 10px 50px;
+}
+
+.subtitle {
+    display: inline-flex;
+    margin: 20px 0px 0px 0px;
+}
+
+.first,
+.second,
+.third {
+    height: 100px;
+    width: 25px;
+    margin: 0 15px;
+}
+
+.first {
+    background-color: #f5d8b5;
+}
+
+.second {
+    background-color: #ff8d02;
+}
+
+.third {
+    background-color: #f5d8b5;
+}
+
+p {
+    font-size: 20px;
+    background: #ff8d02;
+    margin-top: -2px;
+    width: 85%;
+    padding: 10px 0px 40px 20px;
+    border-top-right-radius: 40px;
+}
+
+form {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.form-grid {
+    display: flex;
+    justify-content: flex-start; /* Aligns the grid to the left */
+    margin-bottom: 20px; /* Space below the grid */
+    gap: 50px;
+}
+
+.form-group {
+    width: 48%; /* Each group takes up almost half the width */
+    margin-right: 20px; /* Space between the two groups */
+}
+
+.form-group:last-child {
+    margin-right: 0; /* Removes the right margin from the last group */
+}
+
+/* Increase the width of the input fields */
+input {
+    border: solid #333;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    padding: 10px;
+    width: 100%; /* Full width of the parent element */
+    max-width: 400px; /* Set a maximum width for inputs */
+}
+
+button {
+    display: block; /* Center button by setting display to block */
+    margin: 20px auto; /* Center button */
+    background-color: #ff8d02;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 18px;
+    color: #fff;
+}
+
+button:hover {
+    background-color: #333;
+    color: white;
+}
+
+.alert {
+    position: fixed;
+    top: 10px; /* Positioning the alert at the top */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000; /* Ensures the alert is above other content */
+    width: 50%; /* Adjust the width based on your design */
+    margin-bottom: 20px;
+}

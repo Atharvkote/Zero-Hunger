@@ -1,183 +1,167 @@
-@import url('https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@400;700&display=swap");
 
 body {
-    font-family: 'Inknut Antiqua', serif;
-    margin: 0;
-    padding: 0;
-    width: 100%;
+  font-family: "Inknut Antiqua", serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
 }
 
-header {
-    background-color: #ff8d02;
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.container-new {
+  display: flex;
+  /* justify-content: center;
+  align-items: center; */
+  height: calc(100vh - 60px);
+  margin: 0px;
+  width: auto;
 }
 
-.login-logo {
-    margin-left: auto;
+.form-container-new {
+  background-color: #ffe4c4;
+  padding: 20px;
+  border-radius: 0px 15px 15px 0px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  position: relative;
 }
 
-.logo h1 {
-    margin: 0;
-    font-size: 36px;
-    color: white;
-    margin-left: 20px;
+.form-header {
+  background-color: #ff7f00;
+  color: white;
+  padding: 5px;
+  border-radius: 0 10px 10px 0;
+  text-align: center;
+  font-size: 24px;
+  margin: 0px 55% 0px 0px;
 }
 
-.logo p {
-    margin: 5px 0;
-    margin-top: -25px;
-    font-size: 18px;
-    color: white;
-    width: auto;
+.form-subheader {
+  background-color: #ff7f00;
+  color: white;
+  padding: 5px;
+  border-radius: 0px 10px 10px 0px;
+  text-align: center;
+  font-size: 14px;
+  margin-top: 10px;
+  margin-left: -20px;
 }
 
-header img {
-    margin-top: 10px;
-}
-
-.navbar {
-    background: #ff8d02;
-    margin-bottom: 30px;
-    margin-top: -30px;
-}
-
-.navbar ul {
-    list-style-type: none;
-    padding: 10px;
-    display: flex;
-    justify-content: flex-end;
-    background: #f5d8b5;
-    padding-right: 50px;
-}
-
-.navbar ul li {
-    margin-left: 150px;
-}
-
-.navbar ul li a {
-    text-decoration: none;
-    color: #333;
-    font-weight: bold;
-}
-
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-}
-
-.form-container {
-    background-color: #eebf85;
-    padding: 50px;
-    width: 65%;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin: 0 50px;
-    clip-path: polygon(0% 0%, 75% 0%, 100% 25%, 100% 100%, 25% 100%, 0% 75%);
-    border: solid rgba(0, 0, 0, 0.1);
-}
-
-h2 {
-    background: #ff8d02;
-    margin-top: -50px;
-    margin-left: -50px;
-    width: 30%;
-    border-bottom-right-radius: 20px;
-    padding: 10px 10px 10px 50px;
-}
-
-.subtitle {
-    display: inline-flex;
-    margin: 20px 0px 0px 0px;
-}
-
-.first,
-.second,
-.third {
-    height: 100px;
-    width: 25px;
-    margin: 0 15px;
-}
-
-.first {
-    background-color: #f5d8b5;
-}
-
-.second {
-    background-color: #ff8d02;
-}
-
-.third {
-    background-color: #f5d8b5;
-}
-
-p {
-    font-size: 20px;
-    background: #ff8d02;
-    margin-top: -2px;
-    width: 85%;
-    padding: 10px 0px 40px 20px;
-    border-top-right-radius: 40px;
-}
-
-form {
-    width: 50%;
-    margin: 0 auto;
-}
-
-.form-grid {
-    display: flex;
-    justify-content: flex-start; /* Aligns the grid to the left */
-    margin-bottom: 20px; /* Space below the grid */
-    gap: 50px;
+.form-group-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
 }
 
 .form-group {
-    width: 48%; /* Each group takes up almost half the width */
-    margin-right: 20px; /* Space between the two groups */
+  margin: 0px 30px 0px 0px;
 }
 
-.form-group:last-child {
-    margin-right: 0; /* Removes the right margin from the last group */
+.form-group label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 5px;
 }
 
-/* Increase the width of the input fields */
-input {
-    border: solid #333;
-    border-radius: 20px;
-    margin-bottom: 20px;
-    padding: 10px;
-    width: 100%; /* Full width of the parent element */
-    max-width: 400px; /* Set a maximum width for inputs */
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  font-size: 14px;
 }
 
-button {
-    display: block; /* Center button by setting display to block */
-    margin: 20px auto; /* Center button */
+.form-group input:focus {
+  outline: none;
+  border-color: #ff7f00;
+}
+
+.form-group.full-width {
+  grid-column: 1 / -1;
+  justify-self: center;
+  width: 70%;
+}
+
+.form-button {
+  background-color: #ff7f00;
+  color: white;
+  font-family: "Inknut Antiqua", serif;
+  padding: 5px;
+  border: none;
+  border-radius: 15px;
+  width: 100%;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 30px 15px 10px 0px;
+  transition: transform 0.5s ease;
+}
+
+.form-button:hover{
+  transform: scale(1.05);
+}
+
+.design{
+   display: flex;
+   justify-content: space-between;
+    gap: 40px;
+}
+.one{
+    background-color: #f5d8b5;
+    height:100% ;
+    width: 35px; 
+    border-radius: 0px 15px 15px 0px;
+}
+
+.two{
     background-color: #ff8d02;
-    padding: 15px 30px;
-    border: none;
+    height:auto ;
+    width: 35px; 
+    border-radius: 0px 15px 15px 0px;
+
+}
+
+.three{
+    background-color: #f5d8b5;
+    height:auto ;
+    width: 35px;
+    border-radius: 0px 15px 15px 0px;
+
+}
+
+.four{
+    background-color: #ff8d02;
+    height:auto ;
+    width: 35px; 
+    border-radius: 0px 15px 15px 0px;
+}
+
+.main{
+    display: flex;
+    justify-content: space-around;
+    gap: 40px;
+    flex: 1;
+}
+
+.welcome img{
+    background-color: #ff8d02;
     border-radius: 20px;
-    cursor: pointer;
-    font-size: 18px;
-    color: #fff;
+    width: 225px;
+    height: 200px;
+
+}
+.welcome{
+    background-color: #f5d8b5;
+    padding:15px;
+    border-radius: 20px;
+    text-align: center;
 }
 
-button:hover {
-    background-color: #333;
-    color: white;
+.fooooter{
+    background-color: #ff8d02;
+    border-radius: 20px;
+    margin: 0px 20px 0px 20px;
 }
 
-.alert {
-    position: fixed;
-    top: 10px; /* Positioning the alert at the top */
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1000; /* Ensures the alert is above other content */
-    width: 50%; /* Adjust the width based on your design */
-    margin-bottom: 20px;
+.h2-h{
+    background-color: #ff8d02;
+    margin: 0px -15px 0px -15px;
 }
