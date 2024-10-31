@@ -7,61 +7,6 @@ body {
     width: 100%;
 }
 
-header {
-    background-color: #ff8d02;
-    padding: 20px;
-    display: flex;
-    justify-content: space-between; 
-    align-items: center;
-}
-
-.login-logo {
-    margin-left: auto;
-}
-
-.logo h1 {
-    margin: 0;
-    font-size: 36px;
-    color: white;
-    margin-left: 20px;
-}
-
-.logo p {
-    margin: 5px 0;
-    margin-top: -15px;
-    font-size: 18px;
-    margin-left: 20px;
-    color: white;
-}
-
-header img {
-    margin-top: 10px;
-}
-
-.navbar {
-    background: #ff8d02;
-    margin-bottom: 30px;
-    margin-top: -30px;
-}
-
-.navbar ul {
-    list-style-type: none;
-    padding: 10px;
-    display: flex;
-    justify-content: flex-end;
-    background: #f5d8b5;
-    padding-right: 50px;
-}
-
-.navbar ul li {
-    margin-left: 150px;
-}
-
-.navbar ul li a {
-    text-decoration: none;
-    color: #333;
-    font-weight: bold;
-}
 
 .main-container {
     display: flex;
@@ -97,15 +42,15 @@ header img {
 
 .right-content img {
     width: 100%;
-    height: auto;
+    /* height: auto; */
     border-radius: 10px;
 }
 
 .right-content {
     background: #ff8d02;
     border-radius: 30px;
-    margin-top: -60px;
-    height: 275px;
+    /* margin-top: -60px; */
+    height: 200px;
 }
 
 .right-text {

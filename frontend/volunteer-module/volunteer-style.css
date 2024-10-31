@@ -1,0 +1,177 @@
+@import url("https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@400;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inknut Antiqua", serif;
+  background-color: #fff5e6;
+  min-height: 100vh;
+}
+.container {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+}
+.form-container,
+.info-container {
+  background-color: #f5d6a1;
+  padding: 20px;
+  border-radius: 10px;
+  width: 45%;
+}
+
+.subheading {
+  background-color: #ff8c00;
+  color: white;
+  padding: 0px;
+  border-bottom-right-radius: 25px;
+  border-top-right-radius: 25px;
+  text-align: center;
+  margin: 20px 25% 20px -20px;
+}
+
+.info-container h2 {
+  background-color: #ff8c00;
+  color: rgb(0, 0, 0);
+  padding: 5px;
+  margin: 10px;
+  border-radius: 10px;
+  text-align: center;
+}
+.heading {
+  background-color: #ff8c00;
+  color: white;
+  padding: 5px;
+  border-bottom-right-radius: 25px;
+  border-top-right-radius: 25px;
+  text-align: center;
+  margin: 0px 45% 0px 0px;
+}
+
+::placeholder {
+  font-family: "Inknut Antiqua", serif;
+}
+.form-group input:focus,
+textarea:focus {
+  outline: none;
+  border-color: #ff7f00;
+}
+.form-group {
+  margin-bottom: 15px;
+}
+.form-group label {
+  display: block;
+  /* font-weight: bold; */
+  margin-bottom: 5px;
+}
+
+a {
+  text-decoration: none;
+}
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.form-group input[type="date"] {
+  padding-right: 30px;
+}
+.form-group .date-icon {
+  position: relative;
+}
+.form-group .date-icon i {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  pointer-events: none;
+}
+.volunteer-role {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 10px;
+  /* gap: 30px; */
+}
+.checkboxx {
+  display: flex;
+  flex-direction: column;
+}
+
+.volunteer-role input {
+  margin-right: 10px;
+}
+.role-guide {
+  display: flex;
+  flex-direction: column;
+}
+
+.check {
+  display: inline-block;
+  margin-bottom: 15px;
+}
+.role-guide button {
+  background-color: #ff8c00;
+  color: rgb(0, 0, 0);
+  margin: 10px;
+  font-family: "Inknut Antiqua", serif;
+  border: none;
+  padding: 0px 50px 0px 50px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.role-guide button:hover {
+  transform: scale(1.05);
+}
+.info-container img {
+  display: block;
+  margin: 0 auto 10px;
+  width: 250px;
+  height: 200px;
+  border-radius: 29px;
+  background-color: #ff8c02;
+}
+
+.info-container button {
+  background-color: #ff8c00;
+  color: rgb(0, 0, 0);
+  border: none;
+  padding: 0px;
+  font-family: "Inknut Antiqua", serif;
+  border-radius: 5px;
+  width: 100%;
+  margin-bottom: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.info-container button:hover {
+  transform: scale(1.05);
+}
+.submit-btn {
+  background-color: #ff8c00;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  width: 100%;
+  cursor: pointer;
+}
+
+.submit-warning {
+  background-color: #efb2b2;
+  padding: 15px;
+  border-radius: 20px;
+  color: red;
+  margin-bottom: 20px;
+}
+.submit-warning li {
+  margin-left: 30px;
+}

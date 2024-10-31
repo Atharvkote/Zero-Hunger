@@ -1,0 +1,75 @@
+@import url("https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@400;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inknut Antiqua", serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
+}
+
+.main-content {
+  text-align: center;
+}
+
+.main-content h2 {
+  background-color: #ff9800;
+  color: white;
+  padding: 5px 10px;
+  border-bottom-right-radius: 25px;
+  border-top-right-radius: 25px;
+  margin-right: 55%;
+}
+
+.donation-section {
+  background-color: #ffe0b2;
+  padding: 20px;
+  border-radius: 10px;
+  /* display: inline-block; */
+  margin: 20px 20% 20px 20%;
+  display: flex;
+  flex-direction: column;
+}
+.donation-section h3 {
+  margin: 0;
+  padding: 0;
+  background-color: #ff9800;
+  border-radius: 10px;
+  margin: 0px 20% 0px 20%;
+}
+.donation-section img {
+  border-radius: 10px;
+  margin: 20px 0px 0px 27%;
+}
+.donation-section p {
+  margin: 0;
+  padding: 0;
+}
+.donation-section button {
+  background-color: #ff9800;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  margin: 25px 20% 0px 20%;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 20px;
+  font-family: "Inknut Antiqua", serif;
+  transition: transform 0.3s ease;
+}
+.donation-section button:hover {
+  transform: scale(1.05);
+}
+
+.footer {
+  background-color: #f8bbd0;
+  color: #000;
+  padding: 10px 20px;
+  text-align: center;
+  margin-top: 20px;
+}

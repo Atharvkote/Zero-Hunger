@@ -85,12 +85,12 @@ header img {
     transform:  rotate(-90deg);
 }
 
-a{
+.navbar a{
     position:relative;
     text-decoration: none;
 }
 
-a::after{
+.navbar a::after{
     content: "";
     position: absolute;
     background-color:#ff8d02;
@@ -101,7 +101,8 @@ a::after{
     bottom: 0px;
     border-radius: 25%;
 }
-a:hover::after{
+
+.navbar a:hover::after{
     width: 100%;
 }
 

@@ -18,31 +18,12 @@
  </head>
 
  <body>
-
-     <header>
-         <img src="../../images/FigmaLogo.svg" height="100px" width="200px">
-         <div class="logo">
-             <h1>Zero Hunger</h1>
-             <p><b>Nourishing Lives, Creating Smiles!</b></p>
-         </div>
-         <div class="login-logo">
-             <a href="../user-module/profilePage.php">
-                 <img src="../../images/Person-Logo.png" height="50px" width="50px">
-             </a>
-         </div>
-     </header>
-
-     <nav class="navbar">
-         <ul>
-             <li><a href="#">Home</a></li>
-             <li><a href="#">Latest</a></li>
-             <li><a href="#">About Us</a></li>
-         </ul>
-     </nav>
-
+     <?php
+         include '../assets/navbar.html';  // import navbar as a componenet 
+     ?>
      <div class="main-container">
          <div class="left">
-             <h1>Zero Hunger</h1>
+             <h1>Zero Hunger - Be the Change</h1>
              <div class="content">
                  <div class="left-content">
                      <p>The Zero Hunger project is a website designed to help reduce food waste and fight hunger. It connects people who have extra food with those who need it.</p>
@@ -62,10 +43,10 @@
                      रक्षिणी संसारस्य सर्वस्य कुरु कुशलम्। </p>
              </div>
              <div class="button-group">
-                 <a href="#"><button><b>Need Food</b></button></a>
-                 <a href="#"><button><b>Donate Food</b></button></a>
-                 <a href="#"><button><b>Report Wastage</b></button></a>
-                 <a href="#"><button><b>Volunteer</b></button></a>
+                 <a href="../functionality-module/needFood.php"><button><b>Need Food</b></button></a>
+                 <a href="../functionality-module/donateFood.php"><button><b>Donate Food</b></button></a>
+                 <a href="../functionality-module/volunteer-module/volunteer.html"><button><b>Volunteer</b></button></a>
+                 <a href="../functionality-module/sponser-module/sponser.html"><button><b>Sponser Us</b></button></a>
              </div>
          </div>
      </div>
