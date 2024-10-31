@@ -45,8 +45,8 @@
              <div class="button-group">
                  <a href="../functionality-module/needFood.php"><button><b>Need Food</b></button></a>
                  <a href="../functionality-module/donateFood.php"><button><b>Donate Food</b></button></a>
-                 <a href="../functionality-module/volunteer-module/volunteer.html"><button><b>Volunteer</b></button></a>
-                 <a href="../functionality-module/sponser-module/sponser.html"><button><b>Sponser Us</b></button></a>
+                 <a href="../volunteer-module/volunteer.php"><button><b>Volunteer</b></button></a>
+                 <a href="../sponser-module/sponser.php"><button><b>Sponser Us</b></button></a>
              </div>
          </div>
      </div>
