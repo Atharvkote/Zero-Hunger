@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 exit(); // Prevent further code execution after redirect
             } else {
                 session_start();
-                $_SESSION['showError'] = "Invaalid Credentials"; // Incorrect password
+                $_SESSION['showError'] = "Invalid Credentials"; // Incorrect password
             }
         }
     } else {
