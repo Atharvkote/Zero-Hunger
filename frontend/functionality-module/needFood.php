@@ -3,6 +3,8 @@
 <head>
   <title>Zero Hunger - Need Food</title>
   <link rel="stylesheet" href="need-Food.css">
+  <link rel="icon" href="../../images/Red-Heart-Logo.png" type="image/icon type">
+
 </head>
 
 <body>

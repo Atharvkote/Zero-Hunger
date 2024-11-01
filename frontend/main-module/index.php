@@ -15,6 +15,7 @@
      <link rel="stylesheet" href="index-style.css">
      <link href="https://fonts.googleapis.com/css2?family=Inknut+Antique:wght@400;700&display=swap" rel="stylesheet">
      <title>Zero Hunger - Home</title>
+     <link rel="icon" href="../../images/Red-Heart-Logo.png" type="image/icon type">
  </head>
 
  <body>

@@ -1,8 +1,12 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Zero Hunger - Volunteer Registration</title>
   <link href="volunteer-style.css" rel="stylesheet" />
+  <link rel="icon" href="../../images/Red-Heart-Logo.png" type="image/icon type">
 </head>
 
 <body>
@@ -32,20 +36,20 @@
       <div class="volunteer-role">
         <div class="checkboxx">
           <div class="check">
-          <input id="serving-agent" type="checkbox" />
-          <label for="serving-agent">Serving Agent</label>
+            <input id="serving-agent" type="checkbox" />
+            <label for="serving-agent">Serving Agent</label>
           </div>
           <div class="check">
-          <input id="food-collector" type="checkbox" />
-          <label for="food-collector">Food Collector</label>
+            <input id="food-collector" type="checkbox" />
+            <label for="food-collector">Food Collector</label>
           </div>
           <div class="check">
-          <input id="quality-manager" type="checkbox" />
-          <label for="quality-manager">Quality Manager</label>
+            <input id="quality-manager" type="checkbox" />
+            <label for="quality-manager">Quality Manager</label>
           </div>
           <div class="check">
-          <input id="developer" type="checkbox" />
-          <label for="developer">Developer</label>
+            <input id="developer" type="checkbox" />
+            <label for="developer">Developer</label>
           </div>
         </div>
         <div class="role-guide">
@@ -57,19 +61,19 @@
       </div>
 
     </div>
-      <div class="info-container">
-        <img  height="600px" width="500px" src="../../images/Red-Heart-Front-Logo.png"/>
-        <h2 >Join Us ! As a Volunteer</h2>
-        <div class="submit-warning">
-          <h3>Instructions</h3>
-          <ol>
-            <li>Multiple Role for one volunter is Possible, In this Individual should be able to perform all the roles</li>
-            <li>Serious action will be taken against Fake Submission,</li>
-            <li>After Selection as volunteer, Causal Behevoir will not be entertained</li>
-          </ol>
-        </div>
-        <button class="submit-button-new">Submit</button>
+    <div class="info-container">
+      <img height="600px" width="500px" src="../../images/Red-Heart-Front-Logo.png" />
+      <h2>Join Us ! As a Volunteer</h2>
+      <div class="submit-warning">
+        <h3>Instructions</h3>
+        <ol>
+          <li>Multiple Role for one volunter is Possible, In this Individual should be able to perform all the roles</li>
+          <li>Serious action will be taken against Fake Submission,</li>
+          <li>After Selection as volunteer, Causal Behevoir will not be entertained</li>
+        </ol>
       </div>
+      <button class="submit-button-new">Submit</button>
+    </div>
   </div>
 </body>
 
