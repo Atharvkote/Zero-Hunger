@@ -1,0 +1,137 @@
+body {
+    margin: 0;
+    padding: 20px;
+    background-color: #fff;
+
+}
+.team-member {
+    margin: 20px 10% 0px  10%;
+    padding: 20px;
+    background-color:#ffe5b4;
+    border-radius: 15px;
+    border: 2px solid black;
+}
+.social-links{
+    margin: 0px 0px 0px 35px;
+}
+
+.social-links a {
+    margin-right: 10px;
+    text-decoration: none;
+    color: black;
+}
+
+.head {
+    background-color: #f28c28;
+    padding-left: 40px;
+    color: #fff;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    margin-right: 55%;
+}
+
+.top {
+    margin: 30px;
+    padding: 30px;
+    background-color: #ffe5b4;
+    border-radius: 20px;
+}
+
+.values{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h2{
+    background-color: #f28c28;
+    padding-left: 40px;
+    color: #fff;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    margin:0px 55% 0px 0px ;
+    text-align: center;
+}
+
+h3{
+    margin: 0;
+    padding: 0;
+}
+.team-member img{
+    margin:0px 10px -5px 20px;
+}
+
+.values li{
+    list-style: none;
+    background-color: #f28c28;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    padding-left: 10px;
+    transition: 0.3s ease;
+}
+.linkedin a{
+    color: #0077b5;
+    /* background-color: #ffff;
+    border-radius: 10px;
+    padding-right: 10px; */
+}
+
+/* .github{
+    /* background: linear-gradient(135deg, #3b0d6a, #5a189a, #7209b7, #560bad, #480ca8, #3a0ca3, #3f37c9); */
+    /* background: linear-gradient(135deg, #6a1b9a, #8e24aa, #ab47bc, #7e57c2, #5c6bc0, #42a5f5); */
+    /* background: linear-gradient(135deg, #b39ddb, #ce93d8, #bbdefb, #90caf9, #a5d6a7); */
+    /* background: linear-gradient(135deg, #3b0d6a, #5a189a, #9d4edd, #d783ff, #7209b7, #bc6ff1, #3f37c9);
+    border-radius: 10px;
+ } */
+
+/* .github a{
+    color: white;
+} */
+.values li:hover{
+    transform: scale(1.05);
+}
+
+.team-member p{
+    margin:0px 0px 0px 55px ;
+}
+.highlight{
+    font-weight: bold;
+    font-style: italic;
+}
+
+.two-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.two-button p{
+    background-color: #f28c28;
+    border-radius: 10px;
+    margin: 20px 50px 10px 10px;
+    padding: 5px 30px;
+    font-weight: 400;
+    transition: 0.3s ease;
+    box-shadow: black;
+}
+.two-button p:hover{
+    transform: scale(1.05);
+}
+
+.two-button a{
+    text-decoration: none;
+    color:black;
+}
+
+.bottom {
+    background-color: #efb2b2;
+    border-radius: 10px;
+    margin: 10px 5% 10px 5%;
+    padding: 10px;
+    text-align: center;
+    border: 2px solid red;
+}
+
+.bottom h3,.bottom p{
+    margin: 0;
+    padding: 0;
+}
