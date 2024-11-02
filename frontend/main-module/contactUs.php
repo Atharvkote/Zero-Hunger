@@ -22,10 +22,10 @@
                     <i class="fas fa-envelope"></i>
                     <div class="topic">Email</div>
                     <div class="text-one"><a href="mailto:atharvakote81@gmail.com">atharvakote81@gmail.com</a></div>
-                    <div class="text-two"><a href="mailto:bhushankorde@gmail.com">bhushankorde@gmail.com</a></div>
+                    <div class="text-two"><a href="mailto:kordebhushan6120@gmail.com">kordebhushan6120@gmail.com</a></div>
                     <div class="text-two"><a href="mailto:naikwadesairaj@gmail.com">naikwadesairaj@gmail.com</a></div>
-                    <div class="text-two"><a href="mailto:pranavmulay18@gmail.com">pranavmulay18@gmail.com</a></div>
-                    <div class="text-two"><a href="mailto:nannwareyash@gmail.com">nannwareyash@gmail.com</a></div>
+                    <div class="text-two"><a href="mailto:pranavmulay2005@gmail.com">pranavmulay2005@gmail.com</a></div>
+                    <div class="text-two"><a href="mailto:nannawareyash@gmail.com">nannwareyash@gmail.com</a></div>
                 </div>
             </div>
             <div class="right-side">
