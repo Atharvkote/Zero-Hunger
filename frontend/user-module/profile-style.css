@@ -169,3 +169,17 @@ body {
     line-height: 30px;
 }
 
+.more button{
+  padding: 5px 100px;
+  margin: 20px 40px 0px 77%;
+  font-family: "Inknut Antiqua", serif;
+  background-color: #ff8d02;
+  border: none;
+  border-radius: 20px;
+  transition: 0.3s ease;
+  font-size: 18px;
+}
+
+.more button:hover{
+  transform: scale(1.05);
+}

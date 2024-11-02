@@ -25,13 +25,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else {
         // Check if passwords match
         if ($password == $cpassword) {
-            // Hash the password for security
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-            // Insert the new user into the database
-            $sql = "INSERT INTO `users-information` ( `email`, `username`, `password`, `state`, `district`, `pincode`, `date`) VALUES ('$email', '$username', '$hashed_password', '$state', '$district', '$pincode', '$current_date');";
+            // Insert into database with hashed password
+            $sql = "INSERT INTO `users-information` (`email`, `username`, `password`, `state`, `district`, `pincode`, `date`) VALUES ('$email', '$username', '$hashed_password', '$state', '$district', '$pincode', '$current_date')";
             $result = mysqli_query($connection, $sql);
-
+            // echo "Hashed Password at Signup: " . $hashed_password;                             // DE-BUGGER
+            
             if ($result) {
                 $_SESSION['showAlert'] = "Sign-up successful!";
             } else {

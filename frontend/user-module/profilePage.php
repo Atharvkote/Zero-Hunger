@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zero Hunger - Profile page</title>
     <link rel="stylesheet" href="profile-style.css">
-
+    <link rel="icon" href="../../images/Red-Heart-Logo.png" type="image/icon type">
 </head>
 
 <body>
@@ -62,7 +62,10 @@
             </div>
         </div>
 
-
+    </div>
+    <div class="more">
+        <a href="userMenu.php"><button  type="button">More</button></a>
+    </div>
 </body>
 
 </html>
