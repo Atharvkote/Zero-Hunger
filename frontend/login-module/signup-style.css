@@ -70,6 +70,15 @@ body {
   font-size: 14px;
 }
 
+#password-message{
+  color: red;
+  font-size: 10px;
+  /* background-color:#efb2b2 ; */
+  /* border-radius: 10px; */
+  /* padding: 5px; */
+  margin-left: 5px;
+}
+
 .form-group input:focus {
   outline: none;
   border-color: #ff7f00;
@@ -81,7 +90,7 @@ body {
   width: 70%;
 }
 
-.form-button {
+.form-button button {
   background-color: #ff7f00;
   color: white;
   font-family: "Inknut Antiqua", serif;
@@ -92,10 +101,10 @@ body {
   font-size: 16px;
   cursor: pointer;
   margin: 30px 15px 10px 0px;
-  transition: transform 0.5s ease;
+  transition: 0.3s ease;
 }
 
-.form-button:hover{
+ .form-button button:hover{
   transform: scale(1.05);
 }
 
@@ -159,9 +168,11 @@ body {
     background-color: #ff8d02;
     border-radius: 20px;
     margin: 0px 20px 0px 20px;
+    color: #fff;
 }
 
 .h2-h{
     background-color: #ff8d02;
     margin: 0px -15px 0px -15px;
+    color: #fff;
 }

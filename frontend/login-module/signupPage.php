@@ -64,18 +64,16 @@ if (isset($_SESSION['showError'])) {
     <title>Zero Hunger - Create Account</title>
     <link rel="stylesheet" href="signup-style.css">
     <link rel="icon" href="../../images/Red-Heart-Logo.png" type="image/icon type">
-
+    <script src="passwordValidator.js" defer></script> <!-- Link to external JS file -->
 </head>
 
 <body>
-    <?php
-    include '../assets/navbar.html';  // import navbar as a componenet 
-    ?>
+    <?php include '../assets/navbar.html'; ?>
 
     <div class="form-header">Create Account</div>
     <div class="main">
         <div class="container-new">
-            <form action="signupPage.php" method="post">
+            <form action="signupPage.php" method="post" onsubmit="return validatePassword()">
                 <div class="design">
                     <div class="one"></div>
                     <div class="two"></div>
@@ -95,6 +93,7 @@ if (isset($_SESSION['showError'])) {
                             <div class="form-group">
                                 <label for="password">Password</label>
                                 <input id="password" name="password" placeholder="Enter Password" type="password" />
+                                <div id="password-message"></div> <!-- Message for password validation -->
                             </div>
                             <div class="form-group">
                                 <label for="confirm-password">Confirm Password</label>
@@ -113,14 +112,16 @@ if (isset($_SESSION['showError'])) {
                                 <input id="pincode" name="pincode" placeholder="Enter Pincode" type="text" />
                             </div>
                         </div>
-                        <button type="submit" class="form-button">Create Account</button>
+                        <div class="form-button">
+                        <button type="submit" >Create Account</button>
+                        </div>
             </form>
         </div>
     </div>
     </div>
     <div class="welcome">
         <img src="../../images/Zero-Hunger-Logo.png" alt="img" height="100px" width="100px">
-        <h2 class="h2-h">Welcome! To Zero Hunger !</h2>
+        <h2 class="h2-h">Welcome! To Zero Hunger!</h2>
         <p>Thank you for joining our community dedicated to fighting hunger and reducing food waste. Together, we’re making a difference by connecting donors with surplus food to those in need. Whether you're here to donate, volunteer, or seek resources, we're excited to have you with us!</p>
         <p>Get started by exploring our platform, connecting with others, and contributing to this mission. Every action counts, and together</p>
         <h2 class="fooooter">Let’s make a positive impact!</h2>
