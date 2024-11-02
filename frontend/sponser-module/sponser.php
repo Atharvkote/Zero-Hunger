@@ -9,7 +9,7 @@
 
 <body>
   <?php
-  include '../assets/navbar.html';  // import navbar as a componenet 
+  include '../assets/navbar.php';  // import navbar as a componenet 
   ?>
   <div class="main-content">
     <h2 class="heading">Become Sponsor of Zero Hunger</h2>

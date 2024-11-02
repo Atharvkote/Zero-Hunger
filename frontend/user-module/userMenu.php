@@ -62,7 +62,7 @@
 
 <body>
     <?php
-    include '../assets/navbar.html';  // import navbar as a componenet 
+    include '../assets/navbar.php';  // import navbar as a componenet 
     ?>
 
 <h3>Zero Hunger is an Open -Source Project, and we are always looking for contributors!</h3>

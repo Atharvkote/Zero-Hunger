@@ -3,7 +3,7 @@
 
 
 .form-container {
-    background-color: #eebf85;
+    background-color: #f5d8b5;
     padding: 45px 300px 45px 300px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -139,7 +139,18 @@ form p{
     margin-left: 20px;
 }
 
-.container .form-container input {
+.show{
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    padding: 5px 0px 0px 25px;
+}
+
+.show input[type="checkbox"]{
+    margin-right: 15px;
+}
+
+.container .form-container input[type="password"],.container .form-container input[type="text"] {
     width: 69%;
     height: 25px;
     padding: 10px;

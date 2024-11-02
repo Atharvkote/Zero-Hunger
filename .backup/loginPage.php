@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 <body>
     <?php
-        include '../assets/navbar.html';
+        include '../assets/navbar.php';
     ?>
     <div class="container">
 

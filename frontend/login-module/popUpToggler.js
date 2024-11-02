@@ -5,3 +5,13 @@ function toggle() {
     const popup = document.getElementById('popup');
     popup.classList.toggle('active');
 }
+
+
+function myFunction() {
+    var x = document.getElementById("password");
+    if (x.type === "password") {
+      x.type = "text";
+    } else {
+      x.type = "password";
+    }
+  }

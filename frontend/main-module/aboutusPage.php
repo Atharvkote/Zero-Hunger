@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (!isset($_SESSION['username']) || $_SESSION['loggedin'] !== true) {
+    header("Location: ../login-module/loginPage.php");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,7 +19,7 @@
 
 <body>
     <?php
-    include '../assets/navbar.html';  // import navbar as a componenet 
+    include '../assets/navbar.php';  // import navbar as a componenet 
     ?>
     <div class="head">
         <h1>Zero Hunger By Team BYPAS07!</h1>
@@ -37,8 +45,8 @@
         <p><strong>Role:</strong> Lead Developer</p>
         <p><strong>Bio:</strong> With over 8 years of experience in full-stack development,Atharva specializes in building scalable web applications. His passion for coding started at a young age, and she loves tackling complex challenges head-on.</p>
         <div class="social-links">
-            <span class="linkedin"><a target="_blank"  href="https://www.linkedin.com/in/atharvakote"><img src="../../images/LinkedIn.png" height="25px" width="25px" alt="linkedin">LinkedIn</a></span>
-            <span class="github"> <a target="_blank"  href="https://github.com/Atharvkote/"><img src="../../images/Github.png" height="25px" width="25px" alt="linkedin">Github</a></span>
+            <span class="linkedin"><a target="_blank" href="https://www.linkedin.com/in/atharvakote"><img src="../../images/LinkedIn.png" height="25px" width="25px" alt="linkedin">LinkedIn</a></span>
+            <span class="github"> <a target="_blank" href="https://github.com/Atharvkote/"><img src="../../images/Github.png" height="25px" width="25px" alt="linkedin">Github</a></span>
         </div>
     </div>
 
@@ -47,8 +55,8 @@
         <p><strong>Role:</strong> UI/UX Designer / Prototyper</p>
         <p><strong>Bio:</strong> Bhushan is a creative designer with a knack for crafting intuitive user experiences. He believes that design should not only be beautiful but also functional.</p>
         <div class="social-links">
-            <span class="linkedin"><a target="_blank"  href="https://www.linkedin.com/in/bhushan-korde-4890a6288/"><img src="../../images/LinkedIn.png" height="25px" width="25px" alt="linkedin">LinkedIn</a></span>
-            <span class="github"><a target="_blank"  href="https://github.com/BhushanKorde/"><img src="../../images/Github.png" height="25px" width="25px" alt="linkedin">Github</a></span>
+            <span class="linkedin"><a target="_blank" href="https://www.linkedin.com/in/bhushan-korde-4890a6288/"><img src="../../images/LinkedIn.png" height="25px" width="25px" alt="linkedin">LinkedIn</a></span>
+            <span class="github"><a target="_blank" href="https://github.com/BhushanKorde/"><img src="../../images/Github.png" height="25px" width="25px" alt="linkedin">Github</a></span>
         </div>
     </div>
 
@@ -57,8 +65,8 @@
         <p><strong>Role:</strong> React Expert / Front-End Developer</p>
         <p><strong>Bio:</strong> Pranav is a front-end wizard who transforms designs into responsive, interactive websites. With a strong foundation in HTML, CSS, and JavaScript, she is always exploring the latest trends in front-end development.</p>
         <div class="social-links">
-            <span class="linkedin"><a target="_blank"  href="https://www.linkedin.com/in/pranav-mulay-29a133288?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><img src="../../images/LinkedIn.png" height="25px" width="25px" alt="linkedin">LinkedIn</a></span>
-            <span class="github"><a target="_blank"  href="https://github.com/pranavmulay18/"><img src="../../images/Github.png" height="25px" width="25px" alt="linkedin">Github</a></span>
+            <span class="linkedin"><a target="_blank" href="https://www.linkedin.com/in/pranav-mulay-29a133288?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><img src="../../images/LinkedIn.png" height="25px" width="25px" alt="linkedin">LinkedIn</a></span>
+            <span class="github"><a target="_blank" href="https://github.com/pranavmulay18/"><img src="../../images/Github.png" height="25px" width="25px" alt="linkedin">Github</a></span>
         </div>
     </div>
 
@@ -77,8 +85,8 @@
         <p><strong>Role:</strong> Databae Manager / SQL expertise</p>
         <p><strong>Bio:</strong> Yash is the glue that holds our team together. With his exceptional organizational skills and attention to detail, he ensures that projects are delivered on time and within budget.</p>
         <div class="social-links">
-            <span class="linkedin"><a target="_blank"  href="#"><img src="../../images/LinkedIn.png" height="25px" width="25px" alt="linkedin">LinkedIn</a></span>
-            <span class="github"><a  target="_blank" href="#"><img src="../../images/Github.png" height="25px" width="25px" alt="linkedin">Github</a></span>
+            <span class="linkedin"><a target="_blank" href="#"><img src="../../images/LinkedIn.png" height="25px" width="25px" alt="linkedin">LinkedIn</a></span>
+            <span class="github"><a target="_blank" href="#"><img src="../../images/Github.png" height="25px" width="25px" alt="linkedin">Github</a></span>
         </div>
     </div>
 

@@ -68,7 +68,7 @@ if (isset($_SESSION['showError'])) {
 </head>
 
 <body>
-    <?php include '../assets/navbar.html'; ?>
+    <?php include '../assets/navbar.php'; ?>
 
     <div class="form-header">Create Account</div>
     <div class="main">
@@ -84,32 +84,32 @@ if (isset($_SESSION['showError'])) {
                         <div class="form-group-container">
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input id="email" name="email" placeholder="Enter Email" type="email" />
+                                <input id="email" name="email" placeholder="Enter Email" type="email" required>
                             </div>
                             <div class="form-group">
                                 <label for="username">Username</label>
-                                <input id="username" name="username" placeholder="Enter Username" type="text" />
+                                <input id="username" name="username" placeholder="Enter Username" type="text" required>
                             </div>
                             <div class="form-group">
                                 <label for="password">Password</label>
-                                <input id="password" name="password" placeholder="Enter Password" type="password" />
+                                <input id="password" name="password" placeholder="Enter Password" type="password" required>
                                 <div id="password-message"></div> <!-- Message for password validation -->
                             </div>
                             <div class="form-group">
                                 <label for="confirm-password">Confirm Password</label>
-                                <input id="confirm-password" name="cpassword" placeholder="Confirm Password" type="password" />
+                                <input id="confirm-password" name="cpassword" placeholder="Confirm Password" type="password" required>
                             </div>
                             <div class="form-group">
                                 <label for="state">State</label>
-                                <input id="state" name="state" placeholder="Enter State" type="text" />
+                                <input id="state" name="state" placeholder="Enter State" type="text" required>
                             </div>
                             <div class="form-group">
                                 <label for="district">District</label>
-                                <input id="district" name="district" placeholder="Enter District" type="text" />
+                                <input id="district" name="district" placeholder="Enter District" type="text" required>
                             </div>
                             <div class="form-group full-width">
                                 <label for="pincode">Pincode</label>
-                                <input id="pincode" name="pincode" placeholder="Enter Pincode" type="text" />
+                                <input id="pincode" name="pincode" placeholder="Enter Pincode" type="text" required>
                             </div>
                         </div>
                         <div class="form-button">

@@ -46,11 +46,6 @@ body {
   margin-left: 30px;
 }
 
-.middle {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-}
 
 .info,
 .bottom-images {
@@ -58,10 +53,19 @@ body {
   height: 150px; /* Match heights */
 }
 
+
+.middle {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+
+}
+
 .info {
   background-color: #ffffff;
   margin-left: 20px;
-  padding: 20px;
+  padding: 10px 10px 10px  20px;
+
   border-radius: 10px;
   font-size: smaller;
 }
@@ -77,6 +81,7 @@ body {
   gap: 10px;
   background-color: #fff;
   padding: 30px;
+  flex: 1;
   border-radius: 10px;
   margin-right: -50px;
 }

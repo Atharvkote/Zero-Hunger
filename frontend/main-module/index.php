@@ -1,7 +1,7 @@
  <?php
     session_start();
     if (!isset($_SESSION['username']) || $_SESSION['loggedin'] !== true) {
-        header("Location: ../login-module/test.php");
+        header("Location: ../login-module/loginPage.php");
         exit();
     }
     ?>
@@ -20,7 +20,7 @@
 
  <body>
      <?php
-         include '../assets/navbar.html';  // import navbar as a componenet 
+         include '../assets/navbar.php';  // import navbar as a componenet 
      ?>
      <div class="main-container">
          <div class="left">

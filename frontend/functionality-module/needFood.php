@@ -9,7 +9,7 @@
 
 <body>
   <?php
-  include '../assets/navbar.html';  // import navbar as a componenet 
+  include '../assets/navbar.php';  // import navbar as a componenet 
   ?>
   <h2>Need Food</h2>
   <form action="need-food.php" method="post">

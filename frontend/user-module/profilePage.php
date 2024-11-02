@@ -1,7 +1,18 @@
 <?php
-    session_start();
+session_start();
+if (!isset($_SESSION['username']) || $_SESSION['loggedin'] !== true) {
+    header("Location: ../login-module/loginPage.php");
+    exit();
+}else{
+    include '../assets/DataBase-LINK.php';
+    $username = $_SESSION['username'];
+    $sql = "SELECT * FROM `users-information` WHERE username = '$username'";
+    $request = mysqli_query($connection, $sql);
+    $row = mysqli_fetch_assoc($request);                        // since Username is Unique
+    
+    $rank =  $row['rank'];
+}
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,7 +26,7 @@
 
 <body>
     <?php
-        include '../assets/navbar.html';  // import navbar as a componenet 
+        include '../assets/navbar.php';  // import navbar as a componenet 
     ?>
     <div class="main-container">
         <div class="left">
@@ -24,17 +35,17 @@
                     <img src="../../images/Person-Logo.png" height="100px" width="100px">
                 </div>
                 <div class="right-content">
-                    <h1>Atharva Kote</h1>
-                    <p> Rank : Regular Donor</p>
+                    <h1><?php echo $_SESSION['username'];?></h1>
+                    <p> Rank : <?php echo $rank ?> </p>
                 </div>
             </div>
             <!-- Add this new container for the bottom images -->
             <div class="middle">
                 <div class="info">
                     <ul>
-                        <li><strong>Email :</strong> atharvakote@gmail.com</li>
-                        <li><strong>State :</strong> Maharathra</li>
-                        <li><strong>District :</strong> Ahilyanagar</li>
+                        <li><strong>Email :</strong><?php echo $_SESSION['email'];?></li>
+                        <li><strong>State :</strong><?php echo $_SESSION['state'];?></li>
+                        <li><strong>District :</strong> <?php echo $_SESSION['district'];?></li>
                     </ul>
                 </div>
                 <div class="bottom-images">
@@ -44,14 +55,14 @@
                 </div>
             </div>
         <div class="bio">
-            <h3>About <!--<?php $_SESSION['username']?>--> Atharva :</h3>
-            <p>Hey! I am Atharva Kote from Shirdi,Maharthra , a proud Regular Donar at ZERO Hunger .Chasing that 1% that can change 99% </p>
+            <h3>About <?php echo $_SESSION['username'];?> :</h3>
+            <p>Hey! I am <?php echo $_SESSION['username'];?> from <?php echo $_SESSION['district'];?>,<?php echo $_SESSION['state'];?>, a proud Regular Donar at ZERO Hunger .Chasing that 1% that can change 99% </p>
         </div>
         </div>
 
         <div class="right">
             <div class="right-text">
-                <h3>Atharva<!--<?php echo $_SESSION['username']; ?>-->'s Recent Activity</h3>
+                <h3><?php echo $_SESSION['username'];?>'s Recent Activity</h3>
             </div>
             <div class="button-group">
                 <button><b>Donated Rs. 300 to Charity Fund.</b><img src="../../images/Black-Arrow.png" height="40px" width="30px"></button>

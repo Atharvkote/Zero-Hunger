@@ -130,7 +130,12 @@ header img {
     <nav class="navbar">
         <ul>
             <li><a href="../main-module/index.php">Home <img  src="../../images/Arrow-Down.png" height="5px" width="10px"></a></li>
-            <li><a href="#">Latest<img  src="../../images/Arrow-Down.png" height="5px" width="10px"></a></li>
+            <li><a href="../main-module/lastestPage.php">Latest<img  src="../../images/Arrow-Down.png" height="5px" width="10px"></a></li>
             <li><a href="../main-module/aboutUsPage.php">About Us<img  src="../../images/Arrow-Down.png" height="5px" width="10px"></a></li>
         </ul>
+        
+        
     </nav>
+
+    </body>
+    </html>

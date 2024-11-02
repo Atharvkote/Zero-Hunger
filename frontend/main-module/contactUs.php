@@ -13,7 +13,7 @@
 
 <body>
 <?php
-      include '../assets/navbar.html';  // import navbar as a componenet 
+      include '../assets/navbar.php';  // import navbar as a componenet 
     ?>
     <div class="container">
         <div class="content">

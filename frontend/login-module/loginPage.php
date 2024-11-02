@@ -17,10 +17,16 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         // } else {                                                     // DE-BUGGER
         //     echo "Password not verified!";
         // }
-        echo $row['password'];
+        // echo $row['password'];
         if (password_verify($password, $row['password'])) {
-            $_SESSION['loggedin'] = true;
+            $_SESSION['loggedin'] = true;                   //Flag - for Loggin Options
             $_SESSION['username'] = $name;
+            $_SESSION['email'] = $row['email'];
+            $_SESSION['state'] = $row['state'];
+            $_SESSION['district'] = $row['district'];
+            $_SESSION['pincode'] = $row['pincode'];
+            $_SESSION['date'] = $row['date'];
+
             header("Location: ../main-module/index.php");
             exit();
         } else {
@@ -46,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 </head>
 <body>
     <div class="whole" id="blurr">
-        <?php include '../assets/navbar.html'; ?>
+        <?php include '../assets/navbar.php'; ?>
         <div class="container">
             <!-- Form Container Section -->
             <div class="first"></div>
@@ -60,6 +66,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
                     <label for="password">Password</label>
                     <input type="password" id="password" name="password" placeholder="Enter Password" required>
+                    <div class="show">
+                        <input type="checkbox"  onclick="myFunction()">Show password
+                    </div>
                     <a href="signupPage.php">
                         <p>Don’t Have an Account? Create Account</p>
                     </a>
