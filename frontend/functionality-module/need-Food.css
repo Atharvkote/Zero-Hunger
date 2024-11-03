@@ -57,6 +57,10 @@ h2 {
   margin: 20px 0 20px 0;
 }
 
+option{
+  background-color: #ffe0b2;
+}
+
 .main-content .left-panel .two-input .first {
   width: 45%;
 }

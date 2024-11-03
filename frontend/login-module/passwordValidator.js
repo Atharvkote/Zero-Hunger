@@ -23,6 +23,11 @@ document.addEventListener("DOMContentLoaded", function () {
             message.style.color = 'red';
             return false;
         }
+        if (password.length > 20) {
+            message.innerText = "Password must be at less 20 characters";
+            message.style.color = 'red';
+            return false;
+        }
         if (!hasUpperCase) {
             message.innerText = "Password must contain at least one uppercase letter.";
             message.style.color = 'red';
