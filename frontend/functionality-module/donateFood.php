@@ -4,42 +4,60 @@ $showError = $showAlert = "";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     include '../assets/DataBase-LINK.php';
-    $username = $_SESSION['username'];
-    $sql = "SELECT * FROM `users-information` WHERE username = '$username'";
-    $request = mysqli_query($connection, $sql);
-    $row = mysqli_fetch_assoc($request);                        // since Username is Unique
-    
-    $username = $_SESSION['username'];
-    $email = $_SESSION['email'];
-    
-    $landmark = $_POST['landmark'];
-    $day= $_POST['day'];
-    $time = time();
-    $message = $_POST['message'];
-   
-    $item_name_1 = $_POST['item-1'];
-    $qty_1 = $_POST['qty-1'];
-    $freshly_made_1 = isset($_POST['freshly-made-1']) ? 1 : 0;
-    
-    $item_name_2 = $_POST['item-2'];
-    $qty_2 = $_POST['qty-2'];
-    $freshly_made_2 = isset($_POST['freshly-made-2']) ? 1 : 0;
-    
-    $item_name_3 = $_POST['item-3'];
-    $qty_3 = $_POST['qty-3'];
-    $freshly_made_3 = isset($_POST['freshly-made-3']) ? 1 : 0;
-    
-    $item_name_4 = $_POST['item-4'];
-    $qty_4 = $_POST['qty-4'];
-    $freshly_made_4 = isset($_POST['freshly-made-4']) ? 1 : 0;
-    
-    $item_name_5 = $_POST['item-5'];
-    $qty_5 = $_POST['qty-5'];
-    $freshly_made_5 = isset($_POST['freshly-made-5']) ? 1 : 0;
 
+    if (isset($_SESSION['username']) && isset($_SESSION['email'])) {
+        $username = $_SESSION['username'];
+        $email = $_SESSION['email'];
+    } 
+
+    $landmark = $_POST['landmark'];
+    $day = $_POST['day'];
+    $message = $_POST['message'];
+
+    // Initialize items array
+    $items = [];
+    for ($i = 1; $i <= 5; $i++) {
+        if (!empty($_POST["item-$i"])) { // Check if item name is provided
+            $items[] = [
+                'name' => $_POST["item-$i"],
+                'qty' => $_POST["qty-$i"],
+                'freshly_made' => isset($_POST["freshly-made-$i"]) ? 1 : 0
+            ];
+        }
+    }
+
+    // Start building the query dynamically
+    $sql = "INSERT INTO donations (landmark, day, message, username, email";
+    $values = "VALUES (?, ?, ?, ?, ?";
+    $params = [$landmark, $day, $message, $username, $email];
+    $types = "sssss";
+
+    // Loop through items to add to the query only if data is present
+    foreach ($items as $index => $item) {
+        $itemIndex = $index + 1;
+        $sql .= ", item_name_$itemIndex, qty_$itemIndex, freshly_made_$itemIndex";
+        $values .= ", ?, ?, ?";
+        $params[] = $item['name'];
+        $params[] = $item['qty'];
+        $params[] = $item['freshly_made'];
+        $types .= "sis"; // s: string, i: integer, s: string (boolean)
+    }
+
+    $sql .= ") $values)";
+    $stmt = $connection->prepare($sql);
+    $stmt->bind_param($types, ...$params);
+    $stmt->execute();
+
+    // if ($stmt->affected_rows > 0) {
+    //     echo "Donation record added successfully!";
+    // } else {
+    //     echo "Error: " . $stmt->error;
+    // }
+
+    $stmt->close();
+    $connection->close();
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -55,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <body>
     <?php
-         include '../assets/navbar.php';  // import navbar as a componenet 
+    include '../assets/navbar.php';  // import navbar as a componenet 
     ?>
     <div class="container">
         <div class="left-column">
@@ -68,7 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </div>
                     <div class="form-group">
                         <label>Mention Day Food was Made</label>
-                        <input  name="day" placeholder="Enter day food was made" type="date" />
+                        <input name="day" placeholder="Enter day food was made" type="date" />
 
                     </div>
                     <div class="form-group">
@@ -102,7 +120,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <div class="form-group">
                         <div class="name">
                             <label>Name</label>
-                            <input  name="item-2" placeholder="Enter name of food" type="text" />
+                            <input name="item-2" placeholder="Enter name of food" type="text" />
                             <label><i>( Type of Food )</i></label>
                         </div>
                         <div class="qty">
@@ -119,12 +137,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <div class="form-group">
                         <div class="name">
                             <label>Name</label>
-                            <input  name="item-3" placeholder="Enter name of food" type="text" />
+                            <input name="item-3" placeholder="Enter name of food" type="text" />
                             <label><i>( Type of Food )</i></label>
                         </div>
                         <div class="qty">
                             <label>Quantity</label>
-                            <input name="qty-3"  placeholder="QTY" type="number" />
+                            <input name="qty-3" placeholder="QTY" type="number" />
                             <label>0-100 kg</label>
                         </div>
                         <div class="radioo">
@@ -136,12 +154,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <div class="form-group">
                         <div class="name">
                             <label>Name</label>
-                            <input  name="item-4" placeholder="Enter name of food" type="text" />
+                            <input name="item-4" placeholder="Enter name of food" type="text" />
                             <label><i>( Type of Food )</i></label>
                         </div>
                         <div class="qty">
                             <label>Quantity</label>
-                            <input name="qty-4"  placeholder="QTY" type="number" />
+                            <input name="qty-4" placeholder="QTY" type="number" />
                             <label>0-100 kg</label>
                         </div>
                         <div class="radioo">
@@ -153,7 +171,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <div class="form-group">
                         <div class="name">
                             <label>Name</label>
-                            <input  name="item-5" placeholder="Enter name of food" type="text" />
+                            <input name="item-5" placeholder="Enter name of food" type="text" />
                             <label><i>( Type of Food )</i></label>
                         </div>
                         <div class="qty">
@@ -168,7 +186,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
                     </div>
                 </div>
-           
+
         </div>
         <div class="right-panel">
             <div class="image-placeholder"></div>

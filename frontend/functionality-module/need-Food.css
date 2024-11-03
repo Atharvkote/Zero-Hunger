@@ -116,20 +116,26 @@ h2 {
 }
 
 .main-content .right-panel .image-placeholder {
-  background: url(../../images/Image-Template.png);
-  width: 187px;
-  height: 160px;
-  border-radius: 10px;
-  display: flex;
+  /* background: url(../../images/Image-Template.png); */
+  /* margin: 10px 10px 10px 53% ; */
+  width: 100%; /* Set width as needed */
+  height: 200px; /* Set a fixed height */
+  /* border: 2px dashed #ccc; Example styling for placeholder */
+  display:grid;
+  flex-wrap: wrap; /* Wrap images if there's overflow */
+  gap: 10px; /* Space between images */
   align-items: center;
   justify-content: center;
-  margin-bottom: 20px;
-  margin-right: 30px;
+  position: relative; /* Positioning for any overlays if needed */
+  overflow: hidden; /* Hide overflow if image is larger */
+  background-repeat: no-repeat;
 }
 
-.main-content .right-panel .image-placeholder img {
-  width: 60px;
-  height: 60px;
+#preview {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 20px;
+  object-fit: cover; /* Maintain aspect ratio */
 }
 
 .main-content .right-panel .btn {
