@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $sql = "INSERT INTO `users-information` (`email`, `username`, `password`, `state`, `district`, `pincode`, `date`) VALUES ('$email', '$username', '$hashed_password', '$state', '$district', '$pincode', '$current_date')";
             $result = mysqli_query($connection, $sql);
             // echo "Hashed Password at Signup: " . $hashed_password;                             // DE-BUGGER
-            
+
             if ($result) {
                 $_SESSION['showAlert'] = "Sign-up successful!";
             } else {
@@ -40,19 +40,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['showError'] = "Passwords do not match!";
         }
     }
-    header("Location: signupAlert.php");
+    header("Location: signupPage.php");
     exit();
 }
-// Displaying alerts if set in the session
-if (isset($_SESSION['showAlert'])) {
-    $showAlert = $_SESSION['showAlert'];
-    unset($_SESSION['showAlert']); // Clear the session variable after use
-}
 
-if (isset($_SESSION['showError'])) {
-    $showError = $_SESSION['showError'];
-    unset($_SESSION['showError']); // Clear the session variable after use
-}
+// // Displaying alerts if set in the session
+// if (isset($_SESSION['showAlert'])) {
+//     $showAlert = $_SESSION['showAlert'];
+//     unset($_SESSION['showAlert']); // Clear the session variable after use
+// }
+
+// if (isset($_SESSION['showError'])) {
+//     $showError = $_SESSION['showError'];
+//     unset($_SESSION['showError']); // Clear the session variable after use
+// }
 
 ?>
 <!DOCTYPE html>
@@ -68,56 +69,58 @@ if (isset($_SESSION['showError'])) {
 </head>
 
 <body>
-    <?php include '../assets/navbar.php'; ?>
 
-    <div class="form-header">Create Account</div>
-    <div class="main">
-        <div class="container-new">
-            <form action="signupPage.php" method="post" onsubmit="return validatePassword()">
-                <div class="design">
-                    <div class="one"></div>
-                    <div class="two"></div>
-                    <div class="three"></div>
-                    <div class="four"></div>
-                    <div class="form-container-new">
-                        <div class="form-subheader">Enter Following Details To Create Account</div>
-                        <div class="form-group-container">
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input id="email" name="email" placeholder="Enter Email" type="email" required>
+    <div class="whole" id=blurr>
+        <?php include '../assets/navbar.php'; ?>
+
+        <div class="form-header">Create Account</div>
+        <div class="main">
+            <div class="container-new">
+                <form action="signupPage.php" method="post" onsubmit="return validatePassword()">
+                    <div class="design">
+                        <div class="one"></div>
+                        <div class="two"></div>
+                        <div class="three"></div>
+                        <div class="four"></div>
+                        <div class="form-container-new">
+                            <div class="form-subheader">Enter Following Details To Create Account</div>
+                            <div class="form-group-container">
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input id="email" name="email" placeholder="Enter Email" type="email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="username">Username</label>
+                                    <input id="username" name="username" placeholder="Enter Username" type="text" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Password</label>
+                                    <input id="password" name="password" placeholder="Enter Password" type="password" required>
+                                    <div id="password-message"></div> <!-- Message for password validation -->
+                                </div>
+                                <div class="form-group">
+                                    <label for="confirm-password">Confirm Password</label>
+                                    <input id="confirm-password" name="cpassword" placeholder="Confirm Password" type="password" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="state">State</label>
+                                    <input id="state" name="state" placeholder="Enter State" type="text" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="district">District</label>
+                                    <input id="district" name="district" placeholder="Enter District" type="text" required>
+                                </div>
+                                <div class="form-group full-width">
+                                    <label for="pincode">Pincode</label>
+                                    <input id="pincode" name="pincode" placeholder="Enter Pincode" type="text" required>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="username">Username</label>
-                                <input id="username" name="username" placeholder="Enter Username" type="text" required>
+                            <div class="form-button">
+                                <button type="submit">Create Account</button>
                             </div>
-                            <div class="form-group">
-                                <label for="password">Password</label>
-                                <input id="password" name="password" placeholder="Enter Password" type="password" required>
-                                <div id="password-message"></div> <!-- Message for password validation -->
-                            </div>
-                            <div class="form-group">
-                                <label for="confirm-password">Confirm Password</label>
-                                <input id="confirm-password" name="cpassword" placeholder="Confirm Password" type="password" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="state">State</label>
-                                <input id="state" name="state" placeholder="Enter State" type="text" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="district">District</label>
-                                <input id="district" name="district" placeholder="Enter District" type="text" required>
-                            </div>
-                            <div class="form-group full-width">
-                                <label for="pincode">Pincode</label>
-                                <input id="pincode" name="pincode" placeholder="Enter Pincode" type="text" required>
-                            </div>
-                        </div>
-                        <div class="form-button">
-                        <button type="submit" >Create Account</button>
-                        </div>
-            </form>
+                </form>
+            </div>
         </div>
-    </div>
     </div>
     <div class="welcome">
         <img src="../../images/Zero-Hunger-Logo.png" alt="img" height="100px" width="100px">
@@ -127,6 +130,67 @@ if (isset($_SESSION['showError'])) {
         <h2 class="fooooter">Let’s make a positive impact!</h2>
     </div>
     </div>
+    </div>
+
+
+    <!-----popup----->
+
+    <div id="popup">
+        <h3>Oops! Something went Wrong</h3>
+        <?php
+        if (isset($_SESSION['showError'])) {
+            echo '
+                 <div class="danger">
+                <p id="popup-text">' . $_SESSION['showError'] . '</p>
+                <ul>
+                    <li>Check You Have Account with this Username</li>
+                    <li>Check Password You Entered Correct Or NOT</li>
+                    <li>Check Casing of the Letter or Any Special Symbol</li>
+                </ul>
+                <button class="cbutton" onclick="toggle()" type="button"><b>Close</b></button>
+                </div>
+                ';
+        }
+        ?>
+            <?php
+            if (isset($_SESSION['showAlert'])) {
+                echo '
+                <div class="success">
+                <p id="popup-text">' . $_SESSION['showAlert'] . '</p>
+                <p>Accout Created Successfully, Please Login And start Your Journey with Zero Hunger </p>
+                <button class="cbutton" onclick="redirect()" type="button"><b>Log In</b></button>
+                </div>
+                ';
+            }
+            ?>
+    </div>
+    <script>
+        window.onload = function() {
+            <?php if (isset($_SESSION['showError'])): ?>
+                toggle(); // Open the popup if there is an error
+                <?php unset($_SESSION['showError']); // Clear the error after opening 
+                ?>
+            <?php endif; ?>
+            <?php if (isset($_SESSION['showAlert'])): ?>
+                toggle(); // Open the popup if there is an error
+                <?php unset($_SESSION['showAlert']); // Clear the error after opening 
+                ?>
+            <?php endif; ?>
+        };
+
+        function toggle() {
+            const blurr = document.getElementById('blurr');
+            blurr.classList.toggle('active');
+
+            const popup = document.getElementById('popup');
+            popup.classList.toggle('active');
+        }
+
+        function redirect() {
+            window.location.href = "loginPage.php";
+        }
+    </script>
+
 </body>
 
 </html>

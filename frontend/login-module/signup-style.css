@@ -52,6 +52,38 @@ body {
   gap: 15px;
 }
 
+.danger{
+  background-color: #efb2b2;
+  padding: 5px;
+  border-radius: 5px;
+  border:  2px solid red;
+  margin: 0px 40px 20px  40px;
+  text-align: start;
+}
+
+.danger p{
+  text-align: center;
+  background-color: red;
+  margin: 10px;
+  border-radius: 10px;
+}
+
+.success{
+  background-color: #8fed8f;
+  padding: 5px;
+  border-radius: 5px;
+  border:  2px solid green;
+  margin: 0px 40px 20px  40px;
+  text-align: start;
+}
+
+.success p{
+  text-align: center;
+  color: green;
+  margin: 10px;
+  border-radius: 10px;
+}
+
 .form-group {
   margin: 0px 30px 0px 0px;
 }
@@ -88,6 +120,61 @@ body {
   grid-column: 1 / -1;
   justify-self: center;
   width: 70%;
+}
+
+
+.whole#blurr.active{
+  filter: blur(20px);
+  pointer-events: none;
+  user-select: none;
+}
+
+#popup {
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  /* padding: 20px; */
+  background-color:#f5d8b5;
+  visibility: hidden;
+  opacity: 0;
+  text-align: center;
+  border-radius: 20px;
+  transition: 0.3s ease; /* Use transition here */
+}
+#popup.active {
+  top: 55%;
+  visibility: visible;
+  opacity: 1;
+  transition: 0.3s ease; /* Use transition here */
+}
+#popup .cbutton{
+  color: rgb(255, 255, 255);
+  margin-top: 20px;
+  padding: 10px 100px;
+  background-color: #ff8d02;
+  border-radius: 20px;
+  font-family: 'Inknut Antiqua', serif;
+  /* margin-left: -105px; */
+  /* margin-top: 20px; */
+  border: none;
+  margin-left: 25%;
+}
+
+#popup h3{
+  margin: 0;
+  padding: 0;
+  background-color: #ff8d02;
+  margin: 0px 40px 40px  40px;
+  border-radius: 0px 0px 10px 10px;
+  color: #fff;
+
+}
+
+a{
+  text-decoration: none;
+  color: black;
 }
 
 .form-button button {
