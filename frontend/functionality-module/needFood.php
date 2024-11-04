@@ -54,9 +54,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   // Redirect or display success message
   // echo "Form data and media files uploaded successfully!";           // De-Bugger
+
+
+
+  // Tracking User Activity
+  $username = $_SESSION['username'];
+  $activity_description = "Requested  food  for $number_of_people peoples at $spot_type through Zero Hunger.";
+  $sql="INSERT INTO `recent-activity` (`username`, `activity_description`, `activity_date`) VALUES ( '$username', '$activity_description', current_timestamp())";
+  $request = mysqli_query($connection, $sql);
+
+  // if($request){
+  //   echo "Activity recorded successfully.";
+  // }else{
+  //   echo "Error recording activity.";
+  // }
+
+  $connection->close();
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">

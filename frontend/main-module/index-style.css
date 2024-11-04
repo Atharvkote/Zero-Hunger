@@ -7,51 +7,71 @@ body {
     width: 100%;
 }
 
-
-.main-container {
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-    margin: 0 auto;
-}
-
-.left, .right {
-    width: 40%;
-    background-color: #f5d8b5;
-    padding: 20px;
-    border-radius: 30px;
-}
-
-.left h1, .right h1 {
-    font-size: 28px;
-}
-
-.left-content {
-    margin-top: -28px;
-}
-
 .content {
     display: flex;
     justify-content: space-around;
-    margin-bottom: 20px;
+    padding: 20px;
 }
 
-.left-content, .right-content {
-    width: 40%;
+.content .box {
+    background-color: #f5d8b5;
+    padding: 20px;
+    border-radius: 15px;
+    width: 45%;
+    position: relative;
 }
 
-.right-content img {
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
+.content .box h2 {
+    font-size: 28px;
+    margin: 10px 0px 10px 0px
 }
 
-.right-content {
-    background: #ff8d02;
-    border-radius: 30px;
-    /* margin-top: -60px; */
-    height: 200px;
+.content .box p {
+    font-size: 18px;
+    line-height: 1.6;
 }
+
+.content .box img {
+    float: right;
+    margin: 0 0 10px 10px;
+    width: 200px;
+    height: 165px;
+    background-color: #ff8d02;
+    border-radius: 20px;
+}
+
+.content .box .buttons {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+/* 
+.content .box .buttons button {
+    background-color: #ff8d02;
+    color: white;
+    border: none;
+    font-family: 'Inknut Antiqua', serif;
+    width: 60%;
+    padding: 5px 10px;
+    margin: 10px 0;
+    font-size: 18px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: .3s ease;
+}
+
+.content .box .buttons button:hover {
+    transform: scale(1.05);
+}
+
+
+.prompt{
+   text-align: center; 
+    font-weight: bold;
+    margin: 40px 10px 35px 10px;
+} */
+
 
 .right-text {
     padding: 20px;
@@ -72,11 +92,12 @@ body {
 
 .button-group button {
     margin: 10px 0;
-    padding: 20px 125px;
+    padding: 10px 125px;
     background-color: #ff8d02;
-    color: #000;
+    color: #ffffff;
     border: none;
     font-size: larger;
+    font-family: 'Inknut Antiqua', serif;
     border-radius: 25px;
     cursor: pointer;
     width: 100%;

@@ -16,6 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Initialize items array
     $items = [];
+    $counter = 0;
     for ($i = 1; $i <= 5; $i++) {
         if (!empty($_POST["item-$i"])) { // Check if item name is provided
             $items[] = [
@@ -23,6 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 'qty' => $_POST["qty-$i"],
                 'freshly_made' => isset($_POST["freshly-made-$i"]) ? 1 : 0
             ];
+            $counter=$counter+1;
         }
     }
 
@@ -55,6 +57,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // }
 
     $stmt->close();
+    $username = $_SESSION['username'];
+    $activity_description = "Donate  food for $counter item on $day through Zero Hunger.";
+    $sql="INSERT INTO `recent-activity` (`username`, `activity_description`, `activity_date`) VALUES ( '$username', '$activity_description', current_timestamp())";
+    $request = mysqli_query($connection, $sql);
+  
+    // if($request){
+    //   echo "Activity recorded successfully.";
+    // }else{
+    //   echo "Error recording activity.";
+    // }
     $connection->close();
 }
 ?>

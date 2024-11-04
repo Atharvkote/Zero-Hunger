@@ -17,6 +17,71 @@ body {
   text-align: center;
 }
 
+.whole#blurr.active{
+  filter: blur(20px);
+  pointer-events: none;
+  user-select: none;
+}
+
+#popup {
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  /* padding: 20px; */
+  background-color:#f5d8b5;
+  visibility: hidden;
+  opacity: 0;
+  text-align: center;
+  border-radius: 20px;
+  transition: 0.3s ease; /* Use transition here */
+}
+#popup.active {
+  top: 55%;
+  visibility: visible;
+  opacity: 1;
+  transition: 0.3s ease; /* Use transition here */
+}
+#popup .cbutton{
+  color: rgb(255, 255, 255);
+  margin-top: 20px;
+  padding: 5px 70px;
+  background-color: #ff8d02;
+  border-radius: 20px;
+  font-family: 'Inknut Antiqua', serif;
+  /* margin-left: -105px; */
+  /* margin-top: 20px; */
+  border: none;
+  font-size: larger;
+}
+
+.QR img{
+  width: 300px;
+  height: 300px;
+ 
+}
+
+.QR{
+  background-color: #000;
+  padding: 5px;
+  width: 315px;
+  height: 315px;
+  border-radius: 20px;
+}
+
+#popup h3{
+  background-color: #ff9800;
+  color: white;
+  padding: 5px 10px;
+  margin: 0px 0px 30px 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
 .main-content h2 {
   background-color: #ff9800;
   color: white;

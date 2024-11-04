@@ -1,3 +1,8 @@
+<?php
+session_start();
+$username = $_SESSION['username'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -115,10 +120,12 @@
             user-select: none;
         }
 
+        .boxx {}
+
         #popup {
             position: fixed;
-            top: 40%;
-            left: 50%;
+            top: 20%;
+            left: 75%;
             transform: translate(-50%, -50%);
             width: 600px;
             /* padding: 20px; */
@@ -132,7 +139,7 @@
         }
 
         #popup.active {
-            top: 55%;
+            top: 25%;
             visibility: visible;
             opacity: 1;
             transition: 0.3s ease;
@@ -170,9 +177,11 @@
             background-color: #f5d8b5;
             padding: 5px;
             border-radius: 5px;
-            border: 2px solid red;
-            margin: 0px 40px 20px 40px;
             text-align: start;
+            display: grid;
+            justify-content: center;
+            align-items: center;
+            /* flex-direction: column; */
         }
 
         .danger p {
@@ -180,6 +189,10 @@
             /* background-color: ; */
             margin: 10px;
             /* border-radius: 10px; */
+        }
+
+        .boxx-img{
+
         }
     </style>
 </head>
@@ -192,9 +205,7 @@
             <p><b>Nourishing Lives, Creating Smiles!</b></p>
         </div>
         <div class="login-logo">
-            <a href="../user-module/profilePage.php">
-                <img onclick="toggle()" src="../../images/Person-Logo.png" height="50px" width="50px">
-            </a>
+            <img onclick="toggle()" src="../../images/Person-Logo.png" height="50px" width="50px">
         </div>
     </header>
 
@@ -210,12 +221,27 @@
     <!-----popup----->
 
     <div id="popup">
-        <h3>Oops! Something went Wrong</h3>
+        <h3></h3>
         <div class="danger">
-
+            <h3><?php echo $username; ?></h3>
+            <div class="boxx">
+                <ul>
+                    <li>Profile</li>
+                    <li>My Pilanthrpic Footprints</li>
+                    <li>Help</li>
+                    <li>log Out</li>
+                </ul>
+            </div>
+            <div class="boxx-img">
+                <img src="../../images/profile.png" alt="image" height="30px" width="30px">
+                <img src="../../images/eye-icon.png" alt="image" height="30px" width="30px">
+                <img src="../../images/help.png" alt="image" height="30px" width="30px">
+                <img src="../../images/logout.png" alt="image" height="30px" width="30px">
+            </div>
         </div>
         <button class="cbutton" onclick="toggle()" type="button"><b>Close</b></button>
     </div>
+
 
     <script>
         function toggle() {

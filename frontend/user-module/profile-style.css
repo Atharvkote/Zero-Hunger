@@ -30,6 +30,21 @@ body {
   flex: 1 1 45%; /* Allows each div to grow and shrink within 45% of the container */
 }
 
+.no-activity{
+  background-color: #ff8d02;
+  padding: 15px;
+  margin: 0;
+  text-align: center;
+  border-radius: 25px;
+  font-size: 18px;
+  font-weight: bold;
+  transition:  .3s ease;
+}
+
+.no-activity:hover{
+  transform: scale(1.05);
+}
+
 .left {
   position: relative; /* Allows positioning of child elements */
   width: 60%;
@@ -149,7 +164,20 @@ body {
   cursor: pointer;
   transition: transform 0.3s ease;
 }
+.no-activiy-img img{
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  width: 300px;
+  height: 200px;
+ 
+}
 
+.no-activiy-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .button-group button:hover {
   transform: scale(1.05);
 }
