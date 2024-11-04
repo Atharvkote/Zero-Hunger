@@ -1,12 +1,10 @@
-function toggle() {
-    const blurr = document.getElementById('blurr');
-    blurr.classList.toggle('active');
+function toggleLoginPopup() {
+  const blurr = document.getElementById('blurr');
+  blurr.classList.toggle('active');
 
-    const popup = document.getElementById('popup');
-    popup.classList.toggle('active');
+  const popup = document.getElementById('popup');
+  popup.classList.toggle('active');
 }
-
-
 function myFunction() {
     var x = document.getElementById("password");
     if (x.type === "password") {

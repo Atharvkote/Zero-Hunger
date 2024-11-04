@@ -66,12 +66,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="stylesheet" href="signup-style.css">
     <link rel="icon" href="../../images/Red-Heart-Logo.png" type="image/icon type">
     <script src="passwordValidator.js" defer></script> <!-- Link to external JS file -->
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init({
+                publicKey: "_OP9I50wepz2eyb55",
+            });
+        })();
+    </script>
+    <script src="EmailSender.js"></script>
 </head>
 
 <body>
 
     <div class="whole" id=blurr>
-        <?php include '../assets/navbar.php'; ?>
+        <?php include '../assets/static-navbar.php'; ?>
 
         <div class="form-header">Create Account</div>
         <div class="main">
@@ -147,38 +158,38 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <li>Check Password You Entered Correct Or NOT</li>
                     <li>Check Casing of the Letter or Any Special Symbol</li>
                 </ul>
-                <button class="cbutton" onclick="toggle()" type="button"><b>Close</b></button>
+                <button class="cbutton" onclick="toggleInsignPage()" type="button"><b>Close</b></button>
                 </div>
                 ';
         }
         ?>
-            <?php
-            if (isset($_SESSION['showAlert'])) {
-                echo '
+        <?php
+        if (isset($_SESSION['showAlert'])) {
+            echo '
                 <div class="success">
                 <p id="popup-text">' . $_SESSION['showAlert'] . '</p>
                 <p>Accout Created Successfully, Please Login And start Your Journey with Zero Hunger </p>
                 <button class="cbutton" onclick="redirect()" type="button"><b>Log In</b></button>
                 </div>
                 ';
-            }
-            ?>
+        }
+        ?>
     </div>
     <script>
         window.onload = function() {
             <?php if (isset($_SESSION['showError'])): ?>
-                toggle(); // Open the popup if there is an error
+                toggleInsignPage(); // Open the popup if there is an error
                 <?php unset($_SESSION['showError']); // Clear the error after opening 
                 ?>
             <?php endif; ?>
             <?php if (isset($_SESSION['showAlert'])): ?>
-                toggle(); // Open the popup if there is an error
+                toggleInsignPage(); // Open the popup if there is an error
                 <?php unset($_SESSION['showAlert']); // Clear the error after opening 
                 ?>
             <?php endif; ?>
         };
 
-        function toggle() {
+        function toggleInsignPage() {
             const blurr = document.getElementById('blurr');
             blurr.classList.toggle('active');
 

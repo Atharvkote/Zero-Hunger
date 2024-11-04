@@ -1,3 +1,10 @@
+<?php
+// session_start();
+if (isset($_SESSION['username'])  || isset($_SESSION['loggedin'])) {
+    $username = $_SESSION['username'];
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -117,14 +124,16 @@
 
         #popup {
             position: fixed;
-            top: 40%;
-            left: 50%;
+            top: 35%;
+            left: 80%;
+            z-index: 9999;
             transform: translate(-50%, -50%);
-            width: 600px;
+            width: 400px;
             /* padding: 20px; */
             background-color: #f5d8b5;
             visibility: hidden;
             opacity: 0;
+            border: 2px solid #ff8d02;
             text-align: center;
             border-radius: 20px;
             transition: 0.3s ease;
@@ -132,9 +141,10 @@
         }
 
         #popup.active {
-            top: 55%;
+            top: 38%;
             visibility: visible;
             opacity: 1;
+            padding: 30px;
             transition: 0.3s ease;
             /* Use transition here */
         }
@@ -142,22 +152,26 @@
         #popup .cbutton {
             color: rgb(255, 255, 255);
             margin-top: 20px;
-            padding: 10px 100px;
+            padding: 5px 100px;
             background-color: #ff8d02;
             border-radius: 20px;
             font-family: 'Inknut Antiqua', serif;
             /* margin-left: -105px; */
             /* margin-top: 20px; */
             border: none;
+            font-size: 20px;
+            transition: .3s ease;
         }
 
-        #popup h3 {
-            margin: 0;
-            padding: 0;
-            background-color: #ff8d02;
-            margin: 0px 40px 40px 40px;
+        #popup .cbutton:hover {
+            transform: scale(1.05);
+        }
+
+        #popup h2 {
+            /* background-color: #ff8d02; */
+            margin: 0px 0px 0px 0px;
             border-radius: 0px 0px 10px 10px;
-            color: #fff;
+            color: black;
 
         }
 
@@ -166,20 +180,71 @@
             color: black;
         }
 
-        .danger {
+        .danger-new {
             background-color: #f5d8b5;
             padding: 5px;
             border-radius: 5px;
-            border: 2px solid red;
-            margin: 0px 40px 20px 40px;
             text-align: start;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* flex-direction: column; */
         }
 
-        .danger p {
+        .danger-new p {
             text-align: center;
             /* background-color: ; */
             margin: 10px;
             /* border-radius: 10px; */
+        }
+
+        .danger-new ul li img {
+            margin-right: 40px;
+        }
+
+        .danger-new ul {
+            display: flex;
+            justify-content: flex-start;
+            flex-direction: column;
+            width: 100%;
+            padding: 0;
+        }
+
+        .danger-new ul li {
+            list-style: none;
+            width: 100%;
+            font-size: larger;
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+            background-color: #f5d8b5;
+            border-radius: 10px;
+            transition: .3s ease;
+            border-radius: 5px;
+            padding-left: 20px;
+        }
+
+        .user-info {
+            display: flex;
+            justify-content: left;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .user-info img {
+            width: 50px;
+            height: 50px;
+        }
+
+        hr {
+            border: 1px solid #ff8d02;
+            border-radius: 30%;
+
+        }
+
+        .danger-new ul li:hover {
+            transform: scale(1.05);
+            background-color: #ff8d02;
         }
     </style>
 </head>
@@ -192,10 +257,9 @@
             <p><b>Nourishing Lives, Creating Smiles!</b></p>
         </div>
         <div class="login-logo">
-            <a href="../user-module/profilePage.php">
-                <img onclick="toggle()" src="../../images/Person-Logo.png" height="50px" width="50px">
-            </a>
+            <img onclick="toggleNavbarPopup()" src="../../images/Person-Logo.png" height="50px" width="50px">
         </div>
+
     </header>
 
     <nav class="navbar">
@@ -204,23 +268,40 @@
             <li><a href="../main-module/lastestPage.php">Latest<img src="../../images/Arrow-Down.png" height="5px" width="10px"></a></li>
             <li><a href="../main-module/aboutUsPage.php">About Us<img src="../../images/Arrow-Down.png" height="5px" width="10px"></a></li>
         </ul>
-
-
     </nav>
     <!-----popup----->
 
     <div id="popup">
-        <h3>Oops! Something went Wrong</h3>
-        <div class="danger">
 
+        <div class="user-info">
+            <img src="../../images/Person-Logo.png" alt="user" height="30px" width="30px">
+            <h2><?php echo $username; ?></h2>
         </div>
-        <button class="cbutton" onclick="toggle()" type="button"><b>Close</b></button>
+        <hr />
+        <div class="danger-new">
+            <ul>
+                <a href="../user-module/profilePage.php">
+                    <li><img src="../../images/profile.png" alt="image" height="30px" width="30px">Profile</li>
+                </a>
+                <a href="#">
+                    <li><img src="../../images/eye-icon.png" alt="image" height="30px" width="30px">My Pilanthrpic Footprints</li>
+                </a>
+                <a href="../main-module/contactUs.php">
+                    <li><img src="../../images/help.png" alt="image" height="30px" width="30px">Help</li>
+                </a>
+                <a href="../login-module/logout.php">
+                    <li><img src="../../images/logout.png" alt="image" height="30px" width="30px">Log Out</li>
+                </a>
+            </ul>
+        </div>
+        <button class="cbutton" onclick="toggleNavbarPopup()" type="button"><b>Close</b></button>
     </div>
-
     <script>
-        function toggle() {
-            const popup = document.getElementById('popup');
+        function toggleNavbarPopup() {
+            <?php if (isset($_SESSION['username']) || isset($_SESSION['loggedin'])): ?>
+                const popup = document.getElementById('popup');
             popup.classList.toggle('active');
+        <?php endif; ?>
         }
     </script>
 </body>

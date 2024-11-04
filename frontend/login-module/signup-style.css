@@ -26,7 +26,7 @@ body {
 }
 
 .form-header {
-  background-color: #ff7f00;
+  background-color:  #ff8d02;
   color: white;
   padding: 5px;
   border-radius: 0 10px 10px 0;
@@ -36,7 +36,7 @@ body {
 }
 
 .form-subheader {
-  background-color: #ff7f00;
+  background-color:  #ff8d02;
   color: white;
   padding: 5px;
   border-radius: 0px 10px 10px 0px;
@@ -113,7 +113,7 @@ body {
 
 .form-group input:focus {
   outline: none;
-  border-color: #ff7f00;
+  border-color:  #ff8d02;
 }
 
 .form-group.full-width {
@@ -178,7 +178,7 @@ a{
 }
 
 .form-button button {
-  background-color: #ff7f00;
+  background-color:  #ff8d02;
   color: white;
   font-family: "Inknut Antiqua", serif;
   padding: 5px;

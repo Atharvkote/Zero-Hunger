@@ -120,14 +120,12 @@ $username = $_SESSION['username'];
             user-select: none;
         }
 
-        .boxx {}
-
         #popup {
             position: fixed;
-            top: 20%;
-            left: 75%;
+            top: 35%;
+            left: 80%;
             transform: translate(-50%, -50%);
-            width: 600px;
+            width: 400px;
             /* padding: 20px; */
             background-color: #f5d8b5;
             visibility: hidden;
@@ -139,9 +137,10 @@ $username = $_SESSION['username'];
         }
 
         #popup.active {
-            top: 25%;
+            top: 38%;
             visibility: visible;
             opacity: 1;
+            padding:30px;
             transition: 0.3s ease;
             /* Use transition here */
         }
@@ -158,16 +157,13 @@ $username = $_SESSION['username'];
             border: none;
         }
 
-        #popup h3 {
-            margin: 0;
-            padding: 0;
-            background-color: #ff8d02;
-            margin: 0px 40px 40px 40px;
+        #popup h2 {
+            /* background-color: #ff8d02; */
+            margin: 0px 0px 0px 0px ;
             border-radius: 0px 0px 10px 10px;
-            color: #fff;
+            color: black;
 
         }
-
         a {
             text-decoration: none;
             color: black;
@@ -178,7 +174,7 @@ $username = $_SESSION['username'];
             padding: 5px;
             border-radius: 5px;
             text-align: start;
-            display: grid;
+            display: flex;
             justify-content: center;
             align-items: center;
             /* flex-direction: column; */
@@ -191,8 +187,50 @@ $username = $_SESSION['username'];
             /* border-radius: 10px; */
         }
 
-        .boxx-img{
+        .danger ul li img{
+            margin-right: 40px;
+        }
+        .danger ul{
+            display: flex;
+            justify-content:flex-start;
+            flex-direction: column;
+            width: 100%;
+            padding: 0;
+        }
+        .danger ul li {
+            list-style: none;
+            width: 100%;
+            font-size: larger;
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+            background-color:#f5d8b5;
+            border-radius: 10px;
+            transition:  .3s ease;
+            border-radius: 5px;
+            padding-left: 20px;
+        }
 
+        .user-info{
+            display: flex;
+            justify-content:left;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .user-info img{
+            width: 50px;
+            height: 50px;
+        }
+        hr{
+            border: 1px  solid #ff8d02;
+            border-radius: 30%;
+
+        }
+
+        .danger ul li:hover{
+            transform: scale(1.05);
+            background-color: #ff8d02;
         }
     </style>
 </head>
@@ -215,30 +253,24 @@ $username = $_SESSION['username'];
             <li><a href="../main-module/lastestPage.php">Latest<img src="../../images/Arrow-Down.png" height="5px" width="10px"></a></li>
             <li><a href="../main-module/aboutUsPage.php">About Us<img src="../../images/Arrow-Down.png" height="5px" width="10px"></a></li>
         </ul>
-
-
     </nav>
     <!-----popup----->
 
     <div id="popup">
-        <h3></h3>
+
+    <div class="user-info">
+    <img src="../../images/Person-Logo.png" alt="user" height="30px" width="30px">
+        <h2><?php echo $username; ?></h2>
+    </div>
+        <hr/>
         <div class="danger">
-            <h3><?php echo $username; ?></h3>
-            <div class="boxx">
                 <ul>
-                    <li>Profile</li>
-                    <li>My Pilanthrpic Footprints</li>
-                    <li>Help</li>
-                    <li>log Out</li>
+                <a href="../user-module/profilePage.php"><li><img src="../../images/profile.png" alt="image" height="30px" width="30px">Profile</li></a>
+                <a href="#"><li><img src="../../images/eye-icon.png" alt="image" height="30px" width="30px">My Pilanthrpic Footprints</li></a>
+                <a href="../main-module/contactUs.php"><li><img src="../../images/help.png" alt="image" height="30px" width="30px">Help</li></a>
+                <a href="../login-module/logout.php"> <li><img src="../../images/logout.png" alt="image" height="30px" width="30px">Log Out</li></a>
                 </ul>
             </div>
-            <div class="boxx-img">
-                <img src="../../images/profile.png" alt="image" height="30px" width="30px">
-                <img src="../../images/eye-icon.png" alt="image" height="30px" width="30px">
-                <img src="../../images/help.png" alt="image" height="30px" width="30px">
-                <img src="../../images/logout.png" alt="image" height="30px" width="30px">
-            </div>
-        </div>
         <button class="cbutton" onclick="toggle()" type="button"><b>Close</b></button>
     </div>
 

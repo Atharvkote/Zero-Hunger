@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     include '../assets/DataBase-LINK.php';
     $name = $_POST["username"];
@@ -52,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 </head>
 <body>
     <div class="whole" id="blurr">
-        <?php include '../assets/navbar.php'; ?>
+        <?php include '../assets/static-navbar.php'; ?>
         <div class="container">
             <!-- Form Container Section -->
             <div class="first"></div>
@@ -95,25 +96,16 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             }
             ?>
         </div>
-        <button class="cbutton" onclick="toggle()" type="button"><b>Close</b></button>
-    </div>
+        <button class="cbutton" onclick="toggleLoginPopup()" type="button"><b>Close</b></button>
 
-    <script>
-        window.onload = function() {
-            <?php if (isset($_SESSION['showError'])): ?>
-                toggle(); // Open the popup if there is an error
-                <?php unset($_SESSION['showError']); // Clear the error after opening ?>
-            <?php endif; ?>
-        };
-
-        function toggle() {
-            const blurr = document.getElementById('blurr');
-            blurr.classList.toggle('active');
-
-            const popup = document.getElementById('popup');
-            popup.classList.toggle('active');
-        }
-    </script>
-    <script src="popUpToggler.js"></script>
+<script>
+    window.onload = function() {
+        <?php if (isset($_SESSION['showError'])): ?>
+            toggleLoginPopup(); // Open the popup if there is an error
+            <?php unset($_SESSION['showError']); // Clear the error after opening ?>
+        <?php endif; ?>
+    };
+</script>
+<script src="popUpToggler.js"></script>
 </body>
 </html>
