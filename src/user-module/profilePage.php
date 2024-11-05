@@ -45,9 +45,9 @@ if (!isset($_SESSION['username']) || $_SESSION['loggedin'] !== true) {
             <div class="middle">
                 <div class="info">
                     <ul>
-                        <li><strong>Email :</strong><?php echo $_SESSION['email']; ?></li>
-                        <li><strong>State :</strong><?php echo $_SESSION['state']; ?></li>
-                        <li><strong>District :</strong> <?php echo $_SESSION['district']; ?></li>
+                        <li><strong>Email : </strong><?php echo $_SESSION['email']; ?></li>
+                        <li><strong>State : </strong><?php echo $_SESSION['state']; ?></li>
+                        <li><strong>District : </strong> <?php echo $_SESSION['district']; ?></li>
                     </ul>
                 </div>
                 <div class="bottom-images">
