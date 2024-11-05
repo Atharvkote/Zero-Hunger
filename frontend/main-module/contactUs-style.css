@@ -132,7 +132,7 @@ body{
     transition: all 0.3s ease;
   }
   .button input[type="submit"]:hover {
-    background: #ff8d00;
+    transform: scale(1.05);
   }
   
 

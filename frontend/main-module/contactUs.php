@@ -9,12 +9,23 @@
     <!-- Font Awesome CDN Link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init({
+                publicKey: "_OP9I50wepz2eyb55",
+            });
+        })();
+    </script>
+    <script src="reportIssue.js"></script>
+
+    </style>
 </head>
 
 <body>
-<?php
-      include '../assets/navbar.php';  // import navbar as a componenet 
-    ?>
+    <?php include '../assets/navbar.php'; ?>
     <div class="container">
         <div class="content">
             <div class="left-side">
@@ -30,16 +41,16 @@
             </div>
             <div class="right-side">
                 <div class="topic-text">Send us a message</div>
-                <p>If you have any work or queries related to my tutorial, feel free to send a message here. I would be happy to help you.</p>
-                <form action="contact_process.php" method="POST">
+                <p>If you have any work or queries related to our project, feel free to send a message here. We would be happy to help you.</p>
+                <form id="contactForm">
                     <div class="input-box">
-                        <input type="text" name="name" placeholder="Enter your name" aria-label="Name" required>
+                        <input type="text" id="name" name="name" placeholder="Enter your name" aria-label="Name" required>
                     </div>
                     <div class="input-box">
-                        <input type="email" name="email" placeholder="Enter your email" aria-label="Email" required>
+                        <input type="email" id="email" name="email" placeholder="Enter your email" aria-label="Email" required>
                     </div>
                     <div class="input-box message-box">
-                        <textarea name="message" placeholder="Enter your message" aria-label="Message" required></textarea>
+                        <textarea id="message" name="message" placeholder="Enter your message" aria-label="Message" required></textarea>
                     </div>
                     <div class="button">
                         <input type="submit" value="Send Now">
@@ -48,6 +59,27 @@
             </div>
         </div>
     </div>
+    <script>
+        // Attaching the event listener to handle form submission
+        document.getElementById("contactForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevents the form from submitting the traditional way
+
+            console.log("Form submitted"); // Logging to verify function execution
+
+            // Collect form data
+            let parameters = {
+                name: document.getElementById("name").value,
+                email: document.getElementById("email").value,
+                message: document.getElementById("message").value
+            };
+
+            console.log("Parameters: ", parameters); // Logging parameters to verify values
+
+            // Send the email
+            emailjs.send("service_e8hjt14", "template_jcwqc78", parameters).then(alert("email sent"))
+
+        });
+    </script>
 </body>
 
 </html>

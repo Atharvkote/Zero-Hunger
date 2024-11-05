@@ -1,50 +1,51 @@
-@import url('https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@400;700&display=swap");
 
 body {
-    font-family: 'Inknut Antiqua', serif;
-    margin: 0;
-    padding: 0;
-    width: 100%;
+  font-family: "Inknut Antiqua", serif;
+  margin: 0;
+  padding: 0;
+  width: 100%;
 }
 
 .content {
-    display: flex;
-    justify-content: space-around;
-    padding: 20px;
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+  flex-wrap: wrap;
 }
 
 .content .box {
-    background-color: #f5d8b5;
-    padding: 20px;
-    border-radius: 15px;
-    width: 45%;
-    position: relative;
+  background-color: #f5d8b5;
+  padding: 20px;
+  border-radius: 15px;
+  width: 45%;
+  position: relative;
 }
 
 .content .box h2 {
-    font-size: 28px;
-    margin: 10px 0px 10px 0px
+  font-size: 28px;
+  margin: 10px 0px 10px 0px;
 }
 
 .content .box p {
-    font-size: 18px;
-    line-height: 1.6;
+  font-size: 18px;
+  line-height: 1.6;
 }
 
 .content .box img {
-    float: right;
-    margin: 0 0 10px 10px;
-    width: 200px;
-    height: 165px;
-    background-color: #ff8d02;
-    border-radius: 20px;
+  float: right;
+  margin: 0 0 10px 10px;
+  width: 200px;
+  height: 165px;
+  background-color: #ff8d02;
+  border-radius: 20px;
 }
 
 .content .box .buttons {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 /* 
 .content .box .buttons button {
@@ -72,36 +73,36 @@ body {
     margin: 40px 10px 35px 10px;
 } */
 
-
 .right-text {
-    padding: 20px;
-    font-size: large;
-    text-align: center;
-    font-weight: bold;
+  padding: 20px;
+  font-size: large;
+  text-align: center;
+  font-weight: bold;
 }
 
-.left h1, .bottom-content {
-    padding-left: 20px;
+.left h1,
+.bottom-content {
+  padding-left: 20px;
 }
 
 .button-group {
-    display: grid;
-    justify-content: center;
-    margin: 0 100px;
+  display: grid;
+  justify-content: center;
+  margin: 0 100px;
 }
 
 .button-group button {
-    margin: 10px 0;
-    padding: 10px 125px;
-    background-color: #ff8d02;
-    color: #ffffff;
-    border: none;
-    font-size: larger;
-    font-family: 'Inknut Antiqua', serif;
-    border-radius: 25px;
-    cursor: pointer;
-    width: 100%;
-    transition: transform 0.3s ease;
+  margin: 10px 0;
+  padding: 10px 125px;
+  background-color: #ff8d02;
+  color: #ffffff;
+  border: none;
+  font-size: larger;
+  font-family: "Inknut Antiqua", serif;
+  border-radius: 25px;
+  cursor: pointer;
+  width: 100%;
+  transition: transform 0.3s ease;
 }
 
 .button-group button:hover {

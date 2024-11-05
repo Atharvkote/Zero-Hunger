@@ -28,7 +28,7 @@ if (!isset($_SESSION['username']) || $_SESSION['loggedin'] !== true) {
         <p> <span class="highlight">The team BYPAS07 is a dynamic group of five second-year Software Engineering students </span> by a shared mission to make a positive social impact through technology. Working on the Zero Hunger project, the team is developing an innovative web application that facilitates the collection and distribution of food to those in need. <span class="highlight">By connecting donors who have surplus food with individuals and communities facing hunger, BYPAS07 aims to reduce food waste and address food insecurity effectively</span>.</p>
         <p>Each member contributes unique skills in areas like frontend design, backend development, database management, and user experience to create a platform that ensures excess resources<span class="highlight"> reach the people who need them most</span>, fostering a more sustainable and equitable community.</p>
     </div>
-    <h2>Our Values</h2>
+    <h2 class="h2-a">Our Values</h2>
     <div class="values">
         <img src="../../images/Values.png" height="300px" width="350px" alt="" srcset="">
         <ul>
@@ -38,7 +38,7 @@ if (!isset($_SESSION['username']) || $_SESSION['loggedin'] !== true) {
             <li><strong>Customer Satisfaction:</strong> Our clients are at the heart of everything we do.</li>
         </ul>
     </div>
-    <h2>Meet Our Team</h2>
+    <h2 class="h2-a" >Meet Our Team</h2>
 
     <div class="team-member">
         <h3><img src="../../images/Person-Logo.png" alt="image" height="30px" width="30px">Atharva Kote</h3>

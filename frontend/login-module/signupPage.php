@@ -127,7 +127,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 </div>
                             </div>
                             <div class="form-button">
-                                <button type="submit">Create Account</button>
+                                <button onclick="sendmails()" type="submit">Create Account</button>
                             </div>
                 </form>
             </div>

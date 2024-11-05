@@ -43,7 +43,7 @@ body {
     align-items: center;
 }
 
-h2{
+.head h2,.h2-a{
     background-color: #f28c28;
     padding-left: 40px;
     color: #fff;
@@ -74,7 +74,14 @@ h3{
     /* background-color: #ffff;
     border-radius: 10px;
     padding-right: 10px; */
+    transition: .3s ease;
 }
+
+   
+.linkedin a:hover{
+   color: #034e77;
+}    
+
 
 /* .github{
     /* background: linear-gradient(135deg, #3b0d6a, #5a189a, #7209b7, #560bad, #480ca8, #3a0ca3, #3f37c9); */
