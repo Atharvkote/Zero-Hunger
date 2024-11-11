@@ -61,7 +61,7 @@ if (!isset($_SESSION['username']) || $_SESSION['loggedin'] !== true) {
     </div>
 
     <div class="team-member">
-        <h3><img src="../../images/Person-Logo.png" alt="image" height="30px" width="30px">Pranav Mule</h3>
+        <h3><img src="../../images/Person-Logo.png" alt="image" height="30px" width="30px">Pranav Mulay</h3>
         <p><strong>Role:</strong> React Expert / Front-End Developer</p>
         <p><strong>Bio:</strong> Pranav is a front-end wizard who transforms designs into responsive, interactive websites. With a strong foundation in HTML, CSS, and JavaScript, she is always exploring the latest trends in front-end development.</p>
         <div class="social-links">
