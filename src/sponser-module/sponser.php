@@ -8,7 +8,7 @@
 </head>
 
 <body>
-  <div class="whole" id="blurr">
+  <div class="whole1" id="blurr1">
     <?php
     include '../assets/navbar.php';  // import navbar as a componenet 
     ?>
@@ -19,7 +19,7 @@
         <p>Every Rupee counts, and with your donation, we can provide food for those in need.</p>
         <img alt="Donations appreciated sign with a plant and a jar of money" height="200" src="../../images/Sponser-Image.jpg" width="400" />
         <button>Net Banking</button>
-        <button onclick="toggle()">QR Code</button>
+        <button onclick="toggleSponser()">QR Code</button>
       </div>
     </div>
 
@@ -31,12 +31,12 @@
   </div>
 
   
-  <div id="popup">
+  <div id="popup1">
         <h3>Here is there QR-Code</h3>
         <div class="QR">
           <img src="../../images/QR-Code.png" alt="QR" height="100px" width="100px">
         </div>
-        <button class="cbutton" onclick="toggle()" type="button"><b>Close</b></button>
+        <button class="cbutton" onclick="toggleSponser()" type="button"><b>Close</b></button>
   </div>
 
   <script src="../login-module/popUpToggler.js"></script>

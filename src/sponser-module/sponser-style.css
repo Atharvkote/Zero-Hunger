@@ -17,13 +17,13 @@ body {
   text-align: center;
 }
 
-.whole#blurr.active{
+.whole1#blurr1.active{
   filter: blur(20px);
   pointer-events: none;
   user-select: none;
 }
 
-#popup {
+#popup1 {
   position: fixed;
   top: 40%;
   left: 50%;
@@ -41,13 +41,13 @@ body {
   border-radius: 20px;
   transition: 0.3s ease; /* Use transition here */
 }
-#popup.active {
+#popup1.active {
   top: 55%;
   visibility: visible;
   opacity: 1;
   transition: 0.3s ease; /* Use transition here */
 }
-#popup .cbutton{
+#popup1 .cbutton{
   color: rgb(255, 255, 255);
   margin-top: 20px;
   padding: 5px 70px;
@@ -59,6 +59,7 @@ body {
   border: none;
   font-size: larger;
 }
+
 
 .QR img{
   width: 300px;
@@ -74,7 +75,7 @@ body {
   border-radius: 20px;
 }
 
-#popup h3{
+#popup1 h3{
   background-color: #ff9800;
   color: white;
   padding: 5px 10px;
