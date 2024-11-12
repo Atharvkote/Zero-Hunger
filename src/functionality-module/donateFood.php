@@ -105,7 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <label>Message for Reciever - Type something special</label>
                         <textarea name="message" placeholder="Message for the receiver"></textarea>
                     </div>
-                    <button class="location-button">
+                    <button onclick="sendLocation()" class="location-button" >
                         <span>Add My Current Location</span>
                         <img class="location-icon" src="../../images/Location.png" alt="location" />
                     </button>
@@ -217,13 +217,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <p class="warning">
                     If any type of malpractices found (fake or duplicate entry) will be banned from the website.
                 </p>
-                <input class="submit-button" type="submit" value="Submit" />
+                <input  class="submit-button" type="submit"/>
             </div>
         </div>
     </div>
     </div>
     </form>
     </div>
+
+    <script src="locationTracker.js"></script>
 </body>
 
 </html>
