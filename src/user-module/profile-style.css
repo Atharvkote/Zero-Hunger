@@ -155,13 +155,15 @@ body {
 }
 
 .button-group button {
-  padding: 10px;
+  padding:5px 5px 5px 10px;
   background-color: #ff8d02;
   color: #000;
   border: none;
-  font-size: 18px;
+  font-family: "Inknut Antiqua", serif;
+  font-size: 14px;
   border-radius: 10px;
   cursor: pointer;
+  text-align: left;
   transition: transform 0.3s ease;
 }
 .no-activiy-img img{

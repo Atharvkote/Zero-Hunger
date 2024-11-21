@@ -57,7 +57,7 @@ $connection->close();
     <title>Zero Hunger - Donation Details</title>
     <link rel="stylesheet" href="donate-Food.css">
     <link rel="icon" href="../../images/Red-Heart-Logo.png" type="image/icon type">
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC35nqLu6BlDAuzhexc1w2QRcDhRc3v0kc&callback=initMap" async defer></script>
     <style>
         #map { height: 400px; width: 500px; border-radius: 0px 20px 20px 0px; }
         .lastest-container { display: flex; justify-content: space-between; background-color: #f5d8b5; margin: 10px 40px; border-radius: 20px; }
@@ -73,7 +73,7 @@ $connection->close();
     <?php if ($showError): ?>
         <p class="error"><?= $showError; ?></p>
     <?php else: ?>
-        <?php foreach ($donations as $donation_id => $donation): ?>
+        <?php foreach ($donations as $donatsion_id => $donation): ?>
             <div class="lastest-container">
                 <div class="donation-details">
                     <h3>Donation on <?= htmlspecialchars($donation['details']['day']); ?></h3>

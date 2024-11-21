@@ -8,8 +8,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_SESSION['username']) && isset($_SESSION['email'])) {
         $username = $_SESSION['username'];
         $email = $_SESSION['email'];
-    } 
+    }
 
+    $latitude = isset($_GET['latitude']) ? $_GET['latitude'] : null;
+    $longitude = isset($_GET['longitude']) ? $_GET['longitude'] : null;
+    
     $landmark = $_POST['landmark'];
     $day = $_POST['day'];
     $message = $_POST['message'];
@@ -24,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 'qty' => $_POST["qty-$i"],
                 'freshly_made' => isset($_POST["freshly-made-$i"]) ? 1 : 0
             ];
-            $counter=$counter+1;
+            $counter++;
         }
     }
 
@@ -33,6 +36,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $values = "VALUES (?, ?, ?, ?, ?";
     $params = [$landmark, $day, $message, $username, $email];
     $types = "sssss";
+
+    // Add latitude and longitude if available
+    if ($latitude && $longitude) {
+        $sql .= ", latitude, longitude";
+        $values .= ", ?, ?";
+        $params[] = $latitude;
+        $params[] = $longitude;
+        $types .= "dd"; // d: double for latitude and longitude
+    }
 
     // Loop through items to add to the query only if data is present
     foreach ($items as $index => $item) {
@@ -50,23 +62,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->bind_param($types, ...$params);
     $stmt->execute();
 
-    // if ($stmt->affected_rows > 0) {
-    //     echo "Donation record added successfully!";
-    // } else {
-    //     echo "Error: " . $stmt->error;
-    // }
-
     $stmt->close();
-    $username = $_SESSION['username'];
-    $activity_description = "Donate  food for $counter item on $day through Zero Hunger.";
-    $sql="INSERT INTO `recent-activity` (`username`, `activity_description`, `activity_date`) VALUES ( '$username', '$activity_description', current_timestamp())";
-    $request = mysqli_query($connection, $sql);
-  
-    // if($request){
-    //   echo "Activity recorded successfully.";
-    // }else{
-    //   echo "Error recording activity.";
-    // }
+
+    // Log activity in recent_activity table
+    $activity_description = "Donated food for $counter item(s) on $day through Zero Hunger.";
+    $sql = "INSERT INTO `recent-activity` (username, activity_description, activity_date) VALUES (?, ?, CURRENT_TIMESTAMP)";
+    $activity_stmt = $connection->prepare($sql);
+    $activity_stmt->bind_param("ss", $username, $activity_description);
+    $activity_stmt->execute();
+
+    $activity_stmt->close();
     $connection->close();
 }
 ?>
@@ -87,27 +92,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <?php
     include '../assets/navbar.php';  // import navbar as a componenet 
     ?>
-    <div class="container">
+      <div class="container">
         <div class="left-column">
             <form action="donateFood.php" method="post">
                 <div class="section-title">Donate Food</div>
                 <div class="upper">
                     <div class="form-group">
                         <label>Enter Your Residence Address/Landmark Name</label>
-                        <input name="landmark" placeholder="Enter name of your shop or mess or a hotel if not mention nearest landmark" type="text" />
+                        <input name="landmark" placeholder="Enter name of your shop or mess or a hotel if not mention nearest landmark" type="text"  required>
                     </div>
                     <div class="form-group">
                         <label>Mention Day Food was Made</label>
-                        <input name="day" placeholder="Enter day food was made" type="date" />
-
+                        <input name="day" placeholder="Enter day food was made" type="date" required>
                     </div>
                     <div class="form-group">
-                        <label>Message for Reciever - Type something special</label>
+                        <label>Message for Receiver - Type something special</label>
                         <textarea name="message" placeholder="Message for the receiver"></textarea>
                     </div>
-                    <button onclick="sendLocation()" class="location-button" >
+                    <button type="button" onclick="sendLocation()" type="submit" class="location-button">
                         <span>Add My Current Location</span>
-                        <img class="location-icon" src="../../images/Location.png" alt="location" />
+                        <img class="location-icon" src="../../images/Location.png" alt="location"  required>
                     </button>
                 </div>
                 <div class="section-title">Food Details</div>
@@ -214,17 +218,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <p>Putting a step toward mutual group of human care worldwide</p>
             </div>
             <div class="foooter">
-                <p class="warning">
-                    If any type of malpractices found (fake or duplicate entry) will be banned from the website.
-                </p>
-                <input  class="submit-button" type="submit"/>
-            </div>
+                    <p class="warning">
+                        If any type of malpractices found (fake or duplicate entry) will be banned from the website.
+                    </p>
+                    <input class="submit-button" type="submit" value="Submit Donation"/>
+                </div>
+            </form>
         </div>
     </div>
-    </div>
-    </form>
-    </div>
-
     <script src="locationTracker.js"></script>
 </body>
 

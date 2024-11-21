@@ -15,7 +15,8 @@ if (!isset($_SESSION['username']) || $_SESSION['loggedin'] !== true) {
     $activity_sql = "SELECT * FROM `recent-activity` WHERE username = '$username' ORDER BY activity_date DESC";
     $activity_request = mysqli_query($connection, $activity_sql);
 }
-?><!DOCTYPE html>
+?>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -67,22 +68,29 @@ if (!isset($_SESSION['username']) || $_SESSION['loggedin'] !== true) {
                 <h3><?php echo $_SESSION['username']; ?>'s Recent Activity</h3>
             </div>
             <div class="button-group">
-                <?php
-                // Check if there are any activities
-                if (mysqli_num_rows($activity_request) > 0) {
-                    while ($activity_row = mysqli_fetch_assoc($activity_request)) {
-                        echo '<button><b>' . htmlspecialchars($activity_row['activity_description']) . '</b><img src="../../images/Black-Arrow.png" height="40px" width="30px"></button>';
-                    }
-                } else {
-                    echo '<p class="no-activity">No recent activity to display.</p>'; // Message if no activities
-                    echo '
-                        <div class="no-activiy-img">
-                              <img src="../../images/No-Activity-Template.png" height="100px" width="100px"> <!-- Corrected the closing quote for width -->
-                        </div>
-                    ';
-                }
-                ?>
+    <?php
+    // Check if there are any activities
+    if (mysqli_num_rows($activity_request) > 0) {
+        $count = 0;
+        while ($activity_row = mysqli_fetch_assoc($activity_request)) {
+            if ($count >= 4) {
+                break; // Stop after 5 activities
+            }
+            echo '<button><b>' . htmlspecialchars($activity_row['activity_description']) . '</b><!--<img src="../../images/Black-Arrow.png" height="40px" width="30px">---></button>';
+            $count++;
+        }
+    } else {
+        echo '<p class="no-activity">No recent activity to display.</p>'; // Message if no activities
+        echo '
+            <div class="no-activity-img">
+                  <img src="../../images/No-Activity-Template.png" height="100px" width="100px"> <!-- Corrected the closing quote for width -->
             </div>
+        ';
+    }
+    ?>
+</div>
+
+
         </div>
     </div>
 

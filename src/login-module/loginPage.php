@@ -55,12 +55,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     <div class="whole" id="blurr">
         <?php include '../assets/static-navbar.php'; ?>
         <div class="container">
+            
             <!-- Form Container Section -->
             <div class="first"></div>
             <div class="second"></div>
             <div class="third"></div>
             <div class="form-container">
-                <h2>Login In</h2>
+                <h2>Log In</h2>
                 <form action="loginPage.php" method="post">
                     <label for="username">Username</label>
                     <input type="text" id="username" name="username" placeholder="Enter Username" required>
