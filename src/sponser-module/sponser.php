@@ -4,7 +4,7 @@
   <title>Zero Hunger</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="sponser-style.css">
-  <link rel="icon" href="../../images/Red-Heart-Logo.png" type="image/icon type">
+  <link rel="icon" href="../../images/Zero-Hunger-Favicon.png" type="image/icon type">
 </head>
 
 <body>

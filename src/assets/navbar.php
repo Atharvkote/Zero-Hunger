@@ -284,7 +284,7 @@ if (isset($_SESSION['username'])  || isset($_SESSION['loggedin'])) {
                     <li><img src="../../images/profile.png" alt="image" height="30px" width="30px">Profile</li>
                 </a>
                 <a href="#">
-                    <li><img src="../../images/eye-icon.png" alt="image" height="30px" width="30px">My Pilanthrpic Footprints</li>
+                    <li><img src="../../images/human-footprints.png" alt="image" height="30px" width="30px">My Pilanthrpic Footprints</li>
                 </a>
                 <a href="../main-module/contactUs.php">
                     <li><img src="../../images/help.png" alt="image" height="30px" width="30px">Help</li>

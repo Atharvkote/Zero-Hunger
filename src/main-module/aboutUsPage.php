@@ -14,7 +14,7 @@ if (!isset($_SESSION['username']) || $_SESSION['loggedin'] !== true) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zero Hunger - About Us</title>
     <link rel="stylesheet" href="aboutUs.css">
-    <link rel="icon" href="../../images/Red-Heart-Logo.png" type="image/icon type">
+    <link rel="icon" href="../../images/Zero-Hunger-Favicon.png" type="image/icon type">
 </head>
 
 <body>

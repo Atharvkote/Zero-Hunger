@@ -1,0 +1,110 @@
+.map {
+  height: auto;
+  width: 100%;
+  max-width: 700px;
+  margin: 10px auto;
+  border-radius: 0px 20px 20px 0px ;
+  display: flex;
+  justify-content: right;
+  /* align-items:flex-end; */
+  border: 1px solid #ddd;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+
+.lastest-container {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: row;
+  padding: 0;
+  background-color: #f5d8b5;
+  margin: 30px 60px;
+  border-radius: 20px;
+}
+
+.donation-details {
+  margin: 0px 60px 0px 30px;
+}
+.donation-details p {
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  background-color: #f28c28;
+  padding-left: 40px;
+  color: #fff;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  margin: 0px 55% 0px 0px;
+  text-align: center;
+}
+
+.donation-details h3 {
+  margin: 10px 0px 10px 0px;
+  margin-left: -29px;
+  padding-left: 30px;
+  padding-right: 20px;
+  border-radius: 3px 20px 20px 0px;
+  background-color: #f28c28;
+}
+
+.donation-details li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.donation-details h4,
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+.donation-details ul {
+  margin-left: 20px;
+}
+
+.donation-details span {
+  background-color: #f28c28;
+  padding: 2px;
+  border-radius: 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  margin: 0px 0px 10px 30px;
+  border-radius: 10px;
+  border: solid black 1px;
+}
+
+/* table, th, td {
+  border: 1px solid #000000;
+} */
+
+th,
+td {
+  padding: 8px;
+  text-align: left;
+  border-left: solid black 1px;
+  border-top: solid black 1px;
+}
+
+th {
+  background-color: #f28c28;
+  border-top: none;
+}
+
+th:last-child {
+  border-top-right-radius: 10px;
+}
+th:first-child {
+  border-top-left-radius: 10px;
+}
+
+td:first-child,
+th:first-child {
+  border-left: none;
+}

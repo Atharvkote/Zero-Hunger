@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->close();
 
     // Log activity in recent_activity table
-    $activity_description = "Donated food for $counter item(s) on $day through Zero Hunger.";
+    $activity_description = "Donated food for $counter item on $day through Zero Hunger.";
     $sql = "INSERT INTO `recent-activity` (username, activity_description, activity_date) VALUES (?, ?, CURRENT_TIMESTAMP)";
     $activity_stmt = $connection->prepare($sql);
     $activity_stmt->bind_param("ss", $username, $activity_description);

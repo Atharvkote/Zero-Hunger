@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zero Hunger - User Menu</title>
-    <link rel="icon" href="../../images/Red-Heart-Logo.png" type="image/icon type">
+    <link rel="icon" href="../../images/Zero-Hunger-Favicon.png" type="image/icon type">
 
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@400;700&display=swap");

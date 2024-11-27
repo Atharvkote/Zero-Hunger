@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Zero Hunger - Volunteer Registration</title>
   <link href="volunteer-style.css" rel="stylesheet" />
-  <link rel="icon" href="../../images/Red-Heart-Logo.png" type="image/icon type">
+  <link rel="icon" href="../../images/Zero-Hunger-Favicon.png" type="image/icon type">
 </head>
 
 <body>
