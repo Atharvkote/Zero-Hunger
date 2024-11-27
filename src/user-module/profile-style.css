@@ -180,6 +180,7 @@ body {
   justify-content: center;
   align-items: center;
 }
+
 .button-group button:hover {
   transform: scale(1.05);
 }

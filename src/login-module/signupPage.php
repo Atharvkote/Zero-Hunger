@@ -11,6 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $cpassword = $_POST['cpassword'];
     $state = $_POST['state'];
     $district = $_POST['district'];
+    $city = $_POST['city'];
     $pincode = $_POST['pincode'];
     $current_date = date('Y-m-d');
 
@@ -27,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($password == $cpassword) {
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
             // Insert into database with hashed password
-            $sql = "INSERT INTO `users-information` (`email`, `username`, `password`, `state`, `district`, `pincode`, `date`) VALUES ('$email', '$username', '$hashed_password', '$state', '$district', '$pincode', '$current_date')";
+            $sql = "INSERT INTO `users-information` (`email`, `username`, `password`, `state`, `district`,`city`, `pincode`, `date`) VALUES ('$email', '$username', '$hashed_password', '$state', '$district','$city', '$pincode', '$current_date')";
             $result = mysqli_query($connection, $sql);
             // echo "Hashed Password at Signup: " . $hashed_password;                             // DE-BUGGER
 
@@ -121,7 +122,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <label for="district">District</label>
                                     <input id="district" name="district" placeholder="Enter District" type="text" required>
                                 </div>
-                                <div class="form-group full-width">
+                                <div class="form-group">
+                                    <label for="pincode">City/Taluka</label>
+                                    <input id="pincode" name="city" placeholder="Enter City/Taluka" type="text" required>
+                                </div>
+                                <div class="form-group">
                                     <label for="pincode">Pincode</label>
                                     <input id="pincode" name="pincode" placeholder="Enter Pincode" type="text" required>
                                 </div>

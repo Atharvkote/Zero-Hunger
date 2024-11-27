@@ -31,7 +31,7 @@
   padding: 0;
 }
 
-h2 {
+#heading {
   background-color: #f28c28;
   padding-left: 40px;
   color: #fff;
@@ -54,6 +54,17 @@ h2 {
   list-style: none;
   margin: 0;
   padding: 0;
+}
+
+.donation-details .h3{
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  margin-right: 45%;
+}
+
+.donation-details .h3 img{
+  margin-right: 10px;
 }
 
 .donation-details h4,

@@ -19,7 +19,7 @@ body {
 }
 
 .main-content .left-panel {
-  background-color: #ffe0b2;
+  background-color: #f5d8b5;
   padding: 20px;
   border-radius: 10px;
   flex: 2;
@@ -58,7 +58,7 @@ h2 {
 }
 
 option{
-  background-color: #ffe0b2;
+  background-color: #f5d8b5;
 }
 
 .main-content .left-panel .two-input .first {
@@ -114,7 +114,7 @@ option{
   flex-direction: column;
   align-items: center;
   margin-right: 50px;
-  background-color: #ffe0b2;
+  background-color: #f5d8b5;
   padding: 20px;
   border-radius: 10px;
 }
@@ -189,7 +189,7 @@ option{
 }
 
 .foooter{
-  background-color: #ffe0b2;
+  background-color: #f5d8b5;
   padding: 20px;
 }
 

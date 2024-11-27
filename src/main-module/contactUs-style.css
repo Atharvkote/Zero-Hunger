@@ -68,6 +68,7 @@ body{
   border-radius: 10px;
   margin-bottom :5px;
   padding: 5px;
+  text-align: left;
   cursor: pointer;
   transition: 0.3s ease;
 

@@ -4,59 +4,45 @@ include '../assets/DataBase-LINK.php'; // Include your database connection file
 
 $showError = "";
 
-// Fetch the donation details (including latitude and longitude)
-if (isset($_SESSION['username'])) {
-    $username = $_SESSION['username'];
+// Fetch all donation details (including latitude and longitude)
+$sql = "SELECT id,username, landmark, day, message, latitude, longitude, 
+               item_name_1, qty_1, freshly_made_1, 
+               item_name_2, qty_2, freshly_made_2, 
+               item_name_3, qty_3, freshly_made_3 
+        FROM donations";
 
-    // Query to fetch donations and associated items by the user
-    $sql = "SELECT d.id, d.landmark, d.day, d.message, d.latitude, d.longitude,
-       d.item_name_1, d.qty_1, d.freshly_made_1,
-       d.item_name_2, d.qty_2, d.freshly_made_2,
-       d.item_name_3, d.qty_3, d.freshly_made_3
-FROM donations AS d
-LEFT JOIN donated_items AS di ON d.id = di.donation_id
-WHERE d.username = ?";
-    $stmt = $connection->prepare($sql);
-    $stmt->bind_param("s", $username);
-    $stmt->execute();
-    $result = $stmt->get_result();
+$result = $connection->query($sql);
 
-    // Check if any records exist
-    $donations = [];
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            // Group items by donation
-            $donations[$row['id']]['details'] = [
-                'landmark' => $row['landmark'],
-                'day' => $row['day'],
-                'message' => $row['message'],
-                'latitude' => $row['latitude'],
-                'longitude' => $row['longitude']
-            ];
-            // Append each item to the corresponding donation
-            if (isset($row['id'])) {
-                for ($i = 1; $i <= 3; $i++) { // Only 3 items in the SQL query
-                    $item_name = 'item_name_' . $i;
-                    $qty = 'qty_' . $i;
-                    $freshly_made = 'freshly_made_' . $i;
+// Check if any records exist
+$donations = [];
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        // Group items by donation
+        $donations[$row['id']]['details'] = [
+            'username' => $row['username'],
+            'landmark' => $row['landmark'],
+            'day' => $row['day'],
+            'message' => $row['message'],
+            'latitude' => $row['latitude'],
+            'longitude' => $row['longitude']
+        ];
+        // Append each item to the corresponding donation
+        for ($i = 1; $i <= 3; $i++) { // Only 3 items in the SQL query
+            $item_name = 'item_name_' . $i;
+            $qty = 'qty_' . $i;
+            $freshly_made = 'freshly_made_' . $i;
 
-                    if (!empty($row[$item_name])) { // Check if item exists
-                        $donations[$row['id']]['items'][] = [
-                            'item_name' => $row[$item_name],
-                            'quantity' => $row[$qty],
-                            'is_fresh' => $row[$freshly_made] ? 'Yes' : 'No'
-                        ];
-                    }
-                }
+            if (!empty($row[$item_name])) { // Check if item exists
+                $donations[$row['id']]['items'][] = [
+                    'item_name' => $row[$item_name],
+                    'quantity' => $row[$qty],
+                    'is_fresh' => $row[$freshly_made] ? 'Yes' : 'No'
+                ];
             }
         }
-    } else {
-        $showError = "No donation records found.";
     }
-
-    $stmt->close();
 } else {
-    $showError = "User not logged in.";
+    $showError = "No donation records found.";
 }
 
 $connection->close();
@@ -80,14 +66,14 @@ $connection->close();
 <body>
     <?php include '../assets/navbar.php'; ?> <!-- Navbar -->
 
-    <h2>Happening Right Now</h2>
+    <h2 id="heading">Happening Right Now</h2>
     <?php if ($showError): ?>
         <p class="error"><?= htmlspecialchars($showError); ?></p>
     <?php else: ?>
         <?php foreach ($donations as $donation_id => $donation): ?>
             <div class="lastest-container">
                 <div class="donation-details">
-                    <h3>Donation was done on <?= htmlspecialchars($donation['details']['day']); ?></h3>
+                <h3 class="h3"><img src="../../images/Person-Logo.png" alt="image" height="30px" width="30px"> <?= htmlspecialchars($donation['details']['username']); ?></h3>
                     <p><strong>Landmark:</strong> <?= htmlspecialchars($donation['details']['landmark']); ?></p>
                     <p><strong>Message:</strong> <?= htmlspecialchars($donation['details']['message']); ?></p>
                     <!-- <p><strong>Location:</strong> Latitude: <?= htmlspecialchars($donation['details']['latitude']); ?>, Longitude: <?= htmlspecialchars($donation['details']['longitude']); ?></p> -->
@@ -115,6 +101,7 @@ $connection->close();
                             <?php endforeach; ?>
                         </tbody>
                     </table>
+                    <h3>Donation was done on <?= htmlspecialchars($donation['details']['day']); ?></h3>
                 </div>
                 <!-- Map for each donation location -->
                 <div class="map" id="map-<?= $donation_id; ?>" class="map"
