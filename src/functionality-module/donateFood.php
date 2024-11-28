@@ -84,8 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zero Hunger - Donate Food</title>
     <link rel="stylesheet" href="donate-Food.css">
-    <link rel="icon" href="../../images/Red-Heart-Logo.png" type="image/icon type">
-
+    <link rel="icon" href="../../images/Zero-Hunger-Favicon.png" type="image/icon type">
 </head>
 
 <body>

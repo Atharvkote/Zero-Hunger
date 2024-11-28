@@ -38,7 +38,7 @@ if (!isset($_SESSION['username']) || $_SESSION['loggedin'] !== true) {
             <li><strong>Customer Satisfaction:</strong> Our clients are at the heart of everything we do.</li>
         </ul>
     </div>
-    <h2 class="h2-a" >Meet Our Team</h2>
+    <h2 class="h2-a">Meet Our Team</h2>
 
     <div class="team-member">
         <h3><img src="../../images/Person-Logo.png" alt="image" height="30px" width="30px">Atharva Kote</h3>
@@ -102,6 +102,11 @@ if (!isset($_SESSION['username']) || $_SESSION['loggedin'] !== true) {
         <p>We are always looking for new challenges and opportunities to grow. If you're interested in working with us, feel free to reach out!</p>
         <h3>Let’s create something amazing together!</h3>
     </div>
+
+
+    <?php
+    include '../assets/footer.php';
+    ?>
 
 </body>
 

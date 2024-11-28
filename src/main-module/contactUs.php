@@ -79,6 +79,11 @@
 
         });
     </script>
+
+<?php
+   include '../assets/footer.php';
+?>
+
 </body>
 
 </html>
