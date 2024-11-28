@@ -31,9 +31,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $sql = "INSERT INTO `users-information` (`email`, `username`, `password`, `state`, `district`,`city`, `pincode`, `date`) VALUES ('$email', '$username', '$hashed_password', '$state', '$district','$city', '$pincode', '$current_date')";
             $result = mysqli_query($connection, $sql);
             // echo "Hashed Password at Signup: " . $hashed_password;                             // DE-BUGGER
-
+            
             if ($result) {
                 $_SESSION['showAlert'] = "Sign-up successful!";
+                $second_sql ="INSERT INTO `users` ( `username`, `name`, `bio`, `state`, `pincode`, `district`, `city`, `email`, `password`, `profile_photo`, `created_at`, `updated_at`) VALUES ('$username', 'No_Name', 'Nothing Added in Bio yet....', '$state', '$pincode', '$district', '$city', '$email', '$hashed_password', NULL, current_timestamp(), current_timestamp());";
+                $second_result = mysqli_query($connection, $second_sql);
+
             } else {
                 $_SESSION['showError'] = "Failed to sign up. Please try again.";
             }

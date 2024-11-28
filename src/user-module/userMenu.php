@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -68,7 +69,7 @@
 <h3>Zero Hunger is an Open -Source Project, and we are always looking for contributors!</h3>
     <div class="container-option">
         <div class="group">
-            <a href="#"><button><b>Edit Profile</b></button></a>
+            <a href="editPorfile.php"><button><b>Edit Profile</b></button></a>
             <a href="../main-module/contactUs.php"><button><b>Report Issue</b></button></a>
             <a href="https://github.com/Atharvkote/Zero-Hunger.git"><button><b>Contribute to this Project</b></button></a>
             <a href="../login-module/logout.php"><button><b>Log Out</b></button></a>

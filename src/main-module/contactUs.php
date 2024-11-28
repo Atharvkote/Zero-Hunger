@@ -19,8 +19,6 @@
         })();
     </script>
     <script src="reportIssue.js"></script>
-
-    </style>
 </head>
 
 <body>

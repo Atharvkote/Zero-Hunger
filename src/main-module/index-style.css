@@ -294,7 +294,7 @@ body {
 .box2 {
   flex: 1;
   text-align: center;
-  border: 2px solid #ddd;
+  /* border: 2px solid #ddd; */
   border-radius: 10px;
   padding: 20px;
   background-color: #f5d8b5;

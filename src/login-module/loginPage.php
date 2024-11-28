@@ -27,6 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $_SESSION['district'] = $row['district'];
             $_SESSION['pincode'] = $row['pincode'];
             $_SESSION['date'] = $row['date'];
+            $_SESSION['city'] = $row['city'];
 
             header("Location: ../main-module/index.php");
             exit();

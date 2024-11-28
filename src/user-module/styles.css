@@ -1,0 +1,101 @@
+@import url("https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@400;700&display=swap");
+
+body {
+      font-family: "Inknut Antiqua", serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.profile-container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 50px auto;
+    background-color: #f5d8b5;
+    border-radius: 25px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+    background-color: #ff8d02;
+    margin: -20px -20px 0px -20px;
+    border-radius: 25px 25px 0px 0px;
+    padding: 5px 0px 5px 0px;
+}
+
+form label {
+    display: block;
+    margin: 10px 0 5px;
+    font-size: 18px;
+    /* font-weight: bold; */
+}
+
+form input, form textarea, form button {
+    width: 80%;
+    padding: 8px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #f5d8b5;
+    border-radius: 4px;
+}
+
+form input[type="file"]{
+    width: 50%;
+}
+.previewer{
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    
+}
+
+form textarea {
+    height: 100px;
+    
+}
+
+.profile-photo-preview {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5%;
+    margin: 0px 10px 20px 0px;
+}
+
+form button {
+    background-color: #ff8d02;
+    color: white;
+    padding: 5px;
+    font-family: "Inknut Antiqua", serif;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s ease;
+}
+
+form button:hover {
+   transform: scale(1.05);
+}
+
+.whole_2{
+    display: flex;
+    flex-direction: row;
+}
+
+.form-con{
+    flex: 1;
+    margin: 10px 0px 10px 20px;
+}
+
+.side-img{
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    margin: 30px 5% 20px 0px;
+}
+
+.side-imh  img{
+    height: auto;
+}

@@ -14,6 +14,13 @@ if (!isset($_SESSION['username']) || $_SESSION['loggedin'] !== true) {
 
     $activity_sql = "SELECT * FROM `recent-activity` WHERE username = '$username' ORDER BY activity_date DESC";
     $activity_request = mysqli_query($connection, $activity_sql);
+
+    $second_sql = "SELECT * FROM `users` WHERE username = '$username'";
+    $second_sql_results = mysqli_query($connection, $second_sql);
+
+    $row_2 = mysqli_fetch_assoc($second_sql_results);
+    $name = $row_2['name'];
+    $bio = $row_2['bio'];
 }
 ?>
 <!DOCTYPE html>
@@ -35,10 +42,20 @@ if (!isset($_SESSION['username']) || $_SESSION['loggedin'] !== true) {
         <div class="left">
             <div class="content">
                 <div class="left-content">
-                    <img src="../../images/Person-Logo.png" height="100px" width="100px">
+                    <?php
+                    if (is_null($row_2['profile_photo'])) {
+                        echo '<img src="../../uploads/Person-Logo.png" height="100px" width="100px">';
+                    } else {
+                        $path = $row_2['profile_photo'];
+                        echo '<div class="ppic"><img src="' . $path . '" height="100px" width="100px"></div>';
+                    }
+                    ?>
                 </div>
                 <div class="right-content">
-                    <h1><?php echo $_SESSION['username']; ?></h1>
+                    <div class="name_H">
+                        <h1><?php echo $_SESSION['username']; ?></h1>
+                        <p id="name1">( <?php echo $name; ?> )</p>
+                    </div>
                     <p> Rank : <?php echo $rank ?> </p>
                 </div>
             </div>
@@ -49,17 +66,22 @@ if (!isset($_SESSION['username']) || $_SESSION['loggedin'] !== true) {
                         <li><strong>Email : </strong><?php echo $_SESSION['email']; ?></li>
                         <li><strong>State : </strong><?php echo $_SESSION['state']; ?></li>
                         <li><strong>District : </strong> <?php echo $_SESSION['district']; ?></li>
+                        <li><strong>City : </strong> <?php echo $_SESSION['city']; ?></li>
                     </ul>
                 </div>
                 <div class="bottom-images">
-                    <img src="../../images/1st-Medal.png" alt="image" height="50px" width="50px">
-                    <img src="../../images/2nd-Medal.png" alt="image" height="50px" width="50px">
-                    <img src="../../images/3rd-Medal.png" alt="image" height="50px" width="50px">
+                    <?php
+                    if ($rank == 'Newbie') {
+                        echo '<div class="img-op"><img src="../../images/No-Bagde.png" height="200px" width="200px"></div>';
+                    } // } else {
+                    //     echo "hello";
+                    // }
+                    ?>
                 </div>
             </div>
             <div class="bio">
                 <h3>About <?php echo $_SESSION['username']; ?> :</h3>
-                <p>Hey! I am <?php echo $_SESSION['username']; ?> from <?php echo $_SESSION['district']; ?>, <?php echo $_SESSION['state']; ?>, a proud Regular Donor at ZERO Hunger. Chasing that 1% that can change 99%.</p>
+                <p><?php echo $bio; ?></p>
             </div>
         </div>
 
@@ -68,34 +90,40 @@ if (!isset($_SESSION['username']) || $_SESSION['loggedin'] !== true) {
                 <h3><?php echo $_SESSION['username']; ?>'s Recent Activity</h3>
             </div>
             <div class="button-group">
-    <?php
-    // Check if there are any activities
-    if (mysqli_num_rows($activity_request) > 0) {
-        $count = 0;
-        while ($activity_row = mysqli_fetch_assoc($activity_request)) {
-            if ($count >= 4) {
-                break; // Stop after 5 activities
-            }
-            echo '<button><b>' . htmlspecialchars($activity_row['activity_description']) . '</b><!--<img src="../../images/Black-Arrow.png" height="40px" width="30px">---></button>';
-            $count++;
-        }
-    } else {
-        echo '<p class="no-activity">No recent activity to display.</p>'; // Message if no activities
-        echo '
+                <?php
+                // Check if there are any activities
+                if (mysqli_num_rows($activity_request) > 0) {
+                    $count = 0;
+                    while ($activity_row = mysqli_fetch_assoc($activity_request)) {
+                        if ($count >= 5) {
+                            break; // Stop after 5 activities
+                        }
+                        echo '<button><b>' . htmlspecialchars($activity_row['activity_description']) . '</b><!--<img src="../../images/Black-Arrow.png" height="40px" width="30px">---></button>';
+                        $count++;
+                    }
+                } else {
+                    echo '<p class="no-activity">No recent activity to display.</p>'; // Message if no activities
+                    echo '
             <div class="no-activity-img">
                   <img style="float="right";" src="../../images/No-Activity-Template.png" height="250px" width="250px"> <!-- Corrected the closing quote for width -->
+            </div>';
+                }
+                ?>
             </div>
-        ';
-    }
-    ?>
-</div>
 
 
         </div>
     </div>
 
-    <div class="more">
-        <a href="userMenu.php"><button type="button">More</button></a>
+<h3 class="hhh2">Settings and More</h3>
+
+    <div class="container-option">
+        <div class="group">
+            <a href="editPorfile.php"><button><b>Edit Profile</b></button></a>
+            <a href="../main-module/contactUs.php"><button><b>Report Issue</b></button></a>
+            <a href="https://github.com/Atharvkote/Zero-Hunger.git"><button><b>Contribute to this Project</b></button></a>
+            <a href="../login-module/logout.php"><button><b>Log Out</b></button></a>
+            </div>
     </div>
 </body>
 

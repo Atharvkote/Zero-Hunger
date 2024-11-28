@@ -13,22 +13,24 @@
   <?php
   include '../assets/navbar.php';  // import navbar as a componenet 
   ?>
+    <form action="Emailing_Process.php" method="post">
+
   <h2 class="heading">Volunteer Registration</h2>
   <div class="container">
     <div class="form-container">
       <div class="form-group">
         <label for="mobile-number">Enter Your Mobile Number</label>
-        <input placeholder="Enter Your Personal Contact Mobile Number" type="text" />
+        <input name="mobile-number" placeholder="Enter Your Personal Contact Mobile Number" type="tel" />
       </div>
 
       <div class="form-group date-icon">
         <label for="birth-date">Birth Date</label>
-        <input id="birth-date" type="date" placeholder="Your Birth Date" />
+        <input name="birth-date" type="date" placeholder="Your Birth Date" />
       </div>
 
       <div class="form-group">
         <label for="address">Residential Address</label>
-        <textarea id="address" placeholder="Enter Your Address"></textarea>
+        <textarea name="address" placeholder="Enter Your Address"></textarea>
       </div>
 
       <h2 class="subheading">Volunteer Role</h2>
@@ -36,19 +38,19 @@
       <div class="volunteer-role">
         <div class="checkboxx">
           <div class="check">
-            <input id="serving-agent" type="checkbox" />
+            <input name="serving-agent" type="checkbox" />
             <label for="serving-agent">Serving Agent</label>
           </div>
           <div class="check">
-            <input id="food-collector" type="checkbox" />
+            <input name="food-collector" type="checkbox" />
             <label for="food-collector">Food Collector</label>
           </div>
           <div class="check">
-            <input id="quality-manager" type="checkbox" />
+            <input name="quality-manager" type="checkbox" />
             <label for="quality-manager">Quality Manager</label>
           </div>
           <div class="check">
-            <input id="developer" type="checkbox" />
+            <input name ="developer" type="checkbox" />
             <label for="developer">Developer</label>
           </div>
         </div>
@@ -75,6 +77,7 @@
       <button class="submit-button-new">Submit</button>
     </div>
   </div>
+    </form>
 </body>
 
 </html>

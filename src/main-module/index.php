@@ -79,7 +79,7 @@ $activeUsersPercentage = ($numberOfUser / $goalActiveUsers) * 100;
         </div>
     </div>
     <div class="hh2">
-        <h2>Zero Hunger - Be the Change You Want</h2>
+        <h2>Zero Hunger - Be the Change You Want See In World</h2>
     </div>
     <div class="content">
         <div class="box">

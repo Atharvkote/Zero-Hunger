@@ -3,6 +3,12 @@
 if (isset($_SESSION['username'])  || isset($_SESSION['loggedin'])) {
     $username = $_SESSION['username'];
 }
+
+include '../assets/DataBase-LINK.php';
+$username = $_SESSION['username'];
+$second_sql = "SELECT * FROM `users` WHERE username = '$username'";
+$second_sql_results = mysqli_query($connection, $second_sql);
+$row_2 = mysqli_fetch_assoc($second_sql_results);
 ?>
 
 <!DOCTYPE html>
@@ -24,6 +30,10 @@ if (isset($_SESSION['username'])  || isset($_SESSION['loggedin'])) {
             background-color: #fff5e6;
             padding: 0;
             width: 100%;
+        }
+
+        .ppic img {
+            border-radius: 50%;
         }
 
         header {
@@ -246,6 +256,8 @@ if (isset($_SESSION['username'])  || isset($_SESSION['loggedin'])) {
             transform: scale(1.05);
             background-color: #ff8d02;
         }
+
+        
     </style>
 </head>
 
@@ -257,7 +269,15 @@ if (isset($_SESSION['username'])  || isset($_SESSION['loggedin'])) {
             <p><b>Nourishing Lives, Creating Smiles!</b></p>
         </div>
         <div class="login-logo">
-            <img onclick="toggleNavbarPopup()" src="../../images/Person-Logo.png" height="50px" width="50px">
+            <!-- <img  src="../../images/Person-Logo.png" height="50px" width="50px"> -->
+            <?php
+            if (is_null($row_2['profile_photo'])) {
+                echo '<img onclick="toggleNavbarPopup()" src="../../images/Person-Logo.png" height="30px" width="30px">';
+            } else {
+                $path = $row_2['profile_photo'];
+                echo '<div onclick="toggleNavbarPopup()" class="ppic"><img src="' . $path . '" height=50px" width="50px"></div>';
+            }
+            ?>
         </div>
 
     </header>
@@ -274,7 +294,14 @@ if (isset($_SESSION['username'])  || isset($_SESSION['loggedin'])) {
     <div id="popup">
 
         <div class="user-info">
-            <img src="../../images/Person-Logo.png" alt="user" height="30px" width="30px">
+            <?php
+            if (is_null($row_2['profile_photo'])) {
+                echo '<img src="../../images/Person-Logo.png" height="30px" width="30px">';
+            } else {
+                $path = $row_2['profile_photo'];
+                echo '<div class="ppic"><img src="' . $path . '" height="100px" width="100px"></div>';
+            }
+            ?>
             <h2><?php echo $username; ?></h2>
         </div>
         <hr />
@@ -300,8 +327,8 @@ if (isset($_SESSION['username'])  || isset($_SESSION['loggedin'])) {
         function toggleNavbarPopup() {
             <?php if (isset($_SESSION['username']) || isset($_SESSION['loggedin'])): ?>
                 const popup = document.getElementById('popup');
-            popup.classList.toggle('active');
-        <?php endif; ?>
+                popup.classList.toggle('active');
+            <?php endif; ?>
         }
     </script>
 </body>
