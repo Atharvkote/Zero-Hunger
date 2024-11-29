@@ -1,6 +1,10 @@
-<html>
+<?php session_start(); ?>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Zero Hunger</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="sponser-style.css">
@@ -30,13 +34,13 @@
     </div>
   </div>
 
-  
+
   <div id="popup1">
-        <h3>Here is there QR-Code</h3>
-        <div class="QR">
-          <img src="../../images/QR-Code.png" alt="QR" height="100px" width="100px">
-        </div>
-        <button class="cbutton" onclick="toggleSponser()" type="button"><b>Close</b></button>
+    <h3>Here is there QR-Code</h3>
+    <div class="QR">
+      <img src="../../images/QR-Code.png" alt="QR" height="100px" width="100px">
+    </div>
+    <button class="cbutton" onclick="toggleSponser()" type="button"><b>Close</b></button>
   </div>
 
   <script src="../login-module/popUpToggler.js"></script>

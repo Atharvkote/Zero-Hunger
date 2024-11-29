@@ -45,6 +45,50 @@ if ($result->num_rows > 0) {
     $showError = "No donation records found.";
 }
 
+
+$showError2 = "";
+
+// Fetch hunger point details with associated media paths (if any)
+$sql = "
+SELECT 
+    needs.id AS need_id, 
+    needs.spot_type, 
+    needs.number_of_people, 
+    needs.urgent, 
+    needs.username, 
+    needs.email, 
+    needs.created_at, 
+    needs.latitude, 
+    needs.longitude, 
+    GROUP_CONCAT(`needs-media`.file_path) AS media_paths 
+FROM needs
+LEFT JOIN `needs-media` ON needs.id = `needs-media`.need_id
+GROUP BY needs.id
+";
+
+$result = $connection->query($sql);
+
+// Check if any records exist
+$hungerPoints = [];
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $hungerPoints[] = [
+            'id' => $row['need_id'],
+            'spot_type' => $row['spot_type'],
+            'number_of_people' => $row['number_of_people'],
+            'urgent' => $row['urgent'],
+            'username' => $row['username'],
+            'email' => $row['email'],
+            'created_at' => $row['created_at'],
+            'latitude' => $row['latitude'],
+            'longitude' => $row['longitude'],
+            'media_paths' => $row['media_paths'] ? explode(',', $row['media_paths']) : []
+        ];
+    }
+} else {
+    $showError2 = "No hunger point records found.";
+}
+
 $connection->close();
 ?>
 
@@ -60,73 +104,125 @@ $connection->close();
     <link rel="stylesheet" href="lastestPage.css">
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-
 </head>
 
 <body>
     <?php include '../assets/navbar.php'; ?> <!-- Navbar -->
 
     <h2 id="heading">Happening Right Now</h2>
-    <?php if ($showError): ?>
-        <p class="error"><?= htmlspecialchars($showError); ?></p>
-    <?php else: ?>
-        <?php foreach ($donations as $donation_id => $donation): ?>
-            <div class="lastest-container">
-                <div class="donation-details">
-                <h3 class="h3"><img src="../../images/Person-Logo.png" alt="image" height="30px" width="30px"> <?= htmlspecialchars($donation['details']['username']); ?></h3>
-                    <p><strong>Landmark:</strong> <?= htmlspecialchars($donation['details']['landmark']); ?></p>
-                    <p><strong>Message:</strong> <?= htmlspecialchars($donation['details']['message']); ?></p>
-                    <!-- <p><strong>Location:</strong> Latitude: <?= htmlspecialchars($donation['details']['latitude']); ?>, Longitude: <?= htmlspecialchars($donation['details']['longitude']); ?></p> -->
 
-                    <h4>Donated Items:</h4>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Item no.</th>
-                                <th>Item</th>
-                                <th>Quantity</th>
-                                <th>Freshly Made</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                         <?php $j = 1;?>
-                            <?php foreach ($donation['items'] as $item): ?>
+    <!-- Buttons to toggle sections -->
+    <div class="toggle-buttons">
+        <img src="../../images/1.png" alt="milestonses" height="150px" width="150px">
+        <button id="donationsButton" onclick="showDonations()">Donations</button>
+        <button id="hungerPointsButton" onclick="showHungerPoints()">Hunger Points</button>
+        <button>Deliver(be A Volunteer)</button>
+        <img src="../../images/2.png" alt="milestonses" height="150px" width="150px">
+        <img src="../../images/3.png" alt="milestonses" height="150px" width="150px">
+    </div>
+
+    <!-- Donations Section -->
+    <div id="donationsSection">
+        <?php if ($showError): ?>
+            <p class="error"><?= htmlspecialchars($showError); ?></p>
+        <?php else: ?>
+            <?php foreach ($donations as $donation_id => $donation): ?>
+                <div class="lastest-container">
+                    <div class="donation-details">
+                        <h3 class="h3"><img src="../../images/Person-Logo.png" alt="image" height="30px" width="30px"> <?= htmlspecialchars($donation['details']['username']); ?></h3>
+                        <p><strong>Landmark:</strong> <?= htmlspecialchars($donation['details']['landmark']); ?></p>
+                        <p><strong>Message:</strong> <?= htmlspecialchars($donation['details']['message']); ?></p>
+
+                        <h4>Donated Items:</h4>
+                        <table>
+                            <thead>
                                 <tr>
-                                    <td><?= htmlspecialchars($j); ?></td>
-                                    <td><?= htmlspecialchars($item['item_name']); ?></td>
-                                    <td><?= htmlspecialchars($item['quantity']); ?></td>
-                                    <td><?= $item['is_fresh'] ? 'Yes' : 'No'; ?></td>
+                                    <th>Item no.</th>
+                                    <th>Item</th>
+                                    <th>Quantity</th>
+                                    <th>Freshly Made</th>
                                 </tr>
-                        <?php $j++;?>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
-                    <h3>Donation was done on <?= htmlspecialchars($donation['details']['day']); ?></h3>
+                            </thead>
+                            <tbody>
+                                <?php $j = 1; ?>
+                                <?php foreach ($donation['items'] as $item): ?>
+                                    <tr>
+                                        <td><?= htmlspecialchars($j); ?></td>
+                                        <td><?= htmlspecialchars($item['item_name']); ?></td>
+                                        <td><?= htmlspecialchars($item['quantity']); ?></td>
+                                        <td><?= $item['is_fresh'] ? 'Yes' : 'No'; ?></td>
+                                    </tr>
+                                    <?php $j++; ?>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                        <h3>Donation was done on <?= htmlspecialchars($donation['details']['day']); ?></h3>
+                    </div>
+                    <!-- Map for each donation location -->
+                    <div class="map" id="map-<?= $donation_id; ?>" class="map"
+                        data-lat="<?= htmlspecialchars($donation['details']['latitude']); ?>"
+                        data-lng="<?= htmlspecialchars($donation['details']['longitude']); ?>">
+                    </div>
                 </div>
-                <!-- Map for each donation location -->
-                <div class="map" id="map-<?= $donation_id; ?>" class="map"
-                    data-lat="<?= htmlspecialchars($donation['details']['latitude']); ?>"
-                    data-lng="<?= htmlspecialchars($donation['details']['longitude']); ?>">
-                </div>
-            </div>
-        <?php endforeach; ?>
+            <?php endforeach; ?>
+        <?php endif; ?>
+    </div>
 
-    <?php endif; ?>
+    <!-- Hunger Points Section -->
+    <div id="hungerPointsSection" style="display:none;">
+
+        <?php if ($showError): ?>
+            <p class="error"><?= htmlspecialchars($showError); ?></p>
+        <?php else: ?>
+            <?php foreach ($hungerPoints as $hungerPoint): ?>
+                <div class="lastest-container_2">
+                    <div class="hungerPoint-details">
+                        <p><strong>Spot Type:</strong> <?= htmlspecialchars($hungerPoint['spot_type']); ?></p>
+                        <p><strong>Number of People:</strong> <?= htmlspecialchars($hungerPoint['number_of_people']); ?></p>
+                        <p><strong>Urgency:</strong> <?= $hungerPoint['urgent'] == 1 ? 'Urgent' : 'Normal'; ?></p>
+                        <p><strong>Reported By:</strong> <?= htmlspecialchars($hungerPoint['username']); ?></p>
+                        <p><strong>Email:</strong> <?= htmlspecialchars($hungerPoint['email']); ?></p>
+                        <p><strong>Created At:</strong> <?= htmlspecialchars($hungerPoint['created_at']); ?></p>
+
+                        <!-- Display location on the map -->
+                        <div class="map" id="map-<?= $hungerPoint['id']; ?>" class="map2"
+                            data-lat="<?= htmlspecialchars($hungerPoint['latitude']); ?>"
+                            data-lng="<?= htmlspecialchars($hungerPoint['longitude']); ?>">
+                        </div>
+
+                        <!-- Display images if available -->
+                        <?php if (!empty($hungerPoint['media_paths'])): ?>
+                            <div class="image-container">
+                                <?php foreach ($hungerPoint['media_paths'] as $mediaPath): ?>
+                                    <img src="<?= htmlspecialchars($mediaPath); ?>" alt="Hunger Point Image" />
+                                <?php endforeach; ?>
+                            </div>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        <?php endif; ?>
+    </div>
 
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
     <script>
         // Initialize each map
         document.querySelectorAll('.map').forEach(mapDiv => {
             const latitude = parseFloat(mapDiv.dataset.lat);
             const longitude = parseFloat(mapDiv.dataset.lng);
+            // console.log('Initializing map for:', mapDiv.id, 'Lat:', latitude, 'Lng:', longitude);   - Debugger
+            if (isNaN(latitude) || isNaN(longitude)) {
+                mapDiv.innerHTML = '<p>Location data not available</p>';
+            }
 
             if (!isNaN(latitude) && !isNaN(longitude)) {
                 const map = L.map(mapDiv).setView([latitude, longitude], 15); // Center the map
 
-                // Add OpenStreetMap tiles
-                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                // Add Satellite tiles (Esri World Imagery)
+                L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+                    attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
                 }).addTo(map);
 
                 // Add a marker at the specified location
@@ -135,6 +231,26 @@ $connection->close();
                     .openPopup();
             }
         });
+
+
+
+        // Functions to toggle between Donations and Hunger Points sections
+        function showDonations() {
+            document.getElementById('donationsSection').style.display = 'block';
+            document.getElementById('hungerPointsSection').style.display = 'none';
+            document.getElementById('donationsButton').classList.add('active');
+            document.getElementById('hungerPointsButton').classList.remove('active');
+        }
+
+        function showHungerPoints() {
+            document.getElementById('donationsSection').style.display = 'none';
+            document.getElementById('hungerPointsSection').style.display = 'block';
+            document.getElementById('hungerPointsButton').classList.add('active');
+            document.getElementById('donationsButton').classList.remove('active');
+        }
+
+        // Set the default view to Donations
+        showDonations();
     </script>
 </body>
 

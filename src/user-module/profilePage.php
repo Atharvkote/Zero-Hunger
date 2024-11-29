@@ -105,7 +105,7 @@ if (!isset($_SESSION['username']) || $_SESSION['loggedin'] !== true) {
                     echo '<p class="no-activity">No recent activity to display.</p>'; // Message if no activities
                     echo '
             <div class="no-activity-img">
-                  <img style="float="right";" src="../../images/No-Activity-Template.png" height="250px" width="250px"> <!-- Corrected the closing quote for width -->
+                  <img src="../../images/No-Activity-Template.png" height="250px" width="250px"> <!-- Corrected the closing quote for width -->
             </div>';
                 }
                 ?>

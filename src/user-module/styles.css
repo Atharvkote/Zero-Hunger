@@ -17,7 +17,7 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-h2 {
+.profile-container h2 {
     text-align: center;
     background-color: #ff8d02;
     margin: -20px -20px 0px -20px;
@@ -99,3 +99,4 @@ form button:hover {
 .side-imh  img{
     height: auto;
 }
+

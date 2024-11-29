@@ -1,78 +1,57 @@
 <?php
 session_start();
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  // Get form data
-  include '../assets/DataBase-LINK.php';
+  include '../assets/DataBase-LINK.php'; // Make sure this path is correct
+
+  // Get form inputs
   $spot_type = $_POST['spot_type'];
   $number_of_people = (int)$_POST['number_of_people'];
   $urgent = isset($_POST['urgent']) ? 1 : 0;
 
+  // Get latitude and longitude from the hidden inputs
+  $latitude = isset($_POST['latitude']) ? $_POST['latitude'] : null;
+  $longitude = isset($_POST['longitude']) ? $_POST['longitude'] : null;
+
+  // Get user session data
   $username = $_SESSION['username'];
   $email = $_SESSION['email'];
 
-  // Insert data into the needs table
-  $stmt = $connection->prepare("INSERT INTO needs (spot_type, number_of_people, urgent, username, email) VALUES (?, ?, ?, ?, ?)");
-  $stmt->bind_param("siiss", $spot_type, $number_of_people, $urgent, $username, $email);
+  // Insert data into the needs table, including latitude and longitude
+  $stmt = $connection->prepare("INSERT INTO needs (spot_type, number_of_people, urgent, username, email, latitude, longitude) VALUES (?, ?, ?, ?, ?, ?, ?)");
+  $stmt->bind_param("siissdd", $spot_type, $number_of_people, $urgent, $username, $email, $latitude, $longitude);
   $stmt->execute();
-  $need_id = $stmt->insert_id;  // Get the last inserted id for `need_id`
+  $need_id = $stmt->insert_id;
   $stmt->close();
 
-  // Handle file uploads (images and videos)
-  $media_files = [];
-  $media_file_paths = ""; // To store paths for a single file upload
+  // Handle file upload (if exists)
+  if (isset($_FILES['media_upload']) && $_FILES['media_upload']['error'] == UPLOAD_ERR_OK) {
+    $file = $_FILES['media_upload'];
+    $target_dir = "../../uploads/"; // Change to your desired upload directory
+    $target_file = $target_dir . basename($file["name"]);
 
-  foreach ($_FILES as $file) {
-    if ($file['error'] == UPLOAD_ERR_OK) {
-      $target_dir = "uploads/";  // Define where files will be saved
-      $target_file = $target_dir . basename($file["name"]);
-
-      // Move the file to the uploads directory
-      if (move_uploaded_file($file["tmp_name"], $target_file)) {
-        $media_files[] = $target_file;
-
-        // If only one file is uploaded, store its path in `media_file_paths`
-        if (count($media_files) == 1) {
-          $media_file_paths = $target_file;  // Store the first file path for needs table
-        } else {
-          // Insert each additional file path into the needs-media table
-          $stmt = $connection->prepare("INSERT INTO `needs-media` (need_id, file_path) VALUES (?, ?)");
-          $stmt->bind_param("is", $need_id,  $media_file_paths);
-          $stmt->execute();
-          $stmt->close();
-        }
-      }
+    if (move_uploaded_file($file["tmp_name"], $target_file)) {
+      // Insert media file path into the database
+      $stmt = $connection->prepare("INSERT INTO `needs-media` (need_id, file_path) VALUES (?, ?)");
+      $stmt->bind_param("is", $need_id, $target_file);
+      $stmt->execute();
+      $stmt->close();
     }
   }
 
-  // Update the needs table with the media file path if there was a single upload
-  if ($media_file_paths !== "") {
-    $stmt = $connection->prepare("UPDATE needs SET media_file_paths = ? WHERE id = ?");
-    $stmt->bind_param("si", $media_file_paths, $need_id);
-    $stmt->execute();
-    $stmt->close();
-  }
+  // Track user activity
+  $activity_description = "Requested food for $number_of_people people at $spot_type through Zero Hunger.";
+  $stmt = $connection->prepare("INSERT INTO `recent-activity` (username, activity_description, activity_date) VALUES (?, ?, current_timestamp())");
+  $stmt->bind_param("ss", $username, $activity_description);
+  $stmt->execute();
+  $stmt->close();
 
-  // Redirect or display success message
-  // echo "Form data and media files uploaded successfully!";           // De-Bugger
-
-
-
-  // Tracking User Activity
-  $username = $_SESSION['username'];
-  $activity_description = "Requested  food  for $number_of_people peoples at $spot_type through Zero Hunger.";
-  $sql="INSERT INTO `recent-activity` (`username`, `activity_description`, `activity_date`) VALUES ( '$username', '$activity_description', current_timestamp())";
-  $request = mysqli_query($connection, $sql);
-
-  // if($request){
-  //   echo "Activity recorded successfully.";
-  // }else{
-  //   echo "Error recording activity.";
-  // }
-
+  // Close the connection and redirect to the success page
   $connection->close();
+  header("Location: needFood.php"); // Redirect to a success page (optional)
+  exit();
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -85,16 +64,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
-  <?php
-  include '../assets/navbar.php';  // import navbar as a component 
-  ?>
-  <h2>Need Food</h2>
+  <?php include '../assets/navbar.php'; ?>
+
+  <h2 class="h22">Need Food</h2>
   <form action="needFood.php" method="post" enctype="multipart/form-data">
     <div class="main-content">
       <div class="left-panel">
         <h3>Enter Spot Type</h3>
-        <p><i>( Can Be a Beggar Spot, Old Age Home, or Orphanage )</i></p>
-        <select name="spot_type">
+        <p><i>(Can Be a Beggar Spot, Old Age Home, or Orphanage)</i></p>
+        <select name="spot_type" required>
           <option value="beggar">Beggar Spot</option>
           <option value="orphanage">Orphanage</option>
           <option value="oldage">Old Age Home</option>
@@ -102,15 +80,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="two-input">
           <div class="first">
             <p>Enter Number of People</p>
-            <input max="100" min="1" type="number" name="number_of_people" required />
+            <input type="number" name="number_of_people" min="1" max="100" required />
           </div>
           <div class="second">
             <p>Need Food On Urgent Basis</p>
             <p><input type="checkbox" name="urgent" /> Yes</p>
           </div>
         </div>
-        <button type="button" class="location-button">
+        <button type="button" class="location-button" onclick="getCurrentLocation()">
           <span>Add My Current Location</span>
+          <input type="hidden" name="latitude" id="latitude" />
+          <input type="hidden" name="longitude" id="longitude" />
           <img class="location-icon" src="../../images/Location.png" alt="location" />
         </button>
       </div>
@@ -120,14 +100,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <img id="preview" src="../../images/Image-Template.png" alt="Image Preview" />
         </div>
         <div class="option">
-          <button type="button" class="btn" onclick="openCamera()">Add Visuals <img src="../../images/Camera.png" alt="Add Image" /></button>
-          <button type="button" class="btn" onclick="openGallery()">From Gallery <img src="../../images/Photo.png" alt="From Gallery" /></button>
-          <button type="button" class="btn" onclick="openVideoUpload()">Add Video <img src="../../images/Video.png" alt="Add Video" /></button>
+          <!-- Add visuals button -->
+          <button type="button" class="btn" onclick="triggerInput('media-upload')">Add Visuals <img src="../../images/Camera.png" alt="Add Image" /></button>
+          <!-- From Gallery button -->
+          <button type="button" class="btn" onclick="triggerInput('gallery-upload')">From Gallery <img src="../../images/Photo.png" alt="From Gallery" /></button>
+          <!-- Add video button -->
+          <button type="button" class="btn" onclick="triggerInput('video-upload')">Add Video <img src="../../images/Video.png" alt="Add Video" /></button>
 
-          <input type="file" name="camera_upload[]" id="camera-upload" accept="image/*" capture="camera" style="display:none;" onchange="previewMedia(event, 'camera')" multiple />
-          <input type="file" name="gallery_upload[]" id="gallery-upload" accept="image/*" style="display:none;" onchange="previewMedia(event, 'gallery')" multiple />
-          <input type="file" name="video_upload" id="video-upload" accept="video/*" style="display:none;" onchange="previewMedia(event)" />
-
+          <!-- Hidden input fields for media uploads -->
+          <input type="file" name="add_visuals" id="media-upload" accept="image/*,video/*" style="display:none;" onchange="previewMedia(event)" />
+          <input type="file" name="from_gallery" id="gallery-upload" accept="image/*,video/*" style="display:none;" onchange="previewMedia(event)" />
+          <input type="file" name="add_video" id="video-upload" accept="video/*" style="display:none;" onchange="previewMedia(event)" />
         </div>
       </div>
     </div>
@@ -139,7 +122,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <input class="submit-button" type="submit" value="Submit" />
     </div>
   </form>
+
   <script src="mediaPreveiwer.js"></script>
+  <script src="locationTracker-needs.js"></script>
 </body>
 
 </html>

@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@400;700&display=swap");
+
 .map {
   height: auto;
   width: 100%;
@@ -11,6 +13,31 @@
   margin-right: 0px;
   margin-bottom: 0px;
   margin-top: 0px;
+}
+
+.toggle-buttons{
+  display: flex;
+  margin-top: 20px;
+  justify-content: left;
+  align-items: center;
+  padding:  20px 0px 50px 20px;
+  background-color: #f5d8b5;
+}
+
+.toggle-buttons img{
+  margin: 0px 50px 0px 30px;
+}
+
+.toggle-buttons button{
+  margin: 0px 10px;
+  padding: 15px 50px;
+  background-color: #f28c28;
+  border: none;
+  border-radius: 20px;
+  font-size: 16px;
+  color: #ffffff;
+  font-weight:bold ;
+  font-family: "Inknut Antiqua", serif;
 }
 
 .lastest-container {
