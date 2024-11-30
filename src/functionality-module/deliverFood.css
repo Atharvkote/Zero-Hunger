@@ -1,0 +1,182 @@
+@import url("https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@400;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inknut Antiqua", serif;
+}
+
+.main {
+  padding: 20px;
+  text-align: center;
+}
+
+.h22 {
+  background-color: #f7931e;
+  color: white;
+  padding: 5px;
+  border-radius: 0px 20px 20px 0px;
+  margin-right: 55%;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.hh2 {
+  background-color: #ff8d02;
+  color: white;
+  padding: 10px 0px 10px 0px;
+  margin: 20px -20px 30px -20px;
+}
+.head {
+  background-color: #ff8d02;
+  margin: -20px 20% 0px 20%;
+  border-radius: 20px;
+  color: #ffffff;
+}
+
+.main .appreciation {
+  background-color: #f7931e;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  margin: -20px 0;
+}
+.input-group button {
+  background-color: #ff8d02;
+  border-radius: 20px;
+  padding: 5px;
+  font-family: "Inknut Antiqua", serif;
+  font-size: 16px;
+  color: white;
+  border: none;
+  margin: 0px 20% -20px 20%;
+}
+.main .input-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  background-color: #f5d8b5;
+  margin-bottom: 40px;
+  border-radius: 20px;
+}
+
+.ip_main {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 10px;
+}
+
+.ip {
+  flex: 1;
+  flex-direction: column;
+  /* margin: 10px 20% 10px 20%; */
+}
+
+.ip input[type="text"] {
+  padding: 10px;
+  border: #e67e22;
+  border-radius: 20px;
+  margin-left: 5px;
+}
+
+.HP,
+.DD {
+  margin-top: 10px;
+  background-color: #f5d8b5;
+  border-radius: 20px;
+}
+
+.hhh4 {
+  font-size: 18px;
+  background-color: #ff8d02;
+  margin: 10px 20% 20px 20%;
+  border-radius: 0px 0px 20px 20px;
+  padding: 5px;
+}
+
+#hungerpoint-map,
+#donor-map {
+  border-radius: 0px 0px 20px 20px;
+}
+
+.table {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text p {
+  margin-right: 30px;
+}
+table {
+  width: 70%;
+  border-collapse: separate;
+  margin: 0px 0px 10px 30px;
+  border-radius: 10px;
+  border: solid black 1px;
+}
+
+/* table, th, td {
+    border: 1px solid #000000;
+  } */
+
+th,
+td {
+  padding: 8px;
+  text-align: left;
+  border-left: solid black 1px;
+  border-top: solid black 1px;
+}
+
+th {
+  background-color: #f28c28;
+  border-top: none;
+}
+
+th:last-child {
+  border-top-right-radius: 10px;
+}
+th:first-child {
+  border-top-left-radius: 10px;
+}
+
+td:first-child,
+th:first-child {
+  border-left: none;
+}
+
+.bttt {
+  background-color: #ff8d02;
+  border-radius: 20px;
+  padding: 10px 40px 10px 40px;
+  font-family: "Inknut Antiqua", serif;
+  font-size: 16px;
+  color: white;
+  border: none;
+  margin: 0px 20% 0px 20%;
+}
+
+.final {
+  background-color: #f5d8b5;
+  margin: 20px -20px 0px -20px;
+  padding: 20px 20px 20px 15%;
+}
+
+.final input[type="date"] {
+  border-radius: 10px;
+  margin-left: 20px;
+  border: none;
+  padding: 5px;
+}
+
+

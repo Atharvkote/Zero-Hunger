@@ -1,5 +1,9 @@
 <?php
 session_start();
+if (!isset($_SESSION['username']) || $_SESSION['loggedin'] !== true) {
+    header("Location: ../login-module/loginPage.php");
+    exit();
+}
 include '../assets/DataBase-LINK.php'; // Include your database connection file
 
 $showError = "";
@@ -60,18 +64,21 @@ SELECT
     needs.created_at, 
     needs.latitude, 
     needs.longitude, 
-    GROUP_CONCAT(`needs-media`.file_path) AS media_paths 
+    (SELECT file_path FROM `needs-media` WHERE needs.id = `needs-media`.need_id LIMIT 1) AS media_path
 FROM needs
-LEFT JOIN `needs-media` ON needs.id = `needs-media`.need_id
 GROUP BY needs.id
 ";
+$showError2 = "";
 
+// Execute the query
 $result = $connection->query($sql);
 
 // Check if any records exist
 $hungerPoints = [];
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
+        $mediaPath = $row['media_path'] ?? '../../images/Image-Template.png'; // Default path if media_path is null
+        
         $hungerPoints[] = [
             'id' => $row['need_id'],
             'spot_type' => $row['spot_type'],
@@ -82,7 +89,7 @@ if ($result->num_rows > 0) {
             'created_at' => $row['created_at'],
             'latitude' => $row['latitude'],
             'longitude' => $row['longitude'],
-            'media_paths' => $row['media_paths'] ? explode(',', $row['media_paths']) : []
+            'media_path' => $mediaPath // Use default if media_path is null
         ];
     }
 } else {
@@ -116,7 +123,7 @@ $connection->close();
         <img src="../../images/1.png" alt="milestonses" height="150px" width="150px">
         <button id="donationsButton" onclick="showDonations()">Donations</button>
         <button id="hungerPointsButton" onclick="showHungerPoints()">Hunger Points</button>
-        <button>Deliver(be A Volunteer)</button>
+         <a href="../functionality-module/deliverFood.php"><button>Deliver(be A Volunteer)</button></a>
         <img src="../../images/2.png" alt="milestonses" height="150px" width="150px">
         <img src="../../images/3.png" alt="milestonses" height="150px" width="150px">
     </div>
@@ -168,41 +175,69 @@ $connection->close();
         <?php endif; ?>
     </div>
 
-    <!-- Hunger Points Section -->
-    <div id="hungerPointsSection" style="display:none;">
+<!-- Hunger Points Section -->
+<div id="hungerPointsSection" style="display:none;">
 
-        <?php if ($showError): ?>
-            <p class="error"><?= htmlspecialchars($showError); ?></p>
-        <?php else: ?>
-            <?php foreach ($hungerPoints as $hungerPoint): ?>
-                <div class="lastest-container_2">
-                    <div class="hungerPoint-details">
-                        <p><strong>Spot Type:</strong> <?= htmlspecialchars($hungerPoint['spot_type']); ?></p>
-                        <p><strong>Number of People:</strong> <?= htmlspecialchars($hungerPoint['number_of_people']); ?></p>
-                        <p><strong>Urgency:</strong> <?= $hungerPoint['urgent'] == 1 ? 'Urgent' : 'Normal'; ?></p>
-                        <p><strong>Reported By:</strong> <?= htmlspecialchars($hungerPoint['username']); ?></p>
-                        <p><strong>Email:</strong> <?= htmlspecialchars($hungerPoint['email']); ?></p>
-                        <p><strong>Created At:</strong> <?= htmlspecialchars($hungerPoint['created_at']); ?></p>
+    <?php if ($showError2): ?>
+        <p class="error"><?= htmlspecialchars($showError2); ?></p>
+    <?php else: ?>
+        <?php foreach ($hungerPoints as $hungerPoint): ?>
+            <div class="lastest-container">
+                <div class="hungerPoint-details">
+                    <h3 class="h3">
+                        <img src="../../images/Person-Logo.png" alt="image" height="30px" width="30px"> 
+                        <?= htmlspecialchars($hungerPoint['username']); ?>
+                    </h3>
+                    <p><strong>Spot Type:</strong> <?= htmlspecialchars($hungerPoint['spot_type']); ?></p>
+                    <p><strong>Food Needed for:</strong> <?= htmlspecialchars($hungerPoint['number_of_people']); ?> people</p>
+                    <p><strong>Urgency:</strong> <?= $hungerPoint['urgent'] == 1 ? 'Urgent' : 'Normal'; ?></p>
+                    <p><strong>Created At:</strong> <?= htmlspecialchars($hungerPoint['created_at']); ?></p>
 
-                        <!-- Display location on the map -->
-                        <div class="map" id="map-<?= $hungerPoint['id']; ?>" class="map2"
-                            data-lat="<?= htmlspecialchars($hungerPoint['latitude']); ?>"
-                            data-lng="<?= htmlspecialchars($hungerPoint['longitude']); ?>">
-                        </div>
+                    <!-- Display image if available -->
+                    <?php if (!empty($hungerPoint['media_path'])): ?>
+    <div class="media-container">
+        <h4>Hunger Point Media:</h4>
+        <div class="side">
+            <?php
+            // Get the file extension
+            $fileInfo = pathinfo($hungerPoint['media_path']);
+            $fileExtension = strtolower($fileInfo['extension']);
 
-                        <!-- Display images if available -->
-                        <?php if (!empty($hungerPoint['media_paths'])): ?>
-                            <div class="image-container">
-                                <?php foreach ($hungerPoint['media_paths'] as $mediaPath): ?>
-                                    <img src="<?= htmlspecialchars($mediaPath); ?>" alt="Hunger Point Image" />
-                                <?php endforeach; ?>
-                            </div>
-                        <?php endif; ?>
-                    </div>
-                </div>
-            <?php endforeach; ?>
-        <?php endif; ?>
+            // Check if it's an image or video based on the file extension
+            if (in_array($fileExtension, ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'webp'])) {
+                // It's an image
+                echo '<img src="' . htmlspecialchars($hungerPoint['media_path']) . '" alt="Hunger Point Image" />';
+                echo '<pre>';
+                echo ($hungerPoint['media_path'] == '../../images/Image-Template.png') ? 'No Image Available' : 'Image Uploaded By ' . $hungerPoint['username'];
+                echo '</pre>';
+            } elseif (in_array($fileExtension, ['mp4', 'avi', 'mov', 'wmv', 'flv', 'webm'])) {
+                // It's a video
+                echo '<video class="rounded-video" width="200" height="125" controls>';
+                echo '<source src="' . htmlspecialchars($hungerPoint['media_path']) . '" type="video/' . $fileExtension . '">';
+                echo 'Your browser does not support the video tag.';
+                echo '</video>';
+                echo '<pre>';
+                echo 'Video Uploaded By ' . $hungerPoint['username'];
+                echo '</pre>';
+            } else {
+                echo 'Unsupported media format.';
+            }
+            ?>
+        </div>
     </div>
+<?php endif; ?>
+
+
+                </div>
+                <!-- Display location on the map -->
+                <div class="map" id="map-<?= $hungerPoint['id']; ?>" class="map2"
+                    data-lat="<?= htmlspecialchars($hungerPoint['latitude']); ?>"
+                    data-lng="<?= htmlspecialchars($hungerPoint['longitude']); ?>">
+                </div>
+            </div>
+        <?php endforeach; ?>
+    <?php endif; ?>
+</div>
 
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -210,29 +245,41 @@ $connection->close();
     <script>
         // Initialize each map
         document.querySelectorAll('.map').forEach(mapDiv => {
-            const latitude = parseFloat(mapDiv.dataset.lat);
-            const longitude = parseFloat(mapDiv.dataset.lng);
-            // console.log('Initializing map for:', mapDiv.id, 'Lat:', latitude, 'Lng:', longitude);   - Debugger
-            if (isNaN(latitude) || isNaN(longitude)) {
-                mapDiv.innerHTML = '<p>Location data not available</p>';
-            }
+    const latitude = parseFloat(mapDiv.dataset.lat);
+    const longitude = parseFloat(mapDiv.dataset.lng);
 
-            if (!isNaN(latitude) && !isNaN(longitude)) {
-                const map = L.map(mapDiv).setView([latitude, longitude], 15); // Center the map
+    if (isNaN(latitude) || isNaN(longitude)) {
+        mapDiv.innerHTML = '<p>Location data not available</p>';
+        return; // Stop further execution for invalid locations
+    }
 
-                // Add Satellite tiles (Esri World Imagery)
-                L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-                    attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
-                }).addTo(map);
+    // Initialize the map
+    const map = L.map(mapDiv, {
+        center: [latitude, longitude],
+        zoom: 15,
+        minZoom: 5,
+        maxZoom: 18,
+        zoomControl: true
+    });
 
-                // Add a marker at the specified location
-                L.marker([latitude, longitude]).addTo(map)
-                    .bindPopup('<b>Donation Location</b><br>Latitude: ' + latitude + '<br>Longitude: ' + longitude)
-                    .openPopup();
-            }
-        });
+    // Add Satellite tiles
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+        attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+    }).addTo(map);
 
+    // Add a marker
+    L.marker([latitude, longitude]).addTo(map)
+        .bindPopup('<b>Donation Location</b><br>Latitude: ' + latitude + '<br>Longitude: ' + longitude)
+        .openPopup();
 
+    // Ensure map resizes properly
+    map.invalidateSize();
+
+    // Listen for window resize
+    window.addEventListener('resize', () => {
+        map.invalidateSize();
+    });
+});
 
         // Functions to toggle between Donations and Hunger Points sections
         function showDonations() {

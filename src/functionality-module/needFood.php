@@ -24,7 +24,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $need_id = $stmt->insert_id;
   $stmt->close();
 
-  // Handle file upload (if exists)
+  // Handle file uploads (image/video from gallery or custom media upload)
+  
+  // Handle media-upload (if exists)
   if (isset($_FILES['media_upload']) && $_FILES['media_upload']['error'] == UPLOAD_ERR_OK) {
     $file = $_FILES['media_upload'];
     $target_dir = "../../uploads/"; // Change to your desired upload directory
@@ -32,6 +34,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (move_uploaded_file($file["tmp_name"], $target_file)) {
       // Insert media file path into the database
+      $stmt = $connection->prepare("INSERT INTO `needs-media` (need_id, file_path) VALUES (?, ?)");
+      $stmt->bind_param("is", $need_id, $target_file);
+      $stmt->execute();
+      $stmt->close();
+    }
+  }
+
+  // Handle gallery-upload (if exists, can be image or video)
+  if (isset($_FILES['from_gallery']) && $_FILES['from_gallery']['error'] == UPLOAD_ERR_OK) {
+    $file = $_FILES['from_gallery'];
+    $target_dir = "../../uploads/"; // Directory for uploads
+    $target_file = $target_dir . basename($file["name"]);
+
+    if (move_uploaded_file($file["tmp_name"], $target_file)) {
+      // Insert file path into the database
+      $stmt = $connection->prepare("INSERT INTO `needs-media` (need_id, file_path) VALUES (?, ?)");
+      $stmt->bind_param("is", $need_id, $target_file);
+      $stmt->execute();
+      $stmt->close();
+    }
+  }
+
+  // Handle video-upload (if exists)
+  if (isset($_FILES['add_video']) && $_FILES['add_video']['error'] == UPLOAD_ERR_OK) {
+    $file = $_FILES['add_video'];
+    $target_dir = "../../uploads/"; // Directory for uploads
+    $target_file = $target_dir . basename($file["name"]);
+
+    if (move_uploaded_file($file["tmp_name"], $target_file)) {
+      // Insert video file path into the database
       $stmt = $connection->prepare("INSERT INTO `needs-media` (need_id, file_path) VALUES (?, ?)");
       $stmt->bind_param("is", $need_id, $target_file);
       $stmt->execute();
@@ -52,9 +84,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   exit();
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -62,7 +94,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <link rel="stylesheet" href="need-Food.css">
   <link rel="icon" href="../../images/Zero-Hunger-Favicon.png" type="image/icon type">
 </head>
-
 <body>
   <?php include '../assets/navbar.php'; ?>
 
@@ -108,7 +139,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <button type="button" class="btn" onclick="triggerInput('video-upload')">Add Video <img src="../../images/Video.png" alt="Add Video" /></button>
 
           <!-- Hidden input fields for media uploads -->
-          <input type="file" name="add_visuals" id="media-upload" accept="image/*,video/*" style="display:none;" onchange="previewMedia(event)" />
+          <input type="file" name="media_upload" id="media-upload" accept="image/*" style="display:none;" onchange="previewMedia(event)" />
           <input type="file" name="from_gallery" id="gallery-upload" accept="image/*,video/*" style="display:none;" onchange="previewMedia(event)" />
           <input type="file" name="add_video" id="video-upload" accept="video/*" style="display:none;" onchange="previewMedia(event)" />
         </div>
@@ -122,8 +153,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <input class="submit-button" type="submit" value="Submit" />
     </div>
   </form>
-
-  <script src="mediaPreveiwer.js"></script>
+ <script src="mediaPreveiwer.js"></script>
   <script src="locationTracker-needs.js"></script>
 </body>
 
