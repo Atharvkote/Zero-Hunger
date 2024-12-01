@@ -1,0 +1,82 @@
+@import url("https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@400;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inknut Antiqua", serif;
+  background-color: #ffffff;
+  min-height: 100vh;
+}
+
+.badges-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin: 20px;
+  /* padding: 20px; */
+}
+
+.badges-container .badge {
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #f5d8b5;
+  border-radius: 20px;
+  margin: 10px 10px 10px 0px;
+  border: 2px solid #ff8d02;
+  position: relative;
+}
+
+.badges-container .badge p {
+  margin: 0;
+  padding: 0;
+  background-color: #ff8d02;
+  padding: 5px 60px;
+  border-radius: 10px;
+}
+
+.blurrrr {
+  filter: blur(1px);
+  opacity: 70%;
+}
+.danger_p{
+  flex: 1;
+  border-radius: 10px;
+  height: 300px;
+  width: 300px;
+  margin-left: 40%;
+  padding: 10px;
+  position: relative;
+  z-index: 9999;
+  background-color: #f5d8b5;
+}
+.badges-container .badge h4 {
+  background-color: #ff8d02;
+  padding: 10px 30px;
+  border-radius: 0px 0px 20px 20px;
+  margin-bottom: 20px;
+  font-weight: 300;
+}
+
+.badges-container .badge img {
+  margin-bottom: 10px;
+  transition: 0.3s ease;
+}
+
+.badges-container .badge img:hover{
+    transform: scale(1.05);
+}
+
+.badges-head {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 30px 0px 0px 0px;
+  background-color: #ff8d02;
+  color: #ffffff;
+  padding: 10px 10px 0px 10px;
+}

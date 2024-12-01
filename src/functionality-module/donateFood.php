@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $latitude = isset($_GET['latitude']) ? $_GET['latitude'] : null;
     $longitude = isset($_GET['longitude']) ? $_GET['longitude'] : null;
-    
+
     $landmark = $_POST['landmark'];
     $day = $_POST['day'];
     $message = $_POST['message'];
@@ -72,6 +72,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $activity_stmt->execute();
 
     $activity_stmt->close();
+
+
+    $search = "SELECT COUNT(*) AS total_donations
+  FROM donations
+  WHERE username = '$username'";
+
+    // Execute the query
+    $donationValue = $connection->query($search);
+
+    // Check if the query was successful
+    if ($donationValue) {
+        // Fetch the result as an associative array
+        $row = $donationValue->fetch_assoc();
+        $totalDonations = $row['total_donations'];  // Get the total donations sum
+
+        // Call the function to update the user's progress after the donation
+        include 'ZHcardUpdater.php';
+        updateAfterDonation($username, $totalDonations);
+    }
     $connection->close();
 }
 ?>
@@ -91,14 +110,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <?php
     include '../assets/navbar.php';  // import navbar as a componenet 
     ?>
-      <div class="container">
+    <div class="container">
         <div class="left-column">
             <form action="donateFood.php" method="post">
                 <div class="section-title">Donate Food</div>
                 <div class="upper">
                     <div class="form-group">
                         <label>Enter Your Residence Address/Landmark Name</label>
-                        <input name="landmark" placeholder="Enter name of your shop or mess or a hotel if not mention nearest landmark" type="text"  required>
+                        <input name="landmark" placeholder="Enter name of your shop or mess or a hotel if not mention nearest landmark" type="text" required>
                     </div>
                     <div class="form-group">
                         <label>Mention Day Food was Made</label>
@@ -110,7 +129,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </div>
                     <button type="button" onclick="sendLocation()" type="submit" class="location-button">
                         <span>Add My Current Location</span>
-                        <img class="location-icon" src="../../images/Location.png" alt="location"  required>
+                        <img class="location-icon" src="../../images/Location.png" alt="location" required>
                     </button>
                 </div>
                 <div class="section-title">Food Details</div>
@@ -217,11 +236,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <p>Putting a step toward mutual group of human care worldwide</p>
             </div>
             <div class="foooter">
-                    <p class="warning">
-                        If any type of malpractices found (fake or duplicate entry) will be banned from the website.
-                    </p>
-                    <input class="submit-button" type="submit" value="Submit Donation"/>
-                </div>
+                <p class="warning">
+                    If any type of malpractices found (fake or duplicate entry) will be banned from the website.
+                </p>
+                <input class="submit-button" type="submit" value="Submit Donation" />
+            </div>
             </form>
         </div>
     </div>

@@ -12,6 +12,17 @@ body {
   min-height: 100vh;
 }
 
+.badges-head {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 20px 0px 60px 0px;
+  background-color: #ff8d02;
+  color: #ffffff;
+  padding: 10px 10px 0px 10px;
+}
+
+
 .main-container {
   display: flex;
   flex-wrap: wrap;
@@ -30,6 +41,12 @@ body {
 .name_H p {
   color: #333;
 }
+
+.tick img{
+  height: 25px;
+  width: 25px;
+}
+
 .left,
 .right {
   background-color: #f5d8b5;
@@ -86,22 +103,38 @@ body {
   justify-content: space-between;
   gap: 10px;
 }
+.badge{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 40px;
 
+}
+
+.badge img{
+  transition: 0.3s ease;
+}
+
+.badge img:hover{
+  transform: scale(1.05);
+}
 .info {
   background-color: #ffffff;
   margin-left: 20px;
-  padding: 10px 10px 10px 20px;
-
+  padding: 10px 10px 10px 10px;
   border-radius: 10px;
   font-size: smaller;
+  font-size:16px;
 }
 .info p {
   font-weight: 100;
 }
-.img-op {
-  opacity: 65%;
+
+.no-badges{
+  opacity: 80%;
   padding-top: 20px;
 }
+
 .info ul {
   margin-left: 20px;
 }
@@ -275,3 +308,97 @@ body {
   text-align: center;
   color: #ffffff;
 }
+.zh-card {
+  display: flex;
+  gap: 20px;
+  justify-content: space-evenly;
+  align-items: center;
+  background:#f5d8b5 ;
+  padding: 20px;
+ 
+  border-radius: 10px;
+  margin: 20px 40px 40px 40px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.progress-section {
+  text-align: center;
+  width: 120px;
+  flex: 1;
+  transition: 0.3s ease;
+}
+.progress-section:hover{
+  transform: scale(1.05);
+}
+
+.progress-ring {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  background: conic-gradient(
+      #4caf50 calc(var(--percentage) * 1%),
+      #ffffff 0
+  );
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  margin-left: 35%;
+  justify-content: center;
+  overflow: hidden; /* Ensures the inner content is visible */
+}
+
+.progress-ring::before {
+  content: '';
+  position: absolute;
+  width: 80%; /* Adjust inner circle size */
+  height: 80%;
+  background: #f5d8b5; /* Matches the background */
+  border-radius: 50%;
+  z-index: 1; /* Ensures it stays above the progress bar */
+}
+
+.progress-value {
+  position: absolute;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #4caf50;
+  z-index: 2; /* Ensures visibility above the mask */
+}
+
+.progress-title {
+  font-weight: bold;
+  margin: 10px 0 5px;
+  padding: 0;
+}
+
+.progress-count {
+  color: #000000;
+  padding: 5px 10px;
+  border-radius: 20px;
+  background-color: #ff8d02;
+  margin: 0;
+}
+
+.ring_1{
+  background: conic-gradient(
+    #ff8d02 calc(var(--percentage) * 1%),
+    #ffffff 0
+);
+}
+.ring_3{
+  background: conic-gradient(
+    hsl(227, 100%, 50%) calc(var(--percentage) * 1%),
+    #ffffff 0
+);
+}
+.ring_4{
+  background: conic-gradient(
+    #ff0202 calc(var(--percentage) * 1%),
+    #ffffff 0
+);
+}
+
+.p1{color: #ff8d02;}
+.p2{color: #4caf50;}
+.p3{color:hsl(227, 100%, 50%)}
+.p4{color: #ff0202;}

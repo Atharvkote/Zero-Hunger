@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $stmt->close();
 
   // Handle file uploads (image/video from gallery or custom media upload)
-  
+
   // Handle media-upload (if exists)
   if (isset($_FILES['media_upload']) && $_FILES['media_upload']['error'] == UPLOAD_ERR_OK) {
     $file = $_FILES['media_upload'];
@@ -78,6 +78,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $stmt->execute();
   $stmt->close();
 
+
+  $search = "SELECT COUNT(*) AS total_reports
+  FROM needs
+  WHERE username = '$username'";
+
+  // Execute the query
+  $result = $connection->query($search);
+
+  // Check if the query was successful
+  if ($result) {
+    // Fetch the result as an associative array
+    $row = $result->fetch_assoc();
+    $needValue = $row['total_reports'];  // Get the total reports count
+
+    // Call the function to update the user's progress after the report
+    include 'ZHcardUpdater.php';
+    updateAfterReport($username, $needValue);
+  }
   // Close the connection and redirect to the success page
   $connection->close();
   header("Location: needFood.php"); // Redirect to a success page (optional)
@@ -87,6 +105,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -94,6 +113,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <link rel="stylesheet" href="need-Food.css">
   <link rel="icon" href="../../images/Zero-Hunger-Favicon.png" type="image/icon type">
 </head>
+
 <body>
   <?php include '../assets/navbar.php'; ?>
 
@@ -153,7 +173,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <input class="submit-button" type="submit" value="Submit" />
     </div>
   </form>
- <script src="mediaPreveiwer.js"></script>
+  <script src="mediaPreveiwer.js"></script>
   <script src="locationTracker-needs.js"></script>
 </body>
 

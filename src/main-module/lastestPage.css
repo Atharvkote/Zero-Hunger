@@ -3,7 +3,7 @@
 .map {
   height: auto;
   width: 100%;
-  max-width: 700px;
+  max-width: 600px;
   margin: 10px auto;
   border-radius: 0px 20px 20px 0px;
   /* align-items:flex-end; */
@@ -23,6 +23,7 @@
 .hungerPoint-details {
   margin: 10px;
   padding: 10px;
+  flex: 1;
 }
 
 .image-container {
@@ -43,6 +44,38 @@ h4{
   margin: 0;
   padding: 0;
 }
+
+.head-id{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.head-id p,.head-id h3{
+  flex: 1;
+}
+
+.head-id p{
+  background-color: #f28c28;
+  padding: 10px 60px 10px 60px;
+  border-radius: 15px;
+  text-align: center;
+}
+
+.h3 {
+  display: flex;
+  align-items: center;
+  text-align: left;
+  background: #f28c28;
+  margin: 0px 0px 10px -20px;
+  border-radius: 0px 20px 20px 0px;
+  padding: 0px 0px 0px 30px;
+}
+
+.h3 img {
+  margin-right: 20px;
+}
+
 .side img{
   width: 110px;
   height: 80px;
@@ -80,6 +113,11 @@ h4{
   color: #ffffff;
   font-weight: bold;
   font-family: "Inknut Antiqua", serif;
+  transition: 0.3s ease;
+}
+
+.toggle-buttons button:hover{
+  transform: scale(1.05);
 }
 
 .lastest-container {
@@ -94,10 +132,20 @@ h4{
 
 .donation-details {
   margin: 0px 60px 0px 30px;
+  flex: 1;
 }
 .donation-details p {
   margin: 0;
   padding: 0;
+}
+
+.arrow{
+  position: relative;
+  background-color: #f28c28;
+  width: 20px;
+  height: 5px;
+  margin-right: 2px;
+  border-radius: 5px;
 }
 
 #heading {
@@ -117,19 +165,16 @@ h4{
   padding-right: 20px;
   border-radius: 3px 20px 20px 0px;
   background-color: #f28c28;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  margin-right:2px;
 }
 
 .donation-details li {
   list-style: none;
   margin: 0;
   padding: 0;
-}
-
-.donation-details .h3 {
-  display: flex;
-  justify-items: center;
-  align-items: center;
-  margin-right: 45%;
 }
 
 .donation-details .h3 img {
@@ -146,7 +191,7 @@ ul {
   margin-left: 20px;
 }
 
-.donation-details span {
+.donation-details > span {
   background-color: #f28c28;
   padding: 2px;
   border-radius: 10px;
@@ -189,19 +234,6 @@ th:first-child {
   border-left: none;
 }
 
-.h3 {
-  display: flex;
-  align-items: center;
-  text-align: left;
-  background: #f28c28;
-  margin: 0px 0px 10px -20px;
-  border-radius: 0px 20px 20px 0px;
-  padding: 0px 0px 0px 30px;
-}
-
-.h3 img {
-  margin-right: 20px;
-}
 
 .hungerPoint-details p{
   padding: 0;

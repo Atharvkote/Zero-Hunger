@@ -9,6 +9,16 @@ $username = $_SESSION['username'];
 $second_sql = "SELECT * FROM `users` WHERE username = '$username'";
 $second_sql_results = mysqli_query($connection, $second_sql);
 $row_2 = mysqli_fetch_assoc($second_sql_results);
+
+
+$isAdmin = false;
+$search = "SELECT * FROM `admins` WHERE username = '$username'";
+$request_rows = mysqli_query($connection, $search);
+$numRows = mysqli_num_rows($request_rows);
+if ($numRows != 0) {
+    $isAdmin = true;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -182,7 +192,6 @@ $row_2 = mysqli_fetch_assoc($second_sql_results);
             margin: 0px 0px 0px 0px;
             border-radius: 0px 0px 10px 10px;
             color: black;
-
         }
 
         a {
@@ -257,7 +266,12 @@ $row_2 = mysqli_fetch_assoc($second_sql_results);
             background-color: #ff8d02;
         }
 
-        
+        #popup .tick img {
+            height: 25px;
+            width: 25px;
+            margin-left: -25px;
+            margin-bottom: -7px;
+        }
     </style>
 </head>
 
@@ -285,7 +299,7 @@ $row_2 = mysqli_fetch_assoc($second_sql_results);
     <nav class="navbar">
         <ul>
             <li><a href="../main-module/index.php">Home <img src="../../images/Arrow-Down.png" height="5px" width="10px"></a></li>
-            <li><a href="../main-module/lastestPage.php">Latest<img src="../../images/Arrow-Down.png" height="5px" width="10px"></a></li>
+            <li><a href="../main-module/lastestPage.php">Latest<img title="Verified Account" src="../../images/Arrow-Down.png" height="5px" width="10px"></a></li>
             <li><a href="../main-module/aboutUsPage.php">About Us<img src="../../images/Arrow-Down.png" height="5px" width="10px"></a></li>
         </ul>
     </nav>
@@ -303,6 +317,10 @@ $row_2 = mysqli_fetch_assoc($second_sql_results);
             }
             ?>
             <h2><?php echo $username; ?></h2>
+            <?php if ($isAdmin) {
+                echo '<div class="tick"><img src="../../images/Orange-Tick.png" alt="tick" height="25px" width="25px"></div>';
+            } ?>
+
         </div>
         <hr />
         <div class="danger-new">

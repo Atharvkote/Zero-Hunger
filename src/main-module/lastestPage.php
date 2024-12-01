@@ -23,6 +23,7 @@ if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         // Group items by donation
         $donations[$row['id']]['details'] = [
+            'donation_id' => $row['id'],
             'username' => $row['username'],
             'landmark' => $row['landmark'],
             'day' => $row['day'],
@@ -78,7 +79,7 @@ $hungerPoints = [];
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         $mediaPath = $row['media_path'] ?? '../../images/Image-Template.png'; // Default path if media_path is null
-        
+
         $hungerPoints[] = [
             'id' => $row['need_id'],
             'spot_type' => $row['spot_type'],
@@ -123,7 +124,7 @@ $connection->close();
         <img src="../../images/1.png" alt="milestonses" height="150px" width="150px">
         <button id="donationsButton" onclick="showDonations()">Donations</button>
         <button id="hungerPointsButton" onclick="showHungerPoints()">Hunger Points</button>
-         <a href="../functionality-module/deliverFood.php"><button>Deliver(be A Volunteer)</button></a>
+        <a href="../functionality-module/deliverFood.php"><button>Deliver(be A Volunteer)</button></a>
         <img src="../../images/2.png" alt="milestonses" height="150px" width="150px">
         <img src="../../images/3.png" alt="milestonses" height="150px" width="150px">
     </div>
@@ -136,7 +137,14 @@ $connection->close();
             <?php foreach ($donations as $donation_id => $donation): ?>
                 <div class="lastest-container">
                     <div class="donation-details">
-                        <h3 class="h3"><img src="../../images/Person-Logo.png" alt="image" height="30px" width="30px"> <?= htmlspecialchars($donation['details']['username']); ?></h3>
+                        <div class="head-id">
+                            <h3 class="h3"><img src="../../images/Person-Logo.png" alt="image" height="30px" width="30px"> <?= htmlspecialchars($donation['details']['username']); ?></h3>
+                            <span class="arrow"></span>
+                            <span class="arrow"></span>
+                            <span class="arrow"></span>
+                            <span class="arrow"></span>
+                            <p><strong>Donation Id :</strong> <?= htmlspecialchars($donation['details']['donation_id']); ?></p>
+                        </div>
                         <p><strong>Landmark:</strong> <?= htmlspecialchars($donation['details']['landmark']); ?></p>
                         <p><strong>Message:</strong> <?= htmlspecialchars($donation['details']['message']); ?></p>
 
@@ -175,69 +183,74 @@ $connection->close();
         <?php endif; ?>
     </div>
 
-<!-- Hunger Points Section -->
-<div id="hungerPointsSection" style="display:none;">
+    <!-- Hunger Points Section -->
+    <div id="hungerPointsSection" style="display:none;">
 
-    <?php if ($showError2): ?>
-        <p class="error"><?= htmlspecialchars($showError2); ?></p>
-    <?php else: ?>
-        <?php foreach ($hungerPoints as $hungerPoint): ?>
-            <div class="lastest-container">
-                <div class="hungerPoint-details">
-                    <h3 class="h3">
-                        <img src="../../images/Person-Logo.png" alt="image" height="30px" width="30px"> 
-                        <?= htmlspecialchars($hungerPoint['username']); ?>
-                    </h3>
-                    <p><strong>Spot Type:</strong> <?= htmlspecialchars($hungerPoint['spot_type']); ?></p>
-                    <p><strong>Food Needed for:</strong> <?= htmlspecialchars($hungerPoint['number_of_people']); ?> people</p>
-                    <p><strong>Urgency:</strong> <?= $hungerPoint['urgent'] == 1 ? 'Urgent' : 'Normal'; ?></p>
-                    <p><strong>Created At:</strong> <?= htmlspecialchars($hungerPoint['created_at']); ?></p>
+        <?php if ($showError2): ?>
+            <p class="error"><?= htmlspecialchars($showError2); ?></p>
+        <?php else: ?>
+            <?php foreach ($hungerPoints as $hungerPoint): ?>
+                <div class="lastest-container">
+                    <div class="hungerPoint-details">
+                        <div class="head-id">
+                            <h3 class="h3">
+                                <img src="../../images/Person-Logo.png" alt="image" height="30px" width="30px">
+                                <?= htmlspecialchars($hungerPoint['username']); ?>
+                            </h3>
+                            <span class="arrow"></span>
+                            <span class="arrow"></span>
+                            <span class="arrow"></span>
+                            <span class="arrow"></span>
+                            <p><strong>Hungerpoint Id :</strong> <?= htmlspecialchars($hungerPoint['id']); ?></p>
+                        </div>
+                        <p><strong>Spot Type:</strong> <?= htmlspecialchars($hungerPoint['spot_type']); ?></p>
+                        <p><strong>Food Needed for:</strong> <?= htmlspecialchars($hungerPoint['number_of_people']); ?> people</p>
+                        <p><strong>Urgency:</strong> <?= $hungerPoint['urgent'] == 1 ? 'Urgent' : 'Normal'; ?></p>
+                        <p><strong>Created At:</strong> <?= htmlspecialchars($hungerPoint['created_at']); ?></p>
 
-                    <!-- Display image if available -->
-                    <?php if (!empty($hungerPoint['media_path'])): ?>
-    <div class="media-container">
-        <h4>Hunger Point Media:</h4>
-        <div class="side">
-            <?php
-            // Get the file extension
-            $fileInfo = pathinfo($hungerPoint['media_path']);
-            $fileExtension = strtolower($fileInfo['extension']);
+                        <!-- Display image if available -->
+                        <?php if (!empty($hungerPoint['media_path'])): ?>
+                            <div class="media-container">
+                                <h4>Hunger Point Media:</h4>
+                                <div class="side">
+                                    <?php
+                                    // Get the file extension
+                                    $fileInfo = pathinfo($hungerPoint['media_path']);
+                                    $fileExtension = strtolower($fileInfo['extension']);
 
-            // Check if it's an image or video based on the file extension
-            if (in_array($fileExtension, ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'webp'])) {
-                // It's an image
-                echo '<img src="' . htmlspecialchars($hungerPoint['media_path']) . '" alt="Hunger Point Image" />';
-                echo '<pre>';
-                echo ($hungerPoint['media_path'] == '../../images/Image-Template.png') ? 'No Image Available' : 'Image Uploaded By ' . $hungerPoint['username'];
-                echo '</pre>';
-            } elseif (in_array($fileExtension, ['mp4', 'avi', 'mov', 'wmv', 'flv', 'webm'])) {
-                // It's a video
-                echo '<video class="rounded-video" width="200" height="125" controls>';
-                echo '<source src="' . htmlspecialchars($hungerPoint['media_path']) . '" type="video/' . $fileExtension . '">';
-                echo 'Your browser does not support the video tag.';
-                echo '</video>';
-                echo '<pre>';
-                echo 'Video Uploaded By ' . $hungerPoint['username'];
-                echo '</pre>';
-            } else {
-                echo 'Unsupported media format.';
-            }
-            ?>
-        </div>
+                                    // Check if it's an image or video based on the file extension
+                                    if (in_array($fileExtension, ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'webp'])) {
+                                        // It's an image
+                                        echo '<img src="' . htmlspecialchars($hungerPoint['media_path']) . '" alt="Hunger Point Image" />';
+                                        echo '<pre>';
+                                        echo ($hungerPoint['media_path'] == '../../images/Image-Template.png') ? 'No Image Available' : 'Image Uploaded By ' . $hungerPoint['username'];
+                                        echo '</pre>';
+                                    } elseif (in_array($fileExtension, ['mp4', 'avi', 'mov', 'wmv', 'flv', 'webm'])) {
+                                        // It's a video
+                                        echo '<video class="rounded-video" width="200" height="125" controls>';
+                                        echo '<source src="' . htmlspecialchars($hungerPoint['media_path']) . '" type="video/' . $fileExtension . '">';
+                                        echo 'Your browser does not support the video tag.';
+                                        echo '</video>';
+                                        echo '<pre>';
+                                        echo 'Video Uploaded By ' . $hungerPoint['username'];
+                                        echo '</pre>';
+                                    } else {
+                                        echo 'Unsupported media format.';
+                                    }
+                                    ?>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+                    </div>
+                    <!-- Display location on the map -->
+                    <div class="map" id="map-<?= $hungerPoint['id']; ?>" class="map2"
+                        data-lat="<?= htmlspecialchars($hungerPoint['latitude']); ?>"
+                        data-lng="<?= htmlspecialchars($hungerPoint['longitude']); ?>">
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        <?php endif; ?>
     </div>
-<?php endif; ?>
-
-
-                </div>
-                <!-- Display location on the map -->
-                <div class="map" id="map-<?= $hungerPoint['id']; ?>" class="map2"
-                    data-lat="<?= htmlspecialchars($hungerPoint['latitude']); ?>"
-                    data-lng="<?= htmlspecialchars($hungerPoint['longitude']); ?>">
-                </div>
-            </div>
-        <?php endforeach; ?>
-    <?php endif; ?>
-</div>
 
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -245,41 +258,41 @@ $connection->close();
     <script>
         // Initialize each map
         document.querySelectorAll('.map').forEach(mapDiv => {
-    const latitude = parseFloat(mapDiv.dataset.lat);
-    const longitude = parseFloat(mapDiv.dataset.lng);
+            const latitude = parseFloat(mapDiv.dataset.lat);
+            const longitude = parseFloat(mapDiv.dataset.lng);
 
-    if (isNaN(latitude) || isNaN(longitude)) {
-        mapDiv.innerHTML = '<p>Location data not available</p>';
-        return; // Stop further execution for invalid locations
-    }
+            if (isNaN(latitude) || isNaN(longitude)) {
+                mapDiv.innerHTML = '<p>Location data not available</p>';
+                return; // Stop further execution for invalid locations
+            }
 
-    // Initialize the map
-    const map = L.map(mapDiv, {
-        center: [latitude, longitude],
-        zoom: 15,
-        minZoom: 5,
-        maxZoom: 18,
-        zoomControl: true
-    });
+            // Initialize the map
+            const map = L.map(mapDiv, {
+                center: [latitude, longitude],
+                zoom: 15,
+                minZoom: 5,
+                maxZoom: 18,
+                zoomControl: true
+            });
 
-    // Add Satellite tiles
-    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-        attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
-    }).addTo(map);
+            // Add Satellite tiles
+            L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+                attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+            }).addTo(map);
 
-    // Add a marker
-    L.marker([latitude, longitude]).addTo(map)
-        .bindPopup('<b>Donation Location</b><br>Latitude: ' + latitude + '<br>Longitude: ' + longitude)
-        .openPopup();
+            // Add a marker
+            L.marker([latitude, longitude]).addTo(map)
+                .bindPopup('<b>Donation Location</b><br>Latitude: ' + latitude + '<br>Longitude: ' + longitude)
+                .openPopup();
 
-    // Ensure map resizes properly
-    map.invalidateSize();
+            // Ensure map resizes properly
+            map.invalidateSize();
 
-    // Listen for window resize
-    window.addEventListener('resize', () => {
-        map.invalidateSize();
-    });
-});
+            // Listen for window resize
+            window.addEventListener('resize', () => {
+                map.invalidateSize();
+            });
+        });
 
         // Functions to toggle between Donations and Hunger Points sections
         function showDonations() {

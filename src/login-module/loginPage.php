@@ -21,6 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         // echo $row['password'];
         if (password_verify($password, $row['password'])) {
             $_SESSION['loggedin'] = true;                   //Flag - for Loggin Options
+            $_SESSION['badges_assigned'] = false;                   //Flag - for Loggin Options
             $_SESSION['username'] = $name;
             $_SESSION['email'] = $row['email'];
             $_SESSION['state'] = $row['state'];
