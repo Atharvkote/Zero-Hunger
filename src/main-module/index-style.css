@@ -131,6 +131,11 @@ body {
   text-align: center;
   color: #edf2f4; 
   box-shadow: 2px #000000;
+  transition: 0.3s ease;
+}
+
+.stats-container .stat:hover{
+  transform: scale(1.05);
 }
 
 
@@ -298,7 +303,12 @@ body {
   border-radius: 10px;
   padding: 20px;
   background-color: #f5d8b5;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+  transition: 0.3s ease;
+}
+
+.box2:hover{
+  transform: scale(1.01);
 }
 
 .box-img {
