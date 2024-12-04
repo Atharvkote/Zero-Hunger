@@ -29,16 +29,15 @@ $activeUsersPercentage = ($numberOfUser / $goalActiveUsers) * 100;
 
 
 // Fetch deliveries assigned to the logged-in user
-// $repo = "SELECT * FROM `deliveries` WHERE `delivered_by` = '$user'";
-// $query = mysqli_query($connection, $repo);
+$repo = "SELECT * FROM `deliveries` WHERE `delivered_by` = '$user'";
+$query = mysqli_query($connection, $repo);
 
-// // Check if the query was successful
-// if ($query && mysqli_num_rows($query) > 0) {
-//     // Fetch data into an associative array
-//     $deliveries = mysqli_fetch_all($query, MYSQLI_ASSOC);
-// } else {
-//     $deliveries = []; // No deliveries found
-// }
+// Check if the query was successful
+if ($query && mysqli_num_rows($query) > 0) {
+    $flag = True;
+} else {
+    $flag = false; // No deliveries found
+}
 ?>
 
 <!DOCTYPE html>
@@ -117,39 +116,72 @@ $activeUsersPercentage = ($numberOfUser / $goalActiveUsers) * 100;
             </div>
         </div>
     </div>
-    <h2 class="hh2">Deliveries Assigned to You</h2>
-    <div class="deliveries-container">
-        <?php
-        // Assuming $connection is already included and connected
-        $query = "SELECT * FROM `deliveries` WHERE `delivered_by` = '$user'";
-        $result = mysqli_query($connection, $query);
+    <?php
+if ($flag) {
+    echo '<h2 class="hh2">Deliveries Assigned to You</h2>';
+    echo '<div class="deliveries-container">';
+    // Assuming $connection is already included and connected
+    $query = "SELECT * FROM `deliveries` WHERE `delivered_by` = '$user'";
+    $result = mysqli_query($connection, $query);
 
-        if (mysqli_num_rows($result) > 0) {
-            echo'<div class="main-c"';
-            echo "<ul class='deliveries-list'>";
-            while ($row = mysqli_fetch_assoc($result)) {
-                // Format dates for JavaScript
-                $deliveryDate = date("Y-m-d H:i:s", strtotime($row['delivery_date']));
-                $expectedDate = date("Y-m-d H:i:s", strtotime($row['expected_delivery_date']));
-                echo "<li class='delivery-item'>";
-                echo "<h3><strong>Delivery Number :</strong> " . $row['id'] . "</h3>";
-                echo "<p><strong>Donation ID:</strong> " . $row['donation_id'] . "</p>";
-                echo "<p><strong>Hunger Point ID:</strong> " . $row['hunger_point_id'] . "</p>";
-                echo "<p><strong>Delivery Date:</strong> " . $row['delivery_date'] . "</p>";
-                echo "<p><strong>Expected Delivery Date:</strong> " . $row['expected_delivery_date'] . "</p>";
-                echo "<div class='countdown' data-start='$deliveryDate' data-end='$expectedDate'></div>";
-                echo "</li>";
+    if (mysqli_num_rows($result) > 0) {
+        echo '<div class="main-c">';
+        echo "<ul class='deliveries-list'>";
+        while ($row = mysqli_fetch_assoc($result)) {
+            // Retrieve latitude and longitude for donor and hunger point
+            $donationId = $row['donation_id'];
+            $hungerPointId = $row['hunger_point_id'];
+
+            // Query to get donor location
+            $donorQuery = "SELECT latitude, longitude FROM `donations` WHERE `id` = '$donationId'";
+            $donorResult = mysqli_query($connection, $donorQuery);
+            $donorData = mysqli_fetch_assoc($donorResult);
+
+            // Query to get hunger point location
+            $hungerPointQuery = "SELECT latitude, longitude FROM `needs` WHERE `id` = '$hungerPointId'";
+            $hungerPointResult = mysqli_query($connection, $hungerPointQuery);
+            $hungerPointData = mysqli_fetch_assoc($hungerPointResult);
+
+            // Format dates for JavaScript
+            $deliveryDate = date("Y-m-d H:i:s", strtotime($row['delivery_date']));
+            $expectedDate = date("Y-m-d H:i:s", strtotime($row['expected_delivery_date']));
+
+            echo "<li class='delivery-item'>";
+            echo "<h3><strong>Delivery Number :</strong> " . $row['id'] . "</h3>";
+            echo "<p><strong>Donation ID:</strong> " . $donationId . "</p>";
+            echo "<p><strong>Hunger Point ID:</strong> " . $hungerPointId . "</p>";
+            echo "<p><strong>Delivery Date:</strong> " . $row['delivery_date'] . "</p>";
+            echo "<p><strong>Expected Delivery Date:</strong> " . $row['expected_delivery_date'] . "</p>";
+            echo "<div class='countdown' data-start='$deliveryDate' data-end='$expectedDate'></div>";
+
+            // Add "Get Directions" buttons if locations are available
+            if ($donorData && $hungerPointData) {
+                $donorLat = $donorData['latitude'];
+                $donorLng = $donorData['longitude'];
+                $hungerLat = $hungerPointData['latitude'];
+                $hungerLng = $hungerPointData['longitude'];
+                echo'<div class="locate">';
+                echo "<button  onclick=\"window.open('https://www.google.com/maps/dir/?api=1&destination=$donorLat,$donorLng', '_blank')\">Get Directions to Donor</button>";
+                echo "<button onclick=\"window.open('https://www.google.com/maps/dir/?api=1&destination=$hungerLat,$hungerLng', '_blank')\">Get Directions to HP</button>";
+                echo'</div>';
+            } else {
+                echo "<p>Location details not available.</p>";
             }
-            echo'</div>';
 
-        } else {
-            echo "<p>No delivery records found.</p>";
+            echo "</li>";
         }
-        ?>
-            <div class="main-child">
+        echo "</ul>";
+        echo '</div>';
+
+        echo '<div class="main-child">
             <img src="../../images/Timer.png" alt="timer" height="300px" width="300px">
-            </div>
-    </div>
+        </div>';
+    } else {
+        echo "<p>No delivery records found.</p>";
+    }
+}
+?>
+
 
     <script>
         // JavaScript for handling the countdown timer

@@ -108,7 +108,7 @@ if (!isset($_SESSION['username']) || $_SESSION['loggedin'] !== true) {
                 <div class="left-content">
                     <?php
                     if (is_null($row_2['profile_photo'])) {
-                        echo '<img src="../../uploads/Person-Logo.png" height="100px" width="100px">';
+                        echo '<img src="../../uploads/Default-Image.png" alt="default-img" height="100px" width="100px">';
                     } else {
                         $path = $row_2['profile_photo'];
                         echo '<div class="ppic"><img src="' . $path . '" height="100px" width="100px"></div>';

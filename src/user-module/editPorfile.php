@@ -63,7 +63,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Profile</title>
+    <link rel="icon" href="../../images/Zero-Hunger-Favicon.png" type="image/icon type">
+    <title>Zero Hunger - Edit Profile</title>
     <link rel="stylesheet" href="styles.css"> <!-- Optional, for styling -->
 </head>
 

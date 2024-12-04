@@ -310,6 +310,20 @@ body {
   transform: scale(1.01);
 }
 
+.locate button {
+  background-color: #ff8d02;
+  padding: 5px;
+  font-family: "Inknut Antiqua", serif;
+  border: none;
+  border-radius: 10px;
+  margin-right: 5px;
+  transition: 0.3s ease;
+}
+
+.locate button:hover {
+  transform: scale(1.05);
+}
+
 .box-img {
   width: 400px;
   height: 400px;
@@ -324,7 +338,7 @@ body {
 
 .box2 p {
   font-size: 1rem;
-  color: #ffffff;
+  color: #545252;
   line-height: 1.5;
 }
 

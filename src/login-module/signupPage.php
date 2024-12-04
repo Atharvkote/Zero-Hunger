@@ -68,7 +68,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zero Hunger - Create Account</title>
     <link rel="stylesheet" href="signup-style.css">
-    <link rel="icon" href="../../images/Red-Heart-Logo.png" type="image/icon type">
+    <link rel="icon" href="../../images/Zero-Hunger-Favicon.png" type="image/icon type">
+
     <script src="passwordValidator.js" defer></script> <!-- Link to external JS file -->
     <script type="text/javascript"
         src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">

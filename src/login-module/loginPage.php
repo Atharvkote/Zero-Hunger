@@ -50,7 +50,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="login-style.css">
-    <link rel="icon" href="../../images/Red-Heart-Logo.png" type="image/icon type">
+    <link rel="icon" href="../../images/Zero-Hunger-Favicon.png" type="image/icon type">
+
     <title>Zero Hunger - Login In</title>
 </head>
 <body>

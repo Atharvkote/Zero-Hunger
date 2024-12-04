@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -92,6 +95,12 @@
             color: #ff8d02;
             text-decoration: none;
         }
+        .contact-info {
+            background-color: #e9ecef;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
 
         footer a:hover {
             text-decoration: underline;
@@ -155,16 +164,17 @@
         <h3>10. Changes to Terms</h3>
         <p>Zero Hunger may update these Terms and Conditions from time to time. Any changes will be posted on this page, and the updated date will be noted at the top of this page.</p>
 
-        <h3>11. Contact Information</h3>
-        <p>If you have any questions or concerns, please contact us at:</p>
-        <ul class="contact-list">
-            <li><a href="mailto:atharvakote81@gmail.com">atharvakote81@gmail.com</a></li>
-            <li><a href="mailto:kordebhushan6120@gmail.com">kordebhushan6120@gmail.com</a></li>
-            <li><a href="mailto:naikwadesairaj@gmail.com">naikwadesairaj@gmail.com</a></li>
-            <li><a href="mailto:pranavmulay2005@gmail.com">pranavmulay2005@gmail.com</a></li>
-            <li><a href="mailto:nannawareyash@gmail.com">nannawareyash@gmail.com</a></li>
-        </ul>
-    </div>
+        <h3>9. Contact Information</h3>
+        <div class="contact-info">
+            <p>If you have any questions or concerns about this Privacy Policy, please contact us at:</p>
+            <p>Emails:<br>
+                <a href="mailto:atharvakote81@gmail.com">1. atharvakote81@gmail.com</a><br>
+                <a href="mailto:kordebhushan6120@gmail.com">2. kordebhushan6120@gmail.com</a><br>
+                <a href="mailto:naikwadesairaj@gmail.com">3. naikwadesairaj@gmail.com</a><br>
+                <a href="mailto:pranavmulay2005@gmail.com">4. pranavmulay2005@gmail.com</a><br>
+                <a href="mailto:nannawareyash@gmail.com">5. nannwareyash@gmail.com</a><br>
+            </p>
+        </div>
     <footer>
         © 2024 Zero Hunger Project | Designed with ❤️
     </footer>

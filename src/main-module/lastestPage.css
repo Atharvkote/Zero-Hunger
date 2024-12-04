@@ -1,29 +1,30 @@
 @import url("https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@400;700&display=swap");
 
 .map {
-  height: auto;
-  width: 100%;
+  height: auto; /* Fixed height for proper rendering */
+  width: 100%;   /* Full width */
   max-width: 600px;
-  margin: 10px auto;
+  /* margin: 10px auto; */
   border-radius: 0px 20px 20px 0px;
-  /* align-items:flex-end; */
-  position: relative;          /* Proper positioning */
-  border: 1px solid #ddd;      /* Add border for styling */
+  border: 1px solid #ddd;
   overflow: hidden;
-  margin-right: 0px;
-  margin-bottom: 0px;
-  margin-top: 0px;
 }
 
 .rounded-video {
-  border-radius: 15px; /* Rounded corners */
-  overflow: hidden;    /* Ensures no content is outside the rounded corners */
+  border-radius: 15px;
+  overflow: hidden;
   margin-right: 10px;
 }
+
 .hungerPoint-details {
   margin: 10px;
   padding: 10px;
   flex: 1;
+}
+
+.hungerPoint-details p {
+  padding: 0;
+  margin: 0;
 }
 
 .image-container {
