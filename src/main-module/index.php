@@ -9,6 +9,7 @@ include '../assets/DataBase-LINK.php'; // Include your database connection file
 
 $showError = "";
 
+$user = $_SESSION['username'];
 // Fetch milestone data
 $numberOfUser = mysqli_num_rows(mysqli_query($connection, "SELECT * FROM `users-information`"));
 $hungerPoint = mysqli_num_rows(mysqli_query($connection, "SELECT * FROM `needs`"));
@@ -25,6 +26,19 @@ $donationsPercentage = ($donations / $goalDonations) * 100;
 $hungerPointsPercentage = ($hungerPoint / $goalHungerPoints) * 100;
 $activeUsersPercentage = ($numberOfUser / $goalActiveUsers) * 100;
 
+
+
+// Fetch deliveries assigned to the logged-in user
+// $repo = "SELECT * FROM `deliveries` WHERE `delivered_by` = '$user'";
+// $query = mysqli_query($connection, $repo);
+
+// // Check if the query was successful
+// if ($query && mysqli_num_rows($query) > 0) {
+//     // Fetch data into an associative array
+//     $deliveries = mysqli_fetch_all($query, MYSQLI_ASSOC);
+// } else {
+//     $deliveries = []; // No deliveries found
+// }
 ?>
 
 <!DOCTYPE html>
@@ -102,6 +116,74 @@ $activeUsersPercentage = ($numberOfUser / $goalActiveUsers) * 100;
                 <a href="../sponser-module/sponser.php"><button><b>Sponser Us</b></button></a>
             </div>
         </div>
+    </div>
+    <h2 class="hh2">Deliveries Assigned to You</h2>
+    <div class="deliveries-container">
+        <?php
+        // Assuming $connection is already included and connected
+        $query = "SELECT * FROM `deliveries` WHERE `delivered_by` = '$user'";
+        $result = mysqli_query($connection, $query);
+
+        if (mysqli_num_rows($result) > 0) {
+            echo'<div class="main-c"';
+            echo "<ul class='deliveries-list'>";
+            while ($row = mysqli_fetch_assoc($result)) {
+                // Format dates for JavaScript
+                $deliveryDate = date("Y-m-d H:i:s", strtotime($row['delivery_date']));
+                $expectedDate = date("Y-m-d H:i:s", strtotime($row['expected_delivery_date']));
+                echo "<li class='delivery-item'>";
+                echo "<h3><strong>Delivery Number :</strong> " . $row['id'] . "</h3>";
+                echo "<p><strong>Donation ID:</strong> " . $row['donation_id'] . "</p>";
+                echo "<p><strong>Hunger Point ID:</strong> " . $row['hunger_point_id'] . "</p>";
+                echo "<p><strong>Delivery Date:</strong> " . $row['delivery_date'] . "</p>";
+                echo "<p><strong>Expected Delivery Date:</strong> " . $row['expected_delivery_date'] . "</p>";
+                echo "<div class='countdown' data-start='$deliveryDate' data-end='$expectedDate'></div>";
+                echo "</li>";
+            }
+            echo'</div>';
+
+        } else {
+            echo "<p>No delivery records found.</p>";
+        }
+        ?>
+            <div class="main-child">
+            <img src="../../images/Timer.png" alt="timer" height="300px" width="300px">
+            </div>
+    </div>
+
+    <script>
+        // JavaScript for handling the countdown timer
+        document.addEventListener('DOMContentLoaded', function() {
+            const countdowns = document.querySelectorAll('.countdown');
+            countdowns.forEach(function(countdown) {
+                const startDate = new Date(countdown.getAttribute('data-start'));
+                const endDate = new Date(countdown.getAttribute('data-end'));
+
+                function updateTimer() {
+                    const now = new Date();
+                    const timeRemaining = endDate - now;
+
+                    if (timeRemaining <= 0) {
+                        countdown.innerHTML = "<p style='color: red;'>Delivery Overdue!</p>";
+                        clearInterval(timerInterval);
+                    } else {
+                        const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+                        const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                        const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+                        const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+                        countdown.innerHTML = `
+                        <p><strong>Time Remaining:</strong> ${days}d : ${hours}h : ${minutes}m : ${seconds}s</p>
+                    `;
+                    }
+                }
+
+                updateTimer();
+                const timerInterval = setInterval(updateTimer, 1000);
+            });
+        });
+    </script>
+
     </div>
 
     <div class="hh2">
